@@ -316,6 +316,7 @@
   <ItemGroup>
     <Compile Include="Commands\Selected.cs" />
     <Compile Include="Commands\SelectorSelectedCommandBehavior.cs" />
+    <Compile Include="Configuration\CsvGlobalExcludeSettingsProvider.cs" />
     <Compile Include="Configuration\XmlColumnsSettingsProvider.cs" />
     <Compile Include="Configuration\MahTweetsBootstrapper.cs" />
     <Compile Include="Configuration\MahTweetsBuilder.cs" />
