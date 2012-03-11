@@ -2,7 +2,7 @@
 
 A WPF Twitter Client for power Twitter users- possibly one of the oldest out there.
 
-MahTweets is built in the style of a "shed project" - its something we tinker on in our spare time and things like process and UX are not a focus.
+MahTweets is built in the style of a *"shed project"* - something we tinker on in our spare time, and things like process and UX are not a focus.
 
 ## A brief history of MahTweets
 
