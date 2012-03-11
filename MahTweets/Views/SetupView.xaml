@@ -6,8 +6,8 @@
              Background="{DynamicResource BackgroundBrush}">
   <Grid>
     <TabControl MinHeight="300" Margin="10,15,10,10" BorderBrush="{x:Null}"
-                Background="{DynamicResource BaseColour}" Opacity="{DynamicResource BaseColourOpacityAccent2}" Panel.ZIndex="1">
-      <TabItem Header="Accounts" BorderBrush="{x:Null}" Style="{DynamicResource SetupTabControlStyle}">
+                Background="{DynamicResource WhiteColour}" Opacity="{DynamicResource BaseColourOpacityAccent2}" Panel.ZIndex="1">
+            <TabItem Header="Accounts" BorderBrush="{x:Null}" Style="{DynamicResource SetupTabControlStyle}" Background="{DynamicResource BaseColour}">
         <Setup:AccountsView DataContext="{Binding AccountsViewModel}" />
       </TabItem>
       <TabItem Header="Extras" BorderBrush="{x:Null}" Style="{DynamicResource SetupTabControlStyle}"
