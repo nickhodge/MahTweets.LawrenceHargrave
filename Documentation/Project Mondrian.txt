@@ -1,9 +1,0 @@
-MONDRIAN
-
-- more detailed info from MediaProcessor images
-- blue area to the left of about = status. blinkenlights w/status.
-- scroller for mosaics holder
-- mondrian design
--- filters in bottom of columns
--- in app mosaics
-- SmartyNotifications

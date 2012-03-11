@@ -1,9 +1,0 @@
-param in prefs for title extraction; post text H1/title thingy
-global highlights
-why no update of items after filter change
-
-ensure OOB is great
-new ico for mahtweetslh
-icons for .mtcolumn .mtcolumns
-
-opening status; about - no zoom up/down
