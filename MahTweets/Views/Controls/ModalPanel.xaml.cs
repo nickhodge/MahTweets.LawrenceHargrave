@@ -1,8 +1,6 @@
 ﻿using System.Collections.Generic;
-using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Input;
 using System.Windows.Media.Animation;
 using MahTweets.Core.Composition;
 using MahTweets.Core.Events;
@@ -21,7 +19,7 @@ namespace MahTweets.Views.Controls
 
             _stack = new Stack<UIElement>();
 
-            if (DesignerProperties.GetIsInDesignMode(this))
+            if (System.ComponentModel.DesignerProperties.GetIsInDesignMode(this))
                 return;
 
             _eventAggregator = CompositionManager.Get<IEventAggregator>();
@@ -37,6 +35,8 @@ namespace MahTweets.Views.Controls
             {
                 Panel.SetZIndex(this, 4);
                 ModalContent.Content = obj;
+                var sb = FindResource("showDialog") as Storyboard;
+                if (sb != null) sb.Begin();
             }
             else
                 ModalContent.Content = obj;
@@ -58,6 +58,8 @@ namespace MahTweets.Views.Controls
             {
                 Panel.SetZIndex(this, 0);
                 btnCloseDialog.Visibility = Visibility.Collapsed;
+                var sb = FindResource("hideDialog") as Storyboard;
+                if (sb != null) sb.Begin();
             }
         }
 
@@ -73,7 +75,7 @@ namespace MahTweets.Views.Controls
             HandleCloseDialog(uiElement);
         }
 
-        private void rectangle_MouseUp(object sender, MouseButtonEventArgs e)
+        private void rectangle_MouseUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             btnCloseDialog_Click(null, null);
         }

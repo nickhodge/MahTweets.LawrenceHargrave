@@ -24,11 +24,14 @@
   <Grid x:Name="LayoutRoot">
     <Rectangle Fill="{StaticResource BaseColour}" HorizontalAlignment="Left" Width="100" />
     <TextBlock Foreground="{DynamicResource TextColour}" TextWrapping="Wrap" Margin="108,8,8,0">
-      <Run FontSize="32" FontFamily="Segoe UI" Text="MahTweets LH" />
+      <Run FontSize="32" FontFamily="Segoe UI" Text="MahTweets:" />
+              <Hyperlink Click="HyperlinkClick" Tag="http://en.wikipedia.org/wiki/Lawrence_Hargrave">
+        <Run FontSize="25" Text="Lawrence Hargrave" />
+      </Hyperlink>
       <LineBreak />
-      <Run Text="MahTweets is free, open source software, released under the MS-PL License." />
+      <Run Text="MahTweets LH is open source software, released under the MS-PL License" />
       <LineBreak />
-      <Run Text="MahTweets LH is a tinkering project out of the MahApps Shed." />
+      <Run Text="- and a tinkering project out of the MahApps Shed." />
       <LineBreak />
       <LineBreak />
       <Run FontSize="24" FontFamily="Segoe UI" Text="Code" />
@@ -48,8 +51,7 @@
       <Hyperlink Tag="http://nickhodge.com/blog/">
         <Run Text="Nick Hodge" />
       </Hyperlink>
-      <Run Text=" (" />
-      <Run FontSize="18.667" Text="Lawrence Hargrave" />
+      <Run Text="(Lawrence Hargrave" />
       <Run Text=" Edition)" />
       <LineBreak />
       <Run Text="" />
@@ -64,14 +66,13 @@
       <Hyperlink Tag="http://nickhodge.com/blog/">
         <Run Text="Nick Hodge" />
       </Hyperlink>
-      <Run Text=" (" />
-      <Run Text="Lawrence Hargrave" />
+      <Run Text="(Lawrence Hargrave" />
       <Run Text=" Edition)" />
       <LineBreak />
       <LineBreak />
       <Run FontSize="24" FontFamily="Segoe UI" Text="Components" />
       <LineBreak />
-      <Run Text="MahTweets make use of many free &amp; open-source third party components:" />
+      <Run Text="MahTweets make use of many open-source third party components:" />
       <LineBreak />
       <LineBreak />
       <Hyperlink Tag="https://github.com/MahApps/MahApps.Twitter">
@@ -106,17 +107,18 @@
       <Hyperlink Tag="http://www.justbenicestudio.com/studio/websymbols/">
         <Run Text="WebSymbols" />
       </Hyperlink>
-      <Run Text=" (OFL)" />
+      <Run Text=" (OFL) " />
+        <Hyperlink Tag="http://http://linqtocsv.codeplex.com/">
+        <Run Text="LINQtoCSV" />
+            </Hyperlink>
+        <Run Text=" (MS-PL) " />
       <LineBreak />
     </TextBlock>
     <Rectangle Fill="{StaticResource LawrenceHargrave}" Margin="0,0,0,0" Height="165" Width="100"
                HorizontalAlignment="Left" VerticalAlignment="Top" d:LayoutOverrides="VerticalMargin" DataContext="{Binding}" />
     <TextBlock x:Name="txtVersionString" Height="23" HorizontalAlignment="Left" Margin="108,0,0,8"
                Foreground="{DynamicResource MidGreyColour}" TextAlignment="Left" Text="" VerticalAlignment="Bottom" Width="147"
-               d:LayoutOverrides="HorizontalAlignment">
-      <Hyperlink Click="HyperlinkClick" Tag="http://en.wikipedia.org/wiki/Lawrence_Hargrave">
-        <Run FontSize="30" Text="Lawrence Hargrave" />
-      </Hyperlink>
+               d:LayoutOverrides="HorizontalAlignment" Visibility="Hidden">
     </TextBlock>
   </Grid>
 </UserControl>
