@@ -1,24 +1,23 @@
-# MahTweets
+# MahTweets v4 - Lawrence Hargrave edition
 
 A WPF Twitter Client for power Twitter users- possibly one of the oldest out there.
 
 MahTweets is built in the style of a "shed project" - its something we tinker on in our spare time and things like process and UX are not a focus.
 
-## An introduction to MahTweets
+## A brief history of MahTweets
 
-Paul Jenkins started a great Twitter client back in the day - it was a thing of wonderment.
+Paul Jenkins started a great Twitter client back in the day - it was a thing of wonderment in the early days of Twitter clients (particularly for Windows users).
 
-As time passed, more people rallied to his cause, code was written and great features added. The scope of MahTweets grew to being a rich social media client. Everyone's ideas were committed to code and binaries where shipped.
+As time passed, more people rallied to his cause - ideas were suggested, code was written, and great features were added to the app. The scope of MahTweets grew to being a rich social media client. Everyone's ideas were committed to code and binaries where shipped.
 
-Like all good things, they don't last forever. MahTweets was officially retired in October 2011, but the code remained on Codeplex for people to view and fork.
+But, like all good things, it didn't last forever. MahTweets was officially retired in October 2011, but the code remained on Codeplex for people to view and fork.
 
-## Introduction to MahTweets.LawrenceHargrave
+## Enter MahTweets.LawrenceHargrave
 
 I picked up the last build of [MahTweets 3.5.0.1569](http://mahtweets.codeplex.com/SourceControl/list/changesets) over on codeplex.com and started hacking on it. Forked it, if you will. In stealth mode.
-
 [List of Changes since MahTweets 3.5](wiki/initialchanges)
 
-There are a couple reasons why I picked Lawrence Hargrave as a code name:
+And who is Lawrence Hargrave? And why was he used for a codename?
 
 1. He is Australian
 2. He was a pioneer of flight, and specifically the box kite
