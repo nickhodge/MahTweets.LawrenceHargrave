@@ -38,20 +38,25 @@
 	<Fragment>
 		<ComponentGroup Id="ProductComponents">
 			<Component Id="MainEXE" Guid="855193C7-E882-4BD8-8593-EFE291520500" Directory="INSTALLFOLDER">
-				<File Id="MahTweetsEXE" Name="MahTweets.exe" Source="..\MahTweets\bin\x86\Release\MahTweets.exe" Vital="yes" />
-        <Shortcut Id="startmenuSampleApp" Directory="ProgramMenuDir" Name="MahTweetsLH" WorkingDirectory='INSTALLFOLDER' Icon="mahtweetsicon.ico" IconIndex="0" Advertise='yes' />
-        <RemoveFolder Id="INSTALLFOLDER" On="uninstall"/>
-        <ProgId Id='MahTweetsLH.mtcolumn' Description='MahTweetsLH Column Definitions'>
-          <Extension Id='mtcolumn' ContentType='application/mtcolumn'>
-            <Verb Id='open' Command='Open' TargetFile='MahTweetsEXE' Argument='"%1"' />
-          </Extension>
-        </ProgId>
-        <ProgId Id='MahTweetsLH.mtcolumns' Description='MahTweetsLH Multiple Column Definitions'>
-          <Extension Id='mtcolumns' ContentType='application/mtcolumns'>
-            <Verb Id='open' Command='Open' TargetFile='MahTweetsEXE' Argument='"%1"' />
-          </Extension>
-        </ProgId>
-			</Component>
+			<File Id="MahTweetsEXE" Name="MahTweets.exe" Source="..\MahTweets\bin\x86\Release\MahTweets.exe" Vital="yes" />
+			<Shortcut Id="startmenuSampleApp" Directory="ProgramMenuDir" Name="MahTweetsLH" WorkingDirectory='INSTALLFOLDER' Icon="mahtweetsicon.ico" IconIndex="0" Advertise='yes' />
+			<RemoveFolder Id="INSTALLFOLDER" On="uninstall"/>
+			<ProgId Id='MahTweetsLH.mtcolumn' Description='MahTweetsLH Column Definitions'>
+				<Extension Id='mtcolumn' ContentType='application/mtcolumn'>
+					<Verb Id='open' Command='Open' TargetFile='MahTweetsEXE' Argument='"%1"' />
+				</Extension>
+			</ProgId>
+			<ProgId Id='MahTweetsLH.mtcolumns' Description='MahTweetsLH Multiple Column Definitions'>
+				<Extension Id='mtcolumns' ContentType='application/mtcolumns'>
+					<Verb Id='open' Command='Open' TargetFile='MahTweetsEXE' Argument='"%1"' />
+				</Extension>
+			</ProgId>
+			<ProgId Id='MahTweetsLH.data' Description='MahTweetsLH Configuration Data'>
+				<Extension Id='mtdata' ContentType='application/mtdata'>
+					<Verb Id='open' Command='Open' TargetFile='MahTweetsEXE' Argument='"%1"' />
+				</Extension>
+			</ProgId>
+		</Component>
       <Component Id='ProgramMenuDir' Guid='C2EBCD18-FB70-45E0-9401-48C28291645F' Directory="ProgramMenuDir">
        <RegistryValue Root='HKCU' Key='SOFTWARE\MahApps Shed Project\MahTweetsLH' Type='string' Value='Hello World' KeyPath='yes' />
         <RemoveFolder Id="ProgramMenuDir" On="uninstall" />
@@ -85,6 +90,9 @@
       </Component>
       <Component Id="MicrosoftScriptingMetadataDLL" Guid="855193C7-E882-4BD8-8593-EFE291520510" Directory="INSTALLFOLDER">
         <File Id="MicrosoftScriptingMetadataDLL" Name="Microsoft.Scripting.Metadata.dll" Source="..\MahTweets\bin\x86\Release\Microsoft.Scripting.Metadata.dll" Vital="yes" />
+      </Component>
+	  <Component Id="MicrosoftDynamicDLL" Guid="855193C7-E882-4BD8-8593-FFE291520511" Directory="INSTALLFOLDER">
+        <File Id="MicrosoftDynamicDLL" Name="Microsoft.Dynamic.dll" Source="..\MahTweets\bin\x86\Release\Microsoft.Dynamic.dll" Vital="yes" />
       </Component>
       <Component Id="MicrosoftScriptingDLL" Guid="855193C7-E882-4BD8-8593-EFE291520511" Directory="INSTALLFOLDER">
         <File Id="MicrosoftScriptingDLL" Name="Microsoft.Scripting.dll" Source="..\MahTweets\bin\x86\Release\Microsoft.Scripting.dll" Vital="yes" />
