@@ -1,0 +1,22 @@
+﻿<UserControl 
+xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+    xmlns:MahTweets_WebCam="clr-namespace:MahTweets.WebCam" xmlns:MahTweets="clr-namespace:MahTweets.Views"
+    x:Class="MahTweets.Views.WebcamView" mc:Ignorable="d"
+ MinWidth="700"  MinHeight="600">
+    <Grid>
+    	<TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Foreground="{DynamicResource HeadingColour}" FontFamily="{DynamicResource HeadingFont}" FontSize="{DynamicResource MainHeadingFontSize}" Margin="8,0,0,0"><Run Language="en-au" Text="Webcam"/></TextBlock>
+    	<Button x:Name="btnSnap" Content="Snap" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="75" Margin="8,0,0,62.24"/>
+    	<Grid x:Name="grdPlayer" Margin="8,32.8,69,88.2">
+    		<TextBlock Text="Cannot detect webcam" FontSize="40" Foreground="#CACACA" HorizontalAlignment="Center" VerticalAlignment="Center" />
+    		<MahTweets_WebCam:CapPlayer Grid.Row="0" x:Name="player" Device="{Binding SelectedWebcam, RelativeSource={RelativeSource AncestorType={x:Type MahTweets:WebcamView}}}" />
+    		<Image x:Name="imgPreview"
+    			Stretch="Uniform"
+    			Visibility="Hidden"
+                           />
+    	</Grid>
+            
+    </Grid>
+</UserControl>

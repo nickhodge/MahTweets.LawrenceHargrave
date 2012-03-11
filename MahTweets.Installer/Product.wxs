@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+	<Product Id="101B6090-D280-4FA8-B36D-EFDB569C3207" Name="MahTweetsLH" Language="1033" Version="3.6.0.1" Manufacturer="MahApps Shed Project" UpgradeCode="7d7c17d4-a6b5-447b-9a23-5e104ef4d930">
+		<Package Id="*" InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
+    
+    <!-- http://go.microsoft.com/fwlink/?LinkId=181014 -->
+
+    <Condition Message='MahTweetsLH application only runs on Windows 7 or later.'>
+      VersionNT = 601
+    </Condition>
+
+    <MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
+    <MediaTemplate EmbedCab="yes"/>
+
+    <Icon Id="mahtweetsicon.ico" SourceFile="..\MahTweets\bin\x86\Release\mahtweetsicon.ico" />
+    
+    <Feature Id="ProductFeature" Title="MahTweets.Installer" Level="1">
+			<ComponentGroupRef Id="ProductComponents" />
+		</Feature>
+    
+  </Product>
+
+  <Fragment>
+    <Directory Id="TARGETDIR" Name="SourceDir">
+      <Directory Id="ProgramFilesFolder">
+        <Directory Id="INSTALLFOLDER" Name="MahTweetsLH">
+          <Directory Id="SCRIPTSINSTALLFOLDER" Name="Scripts"/>
+          <Directory Id="FONTSINSTALLFOLDER" Name="Fonts"/>
+        </Directory>
+      </Directory>
+      <Directory Id="ProgramMenuFolder">
+        <Directory Id="ProgramMenuDir" Name="MahTweetsLH">
+        </Directory>
+      </Directory>
+    </Directory>
+  </Fragment>
+  
+	<Fragment>
+		<ComponentGroup Id="ProductComponents">
+			<Component Id="MainEXE" Guid="855193C7-E882-4BD8-8593-EFE291520500" Directory="INSTALLFOLDER">
+				<File Id="MahTweetsEXE" Name="MahTweets.exe" Source="..\MahTweets\bin\x86\Release\MahTweets.exe" Vital="yes" />
+        <Shortcut Id="startmenuSampleApp" Directory="ProgramMenuDir" Name="MahTweetsLH" WorkingDirectory='INSTALLFOLDER' Icon="mahtweetsicon.ico" IconIndex="0" Advertise='yes' />
+        <RemoveFolder Id="INSTALLFOLDER" On="uninstall"/>
+        <ProgId Id='MahTweetsLH.mtcolumn' Description='MahTweetsLH Column Definitions'>
+          <Extension Id='mtcolumn' ContentType='application/mtcolumn'>
+            <Verb Id='open' Command='Open' TargetFile='MahTweetsEXE' Argument='"%1"' />
+          </Extension>
+        </ProgId>
+        <ProgId Id='MahTweetsLH.mtcolumns' Description='MahTweetsLH Multiple Column Definitions'>
+          <Extension Id='mtcolumns' ContentType='application/mtcolumns'>
+            <Verb Id='open' Command='Open' TargetFile='MahTweetsEXE' Argument='"%1"' />
+          </Extension>
+        </ProgId>
+			</Component>
+      <Component Id='ProgramMenuDir' Guid='C2EBCD18-FB70-45E0-9401-48C28291645F' Directory="ProgramMenuDir">
+       <RegistryValue Root='HKCU' Key='SOFTWARE\MahApps Shed Project\MahTweetsLH' Type='string' Value='Hello World' KeyPath='yes' />
+        <RemoveFolder Id="ProgramMenuDir" On="uninstall" />
+      </Component>
+      <Component Id="MainEXEconfig" Guid="855193C7-E882-4BD8-8593-EFE291520501" Directory="INSTALLFOLDER">
+        <File Id="MahTweetsEXEconfig" Name="MahTweets.exe.config" Source="..\MahTweets\bin\x86\Release\MahTweets.exe.config" Vital="yes" />
+      </Component>
+      <Component Id="defaultavatarimagepng" Guid="855193C7-E882-4BD8-8593-EFE291520502" Directory="INSTALLFOLDER">
+        <File Id="defaultavatarimagepng" Name="default_avatar_image.png" Source="..\MahTweets\bin\x86\Release\default_avatar_image.png" Vital="yes" />
+      </Component>
+      <Component Id="MahTweetsEXEmanifest" Guid="855193C7-E882-4BD8-8593-EFE291520503" Directory="INSTALLFOLDER">
+        <File Id="MahTweetsEXEmanifest" Name="MahTweets.exe.manifest" Source="..\MahTweets\bin\x86\Release\MahTweets.exe.manifest" Vital="yes" />
+      </Component>
+      <Component Id="mahtweetsiconICO" Guid="855193C7-E882-4BD8-8593-EFE291520504" Directory="INSTALLFOLDER">
+        <File Id="mahtweetsiconICO" Name="mahtweetsicon.ico" Source="..\MahTweets\bin\x86\Release\mahtweetsicon.ico" Vital="yes" />
+      </Component>
+      <Component Id="Windows7SensorAndLocationDLL" Guid="855193C7-E882-4BD8-8593-EFE291520505" Directory="INSTALLFOLDER">
+        <File Id="Windows7SensorAndLocationDLL" Name="Windows7.SensorAndLocation.dll" Source="..\MahTweets\bin\x86\Release\Windows7.SensorAndLocation.dll" Vital="yes" />
+      </Component>
+      <Component Id="SystemWindowsInteractivityDLL" Guid="855193C7-E882-4BD8-8593-EFE291520506" Directory="INSTALLFOLDER">
+        <File Id="SystemWindowsInteractivityDLL" Name="System.Windows.Interactivity.dll" Source="..\MahTweets\bin\x86\Release\System.Windows.Interactivity.dll" Vital="yes" />
+      </Component>
+      <Component Id="NewtonsoftJsonDLL" Guid="855193C7-E882-4BD8-8593-EFE291520507" Directory="INSTALLFOLDER">
+        <File Id="NewtonsoftJsonDLL" Name="Newtonsoft.Json.dll" Source="..\MahTweets\bin\x86\Release\Newtonsoft.Json.dll" Vital="yes" />
+      </Component>
+      <Component Id="MicrosoftWindowsAPICodePackShellDLL" Guid="855193C7-E882-4BD8-8593-EFE291520508" Directory="INSTALLFOLDER">
+        <File Id="MicrosoftWindowsAPICodePackShellDLL" Name="Microsoft.WindowsAPICodePack.Shell.dll" Source="..\MahTweets\bin\x86\Release\Microsoft.WindowsAPICodePack.Shell.dll" Vital="yes" />
+      </Component>
+      <Component Id="MicrosoftWindowsAPICodePackDLL" Guid="855193C7-E882-4BD8-8593-EFE291520509" Directory="INSTALLFOLDER">
+        <File Id="MicrosoftWindowsAPICodePackDLL" Name="Microsoft.WindowsAPICodePack.dll" Source="..\MahTweets\bin\x86\Release\Microsoft.WindowsAPICodePack.dll" Vital="yes" />
+      </Component>
+      <Component Id="MicrosoftScriptingMetadataDLL" Guid="855193C7-E882-4BD8-8593-EFE291520510" Directory="INSTALLFOLDER">
+        <File Id="MicrosoftScriptingMetadataDLL" Name="Microsoft.Scripting.Metadata.dll" Source="..\MahTweets\bin\x86\Release\Microsoft.Scripting.Metadata.dll" Vital="yes" />
+      </Component>
+      <Component Id="MicrosoftScriptingDLL" Guid="855193C7-E882-4BD8-8593-EFE291520511" Directory="INSTALLFOLDER">
+        <File Id="MicrosoftScriptingDLL" Name="Microsoft.Scripting.dll" Source="..\MahTweets\bin\x86\Release\Microsoft.Scripting.dll" Vital="yes" />
+      </Component>
+      <Component Id="MahTweetsUrlShortenersDLL" Guid="855193C7-E882-4BD8-8593-EFE291520512" Directory="INSTALLFOLDER">
+        <File Id="MahTweetsUrlShortenersDLL" Name="MahTweets.UrlShorteners.dll" Source="..\MahTweets\bin\x86\Release\MahTweets.UrlShorteners.dll" Vital="yes" />
+      </Component>
+      <Component Id="MahTweetsUIDLL" Guid="855193C7-E882-4BD8-8593-EFE291520514" Directory="INSTALLFOLDER">
+        <File Id="MahTweetsUIDLL" Name="MahTweets.UI.dll" Source="..\MahTweets\bin\x86\Release\MahTweets.UI.dll" Vital="yes" />
+      </Component>
+      <Component Id="MahTweetsTwitterPluginDLL" Guid="855193C7-E882-4BD8-8593-EFE291520515" Directory="INSTALLFOLDER">
+        <File Id="MahTweetsTwitterPluginDLL" Name="MahTweets.TwitterPlugin.dll" Source="..\MahTweets\bin\x86\Release\MahTweets.TwitterPlugin.dll" Vital="yes" />
+      </Component>
+      <Component Id="MahTweetsTweetProcessorsDLL" Guid="855193C7-E882-4BD8-8593-EFE291520516" Directory="INSTALLFOLDER">
+        <File Id="MahTweetsTweetProcessorsDLL" Name="MahTweets.TweetProcessors.dll" Source="..\MahTweets\bin\x86\Release\MahTweets.TweetProcessors.dll" Vital="yes" />
+      </Component>
+      <Component Id="MahTweetsNotificationDLL" Guid="855193C7-E882-4BD8-8593-EFE291520517" Directory="INSTALLFOLDER">
+        <File Id="MahTweetsNotificationDLL" Name="MahTweets.Notification.dll" Source="..\MahTweets\bin\x86\Release\MahTweets.Notification.dll" Vital="yes" />
+      </Component>
+      <Component Id="MahTweetsCoreDLL" Guid="855193C7-E882-4BD8-8593-EFE291520518" Directory="INSTALLFOLDER">
+        <File Id="MahTweetsCoreDLL" Name="MahTweets.Core.dll" Source="..\MahTweets\bin\x86\Release\MahTweets.Core.dll" Vital="yes" />
+      </Component>
+      <Component Id="MahAppsTwitterDLL" Guid="855193C7-E882-4BD8-8593-EFE291520519" Directory="INSTALLFOLDER">
+        <File Id="MahAppsTwitterDLL" Name="MahApps.Twitter.dll" Source="..\MahTweets\bin\x86\Release\MahApps.Twitter.dll" Vital="yes" />
+      </Component>
+      <Component Id="MahAppsRESTBaseDLL" Guid="855193C7-E882-4BD8-8593-EFE291520521" Directory="INSTALLFOLDER">
+        <File Id="MahAppsRESTBaseDLL" Name="MahApps.RESTBase.dll" Source="..\MahTweets\bin\x86\Release\MahApps.RESTBase.dll" Vital="yes" />
+      </Component>
+      <Component Id="IronPythonModulesDLL" Guid="855193C7-E882-4BD8-8593-EFE291520522" Directory="INSTALLFOLDER">
+        <File Id="IronPythonModulesDLL" Name="IronPython.Modules.dll" Source="..\MahTweets\bin\x86\Release\IronPython.Modules.dll" Vital="yes" />
+      </Component>
+      <Component Id="IronPythonDLL" Guid="855193C7-E882-4BD8-8593-EFE291520523" Directory="INSTALLFOLDER">
+        <File Id="IronPythonDLL" Name="IronPython.dll" Source="..\MahTweets\bin\x86\Release\IronPython.dll" Vital="yes" />
+      </Component>
+      <Component Id="HammockClientProfileDLL" Guid="855193C7-E882-4BD8-8593-EFE291520524" Directory="INSTALLFOLDER">
+        <File Id="HammockClientProfileDLL" Name="Hammock.ClientProfile.dll" Source="..\MahTweets\bin\x86\Release\Hammock.ClientProfile.dll" Vital="yes" />
+      </Component>
+      <Component Id="CastleCoreDLL" Guid="855193C7-E882-4BD8-8593-EFE291520525" Directory="INSTALLFOLDER">
+        <File Id="CastleCoreDLL" Name="Castle.Core.dll" Source="..\MahTweets\bin\x86\Release\Castle.Core.dll" Vital="yes" />
+      </Component>
+      <Component Id="AutofacContribDynamicProxy2DLL" Guid="855193C7-E882-4BD8-8593-EFE291520526" Directory="INSTALLFOLDER">
+        <File Id="AutofacContribDynamicProxy2DLL" Name="AutofacContrib.DynamicProxy2.dll" Source="..\MahTweets\bin\x86\Release\AutofacContrib.DynamicProxy2.dll" Vital="yes" />
+      </Component>
+      <Component Id="AutofacIntegrationMefDLL" Guid="855193C7-E882-4BD8-8593-EFE291520527" Directory="INSTALLFOLDER">
+        <File Id="AutofacIntegrationMefDLL" Name="Autofac.Integration.Mef.dll" Source="..\MahTweets\bin\x86\Release\Autofac.Integration.Mef.dll" Vital="yes" />
+      </Component>
+      <Component Id="AutofacDLL" Guid="855193C7-E882-4BD8-8593-EFE291520528" Directory="INSTALLFOLDER">
+        <File Id="AutofacDLL" Name="Autofac.dll" Source="..\MahTweets\bin\x86\Release\Autofac.dll" Vital="yes" />
+      </Component>
+      <Component Id="AsyncCtpLibraryDLL" Guid="855193C7-E882-4BD8-8593-EFE291520529" Directory="INSTALLFOLDER">
+        <File Id="AsyncCtpLibraryDLL" Name="AsyncCtpLibrary.dll" Source="..\MahTweets\bin\x86\Release\AsyncCtpLibrary.dll" Vital="yes" />
+      </Component>
+      <Component Id="EmoticonsTTF" Guid="855193C7-E882-4BD8-8593-EFE291520530" Directory="FONTSINSTALLFOLDER">
+        <File Id="EmoticonsTTF" Name="Emoticons.ttf" Source="..\MahTweets\bin\x86\Release\Fonts\Emoticons.ttf" Vital="yes" />
+      </Component>
+      <Component Id="WebSymbolsRegularOTF" Guid="855193C7-E882-4BD8-8593-EFE291520531" Directory="FONTSINSTALLFOLDER">
+        <File Id="WebSymbolsRegularOTF" Name="WebSymbols-Regular.otf" Source="..\MahTweets\bin\x86\Release\Fonts\WebSymbols-Regular.otf" Vital="yes" />
+        <RemoveFolder Id="FONTSINSTALLFOLDER" On="uninstall"/>
+      </Component>
+      <Component Id="AddToGlobalIgnorePY" Guid="855193C7-E882-4BD8-8593-EFE291520532" Directory="SCRIPTSINSTALLFOLDER">
+        <File Id="AddToGlobalIgnorePY" Name="Add To Global Ignore.py" Source="..\MahTweets\bin\x86\Release\Scripts\Add To Global Ignore.py" Vital="yes" />
+      </Component>
+      <Component Id="ClosebyTweetsPY" Guid="855193C7-E882-4BD8-8593-EFE291520533" Directory="SCRIPTSINSTALLFOLDER">
+        <File Id="ClosebyTweetsPY" Name="Close-by Tweets.py" Source="..\MahTweets\bin\x86\Release\Scripts\Close-by Tweets.py" Vital="yes" />
+      </Component>
+      <Component Id="DictionaryDefinitionPY" Guid="855193C7-E882-4BD8-8593-EFE291520534" Directory="SCRIPTSINSTALLFOLDER">
+        <File Id="DictionaryDefinitionPY" Name="DictionaryDefinition.py" Source="..\MahTweets\bin\x86\Release\Scripts\DictionaryDefinition.py" Vital="yes" />
+      </Component>
+      <Component Id="exportcolumnsPY" Guid="855193C7-E882-4BD8-8593-EFE291520535" Directory="SCRIPTSINSTALLFOLDER">
+        <File Id="exportcolumnsPY" Name="export columns.py" Source="..\MahTweets\bin\x86\Release\Scripts\export columns.py" Vital="yes" />
+      </Component>
+      <Component Id="GoogleSearchPY" Guid="855193C7-E882-4BD8-8593-EFE291520536" Directory="SCRIPTSINSTALLFOLDER">
+        <File Id="GoogleSearchPY" Name="GoogleSearch.py" Source="..\MahTweets\bin\x86\Release\Scripts\GoogleSearch.py" Vital="yes" />
+      </Component>
+      <Component Id="importcolumnsPY" Guid="855193C7-E882-4BD8-8593-EFE291520537" Directory="SCRIPTSINSTALLFOLDER">
+        <File Id="importcolumnsPY" Name="import columns.py" Source="..\MahTweets\bin\x86\Release\Scripts\import columns.py" Vital="yes" />
+      </Component>
+      <Component Id="LocateAndShowonMapPY" Guid="855193C7-E882-4BD8-8593-EFE291520538" Directory="SCRIPTSINSTALLFOLDER">
+        <File Id="LocateAndShowonMapPY" Name="LocateAndShowonMap.py" Source="..\MahTweets\bin\x86\Release\Scripts\LocateAndShowonMap.py" Vital="yes" />
+      </Component>
+      <Component Id="LOLTranslatorPY" Guid="855193C7-E882-4BD8-8593-EFE291520539" Directory="SCRIPTSINSTALLFOLDER">
+        <File Id="LOLTranslatorPY" Name="LOLTranslator.py" Source="..\MahTweets\bin\x86\Release\Scripts\LOLTranslator.py" Vital="yes" />
+      </Component>
+      <Component Id="MahTweetsLibPY" Guid="855193C7-E882-4BD8-8593-EFE291520540" Directory="SCRIPTSINSTALLFOLDER">
+        <File Id="MahTweetsLibPY" Name="MahTweetsLib.py" Source="..\MahTweets\bin\x86\Release\Scripts\MahTweetsLib.py" Vital="yes" />
+      </Component>
+      <Component Id="SimpleListChoiceXAML" Guid="855193C7-E882-4BD8-8593-EFE291520541" Directory="SCRIPTSINSTALLFOLDER">
+        <File Id="SimpleListChoiceXAML" Name="SimpleListChoice.xaml" Source="..\MahTweets\bin\x86\Release\Scripts\SimpleListChoice.xaml" Vital="yes" />
+      </Component>
+      <Component Id="TranslateFromEnglishPY" Guid="855193C7-E882-4BD8-8593-EFE291520542" Directory="SCRIPTSINSTALLFOLDER">
+        <File Id="TranslateFromEnglishPY" Name="TranslateFromEnglish.py" Source="..\MahTweets\bin\x86\Release\Scripts\TranslateFromEnglish.py" Vital="yes" />
+      </Component>
+      <Component Id="UpdateContainsLocationPY" Guid="855193C7-E882-4BD8-8593-EFE291520543" Directory="SCRIPTSINSTALLFOLDER">
+        <File Id="UpdateContainsLocationPY" Name="UpdateContainsLocation.py" Source="..\MahTweets\bin\x86\Release\Scripts\UpdateContainsLocation.py" Vital="yes" />
+      </Component>
+      <Component Id="WikipediaSearchPY" Guid="855193C7-E882-4BD8-8593-EFE291520544" Directory="SCRIPTSINSTALLFOLDER">
+        <File Id="WikipediaSearchPY" Name="WikipediaSearch.py" Source="..\MahTweets\bin\x86\Release\Scripts\WikipediaSearch.py" Vital="yes" />
+      </Component>
+    </ComponentGroup>
+	</Fragment>
+</Wix>

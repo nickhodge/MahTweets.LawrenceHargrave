@@ -1,0 +1,220 @@
+﻿<Window xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:mtGuiControls="clr-namespace:MahTweets.UI.Controls;assembly=MahTweets.UI"
+        xmlns:Controls="clr-namespace:MahTweets.Views.Controls"
+        Closing="WindowClosing" x:Name="window" WindowStyle="None" AllowsTransparency="True"
+        mc:Ignorable="d" x:Class="MahTweets.MainWindow" Title="MahTweets" Height="600" Width="850" Icon="mahtweetsicon.ico"
+        FontFamily="{DynamicResource DefaultFont}" Foreground="{DynamicResource MainTextColour}"
+        FontSize="{DynamicResource DefaultFontSize}" Background="{x:Null}" AllowDrop="True" Drop="WindowDrop"
+        ResizeMode="CanResizeWithGrip" UseLayoutRounding="False" StateChanged="WindowStateChanged">
+
+  <Window.InputBindings>
+    <KeyBinding Gesture="CTRL+W" Command="{Binding ClearAllCommand}" />
+    <KeyBinding Gesture="CTRL+D" Command="{Binding RefreshCommand}" />
+    <KeyBinding Gesture="CTRL+N" Command="{Binding NewUpdateCommand}" />
+    <KeyBinding Gesture="CTRL+S" Command="{Binding SetupCommand}" />
+    <KeyBinding Gesture="CTRL+F" Command="{Binding SearchCommand}" />
+  </Window.InputBindings>
+
+  <Window.Resources>
+    <CollectionViewSource x:Key="cvsTargets" Source="{Binding CurrentMicroblogs}" Filter="CvsTargetsFilter" />
+  </Window.Resources>
+
+  <Grid x:Name="LayoutRoot">
+        
+    <!-- popup used for account selection -->
+    <ListBox x:Name="lstUpdateTargets" Panel.ZIndex="200" SelectionMode="Multiple" BorderBrush="{x:Null}"
+             Background="{DynamicResource BackgroundBrush}" Foreground="{DynamicResource MidGreyColour}"
+             ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Disabled"
+             ScrollViewer.CanContentScroll="False" BorderThickness="0" ItemsSource="{Binding Source={StaticResource cvsTargets}}"
+             Margin="55,65,0,0" HorizontalAlignment="Left" Width="200" Visibility="Hidden">
+      <ListBox.ItemTemplate>
+        <DataTemplate>
+          <Grid Margin="0,0,2,0" Width="184">
+            <CheckBox x:Name="Checked" VerticalAlignment="Center" IsEnabled="False"
+                      Style="{DynamicResource GeneralCheckBox}" BorderBrush="{x:Null}" BorderThickness="0" Tag="{Binding}"
+                      Checked="CheckedChecked" Unchecked="CheckedUnchecked" />
+            <Grid Margin="16,0,5,0" Width="43" Height="43" HorizontalAlignment="Left"
+                  VerticalAlignment="Top">
+              <Border BorderBrush="{DynamicResource BaseColour}"
+                      Background="{DynamicResource BaseColour}" BorderThickness="2">
+                <Image x:Name="imgAvatar" VerticalAlignment="Top" HorizontalAlignment="Left" Width="38"
+                       Height="38" Source="{Binding Owner.ImageUrl}" />
+              </Border>
+              <Image x:Name="ProtocolIcon" VerticalAlignment="Bottom" HorizontalAlignment="Right"
+                     Width="15" Height="15" Source="{Binding Icon}" Margin="0" />
+            </Grid>
+            <TextBlock Text="{Binding Credentials.AccountName}" Margin="63,0,0,0" VerticalAlignment="Top"
+                       FontFamily="{DynamicResource DefaultFont}" FontWeight="Bold" FontSize="{DynamicResource DefaultFontSize}" />
+            <TextBlock Text="{Binding Protocol}" Margin="63,19.96,0,7.08" VerticalAlignment="Stretch"
+                       d:LayoutOverrides="Height" FontFamily="{DynamicResource DefaultFont}" FontSize="{DynamicResource DefaultFontSize}" />
+          </Grid>
+          <DataTemplate.Triggers>
+            <DataTrigger
+Binding="{Binding IsSelected, RelativeSource={RelativeSource AncestorType={x:Type ListBoxItem}, Mode=FindAncestor}}"
+Value="True">
+              <Setter TargetName="Checked" Property="IsChecked" Value="True" />
+            </DataTrigger>
+            <DataTrigger
+Binding="{Binding IsSelected, RelativeSource={RelativeSource AncestorType={x:Type ListBoxItem}, Mode=FindAncestor}}"
+Value="False">
+              <Setter TargetName="Checked" Property="IsChecked" Value="False" />
+            </DataTrigger>
+          </DataTemplate.Triggers>
+        </DataTemplate>
+      </ListBox.ItemTemplate>
+    </ListBox>
+
+    <!-- main holder for all the MahTweets content -->
+    <Grid x:Name="grdContent" Panel.ZIndex="1" Margin="0">
+      <Grid.RowDefinitions>
+        <RowDefinition Height="70" />
+        <RowDefinition Height="*" />
+      </Grid.RowDefinitions>
+
+      <!-- Background rectangles -->
+      <Rectangle Fill="{DynamicResource BaseColour}" Grid.Row="0" MouseLeftButtonDown="DragMoveWindow"
+                 StrokeThickness="0" />
+      <Rectangle Fill="{DynamicResource BackgroundBrush}" Grid.Row="1" MouseLeftButtonDown="DragMoveWindow" />
+
+      <mtGuiControls:StreamsContainer Margin="0,0,0,0" x:Name="StreamsContainer" DataContext="{Binding}"
+                                      Grid.Row="1" />
+
+      <!-- "Tweetbox" , menu items & windows controls-->
+      <Grid Panel.ZIndex="1" x:Name="CompositionBoxArea" Grid.Row="0" Margin="0,0,0,0">
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="80" />
+          <ColumnDefinition Width="*" MinWidth="350" />
+          <ColumnDefinition Width="200" MinWidth="200" />
+          <ColumnDefinition Width="80" />
+        </Grid.ColumnDefinitions>
+
+        <!-- about MahTweets, icon selector-->
+        <StackPanel Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left"
+                    Orientation="Horizontal" Margin="0,-10,0,0">
+          <Rectangle Fill="{DynamicResource ComplimentaryColour1}"
+                     Opacity="{DynamicResource BaseColourOpacityAccent2}" Width="10" Height="40" />
+          <Button Style="{DynamicResource ButtonClearedStyle}" Command="{Binding AboutCommand}"
+                  Padding="0,0,0,0" ToolTip="About MahTweets">
+            <Rectangle Fill="{DynamicResource LawrenceHargrave}" Width="40" Height="40" />
+          </Button>
+        </StackPanel>
+
+        <!-- account selector and composition box-->
+        <Grid x:Name="grdAccountCompBoxHolder" Background="{x:Null}" Height="70" VerticalAlignment="Center"
+              Grid.Column="1">
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="55" MinWidth="55" />
+            <ColumnDefinition Width="*" />
+          </Grid.ColumnDefinitions>
+          <ListBox ItemsSource="{Binding SelectedMicroblogs, Mode=TwoWay}"
+                   ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Disabled"
+                   SelectedItem="{x:Null}" Padding="0,-1,0,0" BorderThickness="0,0,0,0" HorizontalAlignment="Right"
+                   VerticalAlignment="Top" Margin="0,10,0,0" Background="{x:Null}" BorderBrush="{x:Null}" MouseDown="ListBoxMouseUp"
+                   ToolTip="Select Accounts for Tweeting" Grid.Column="0" x:Name="AccountSelectorListBoxPopup">
+            <ListBox.ItemsPanel>
+              <ItemsPanelTemplate>
+                <mtGuiControls:LayeredStackPanel HorizontalItemOffset="-5" VerticalItemOffset="5" />
+              </ItemsPanelTemplate>
+            </ListBox.ItemsPanel>
+            <ListBox.ItemTemplate>
+              <DataTemplate>
+                <Grid x:Name="grdHolderOfChoicesOfAccounts" Width="40" Height="40"
+                      HorizontalAlignment="Left" VerticalAlignment="Top">
+                  <Grid.Style>
+                    <Style TargetType="{x:Type Grid}">
+                      <Style.Triggers>
+                        <Trigger Property="Grid.IsMouseOver" Value="True">
+                          <Setter Property="Panel.ZIndex" Value="1" />
+                        </Trigger>
+                      </Style.Triggers>
+                    </Style>
+                  </Grid.Style>
+                  <Image x:Name="imgAvatar" Tag="{Binding}" VerticalAlignment="Top"
+                         HorizontalAlignment="Left" Width="40" Height="40" Source="{Binding Owner.ImageUrl}" MouseUp="ListBoxMouseUp"
+                         Drop="AvatarChangeDrop" DragOver="AvatarChangeDragOver" />
+                  <Image x:Name="ProtocolIcon" VerticalAlignment="Bottom" HorizontalAlignment="Right"
+                         Width="15" Height="15" Source="{Binding Icon}" Margin="0" MouseUp="ListBoxMouseUp" />
+                </Grid>
+              </DataTemplate>
+            </ListBox.ItemTemplate>
+          </ListBox>
+
+          <mtGuiControls:CompositionBox Height="{DynamicResource DefaultCompositionBoxHeight}"
+                                        Grid.Column="1" x:Name="txtUpdate" Panel.ZIndex="100" SendMessage="{Binding SendMessageCommand}" Margin="5,0,0,0" />
+        </Grid>
+                
+        <!-- Menu as icons -->
+        <StackPanel x:Name="menubuttons" Margin="10,6,0,10" HorizontalAlignment="Right" Grid.Column="2"
+                    VerticalAlignment="Top" MouseLeftButtonDown="DragMoveWindow" Orientation="Horizontal">
+
+          <Button x:Name="ClearAll" Style="{DynamicResource NavigationButtonStyle}" Padding="0"
+                  Command="{Binding ClearAllCommand}" ToolTip="Clear All (F4)">
+            <TextBlock FontFamily="{DynamicResource WebSymbols}" Foreground="{DynamicResource WhiteColour}"
+                       FontSize="30" Text="b" Opacity="1" Margin="10,0,0,0" />
+          </Button>
+
+          <Button Style="{DynamicResource NavigationButtonStyle}" Padding="0"
+                  Command="{Binding RefreshCommand}" ToolTip="Refresh all (F5)">
+            <TextBlock FontFamily="{DynamicResource WebSymbols}" Foreground="{DynamicResource WhiteColour}"
+                       FontSize="30" Text="*" Opacity="1" Margin="10,0,0,0" />
+          </Button>
+
+          <Button Style="{DynamicResource NavigationButtonStyle}" Padding="0"
+                  Command="{Binding SearchCommand}" ToolTip="New Search Column (Ctrl-f)">
+            <TextBlock FontFamily="{DynamicResource WebSymbols}" Foreground="{DynamicResource WhiteColour}"
+                       FontSize="30" Text="L" Opacity="1" Margin="10,0,0,0" />
+          </Button>
+
+          <Button x:Name="Setup" Style="{DynamicResource NavigationButtonStyle}" Padding="0"
+                  Command="{Binding SetupCommand}" ToolTip="Setup (Ctrl-s)">
+            <TextBlock FontFamily="{DynamicResource WebSymbols}" Foreground="{DynamicResource WhiteColour}"
+                       FontSize="30" Text="S" Opacity="1" Margin="10,0,0,0" />
+          </Button>
+
+          <Button Style="{DynamicResource NavigationButtonStyle}" Padding="0"
+                  Command="{Binding AddColumnCommand}" ToolTip="Add New Column (Ctrl-n)">
+            <TextBlock FontFamily="{DynamicResource WebSymbols}" Foreground="{DynamicResource WhiteColour}"
+                       Text="&#x00B3;" FontSize="30" Opacity="1" Margin="10,0,0,0" />
+          </Button>
+
+        </StackPanel>
+                
+        <!--minimise,maximise,close-->
+        <StackPanel x:Name="windowControls" Margin="0" Height="20" VerticalAlignment="Top"
+                    Orientation="Horizontal" Grid.Column="3" HorizontalAlignment="Right" RenderTransformOrigin="0.5,0.5">
+          <StackPanel.RenderTransform>
+            <TransformGroup>
+              <ScaleTransform />
+              <SkewTransform />
+              <RotateTransform />
+              <TranslateTransform X="0.5" Y="0.5" />
+            </TransformGroup>
+          </StackPanel.RenderTransform>
+          <Button x:Name="btnMin" Width="16" Height="20" Style="{DynamicResource NavigationButtonStyle}"
+                  Click="MinimizeClick" ToolTip="Minimise MahTweets to Taskbar" Opacity="{DynamicResource BaseColourOpacityAccent2}">
+            <TextBlock FontFamily="{DynamicResource UIFont}" Foreground="{DynamicResource WhiteColour}"
+                       FontSize="16" Text="&#x0030;" Margin="0,0,0,0" />
+          </Button>
+
+          <Button x:Name="btnMax" Width="16" Height="20" Style="{DynamicResource NavigationButtonStyle}"
+                  ToolTip="Maximise MahTweets Window" Click="MaximizeClick" Opacity="{DynamicResource BaseColourOpacityAccent2}">
+            <TextBlock FontFamily="{DynamicResource UIFont}" Foreground="{DynamicResource WhiteColour}"
+                       FontSize="16" Text="&#x0031;" Margin="0,0,0,0" />
+          </Button>
+
+          <Button x:Name="btnClose" Width="16" Height="20" Style="{DynamicResource NavigationButtonStyle}"
+                  Click="CloseClick" ToolTip="Close MahTweets" Opacity="{DynamicResource BaseColourOpacityAccent2}">
+            <TextBlock FontFamily="{DynamicResource UIFont}" Foreground="{DynamicResource WhiteColour}"
+                       FontSize="16" Text="&#x0072;" Margin="0,0,0,0" />
+          </Button>
+        </StackPanel>
+      </Grid>
+
+
+      <Controls:Messages Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Bottom" />
+    </Grid>
+    <Controls:ModalPanel />
+  </Grid>
+</Window>

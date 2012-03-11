@@ -1,0 +1,8 @@
+<Settings:SettingsUserControl x:Class="MahTweets.Views.Controls.NoSettingsDefined"
+                              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                              xmlns:Settings="clr-namespace:MahTweets.Core.Settings;assembly=MahTweets.Core" Height="300" Width="300">
+  <Grid>
+    <TextBlock Text="No Settings Defined" />
+  </Grid>
+</Settings:SettingsUserControl>

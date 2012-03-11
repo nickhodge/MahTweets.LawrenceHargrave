@@ -1,0 +1,87 @@
+﻿<UserControl x:Class="MahTweets.Views.StartupWizardView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" mc:Ignorable="d" d:DesignHeight="600" d:DesignWidth="600">
+  <Grid>
+    <Grid x:Name="grdContent" Margin="10">
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="{DynamicResource MainMenuWidth}" />
+        <ColumnDefinition Width="*" />
+      </Grid.ColumnDefinitions>
+
+      <!-- Background rectangles -->
+      <Rectangle Fill="{DynamicResource BaseColour}" Grid.Column="0" />
+      <Rectangle Fill="{DynamicResource BackgroundBrush}" Grid.Column="1" />
+
+      <Rectangle Fill="{DynamicResource MahTweetsLogo}" Margin="0,5,0,0" Height="80.355" Width="47.851"
+                 HorizontalAlignment="Left" VerticalAlignment="Top" Panel.ZIndex="18" Grid.Column="0" />
+
+      <Grid Grid.Column="1" Margin="50,50,50,50" Name="Step1" Visibility="Collapsed">
+        <StackPanel Orientation="Vertical">
+          <TextBlock Foreground="{DynamicResource HeadingColour}" TextWrapping="Wrap"
+                     FontFamily="{DynamicResource HeadingFont}" Margin="8,8,8,0" d:LayoutOverrides="GridBox" VerticalAlignment="Top"
+                     Text="Welcome to MahTweets" FontSize="{DynamicResource MainHeadingFontSize}" Panel.ZIndex="3" />
+
+
+          <TextBlock Foreground="{DynamicResource SubHeadingColour}" TextWrapping="Wrap" Margin="8,50,8,0"
+                     d:LayoutOverrides="GridBox" VerticalAlignment="Top" FontSize="{DynamicResource SubHeadingFontSize}" Panel.ZIndex="3"
+                     Text="If you're not familiar with MahTweets, this wizard will help you get started and learn where everything is."
+                     FontFamily="{DynamicResource SubHeadingFont}" />
+
+          <TextBlock Foreground="{DynamicResource SubHeadingColour}" TextWrapping="Wrap" Margin="8,50,8,0"
+                     d:LayoutOverrides="GridBox" VerticalAlignment="Top" FontSize="{DynamicResource SubHeadingFontSize}" Panel.ZIndex="3"
+                     Text="Ready?" FontFamily="{DynamicResource SubHeadingFontFamily}" />
+
+          <Grid Margin="8,50,8,0">
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="*"></ColumnDefinition>
+              <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <Button Grid.Column="0" Content="Don't worry, I'll be fine" />
+            <Button Grid.Column="1" Content="Wizard time!" />
+
+          </Grid>
+
+
+        </StackPanel>
+
+      </Grid>
+
+      <Grid Margin="50,50,50,50" Name="Step2" Grid.Column="1">
+        <StackPanel Orientation="Vertical">
+          <TextBlock Foreground="{DynamicResource HeadingColour}" TextWrapping="Wrap"
+                     FontFamily="{DynamicResource HeadingFont}" Margin="8,8,8,0" d:LayoutOverrides="GridBox" Text="Setup Twitter"
+                     FontSize="{DynamicResource MainHeadingFontSize}" Panel.ZIndex="3" />
+
+
+          <TextBlock Foreground="{DynamicResource SubHeadingColour}" TextWrapping="Wrap" Margin="8,50,8,0"
+                     d:LayoutOverrides="GridBox" VerticalAlignment="Top" FontSize="{DynamicResource SubHeadingFontSize}" Panel.ZIndex="3"
+                     Text="If you're not familiar with MahTweets, this wizard will help you get started and learn where everything is."
+                     FontFamily="{DynamicResource SubHeadingFont}" />
+
+          <TextBlock Foreground="{DynamicResource SubHeadingColour}" TextWrapping="Wrap" Margin="8,50,8,0"
+                     d:LayoutOverrides="GridBox" VerticalAlignment="Top" FontSize="{DynamicResource SubHeadingFontSize}" Panel.ZIndex="3"
+                     Text="Ready?" FontFamily="{DynamicResource SubHeadingFont}" />
+
+          <Grid Margin="8,50,8,0">
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="*"></ColumnDefinition>
+              <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <Button Grid.Column="0" Content="Don't worry, I'll be fine" />
+            <Button Grid.Column="1" Content="Wizard time!" />
+
+          </Grid>
+
+
+        </StackPanel>
+      </Grid>
+
+    </Grid>
+
+
+  </Grid>
+</UserControl>

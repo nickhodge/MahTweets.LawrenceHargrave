@@ -1,0 +1,122 @@
+﻿<UserControl xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:local="clr-namespace:MahTweets"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:MahTweets2="clr-namespace:MahTweets"
+             xmlns:ViewModels="clr-namespace:MahTweets.ViewModels" mc:Ignorable="d" x:Class="MahTweets.Views.AboutView" Width="650"
+             Height="450" Background="{DynamicResource BackgroundBrush}" UseLayoutRounding="True">
+  <UserControl.DataContext>
+    <ViewModels:AboutViewModel />
+  </UserControl.DataContext>
+
+  <UserControl.Resources>
+
+    <Style TargetType="{x:Type Run}">
+      <Setter Property="FontSize" Value="14" />
+      <Setter Property="FontFamily" Value="{DynamicResource DefaultFont}" />
+    </Style>
+
+    <Style TargetType="{x:Type Hyperlink}">
+      <Setter Property="FontSize" Value="14" />
+      <Setter Property="FontFamily" Value="{DynamicResource DefaultFont}" />
+    </Style>
+  </UserControl.Resources>
+
+  <Grid x:Name="LayoutRoot">
+    <Rectangle Fill="{StaticResource BaseColour}" HorizontalAlignment="Left" Width="100" />
+    <TextBlock Foreground="{DynamicResource TextColour}" TextWrapping="Wrap" Margin="108,8,8,0">
+      <Run FontSize="32" FontFamily="Segoe UI" Text="MahTweets LH" />
+      <LineBreak />
+      <Run Text="MahTweets is free, open source software, released under the MS-PL License." />
+      <LineBreak />
+      <Run Text="MahTweets LH is a tinkering project out of the MahApps Shed." />
+      <LineBreak />
+      <LineBreak />
+      <Run FontSize="24" FontFamily="Segoe UI" Text="Code" />
+      <LineBreak />
+      <Hyperlink Tag="http://www.theleagueofpaul.com/">
+        <Run Text="Paul Jenkins" />
+      </Hyperlink>
+      <Run Text=", " />
+      <Hyperlink Tag="http://will.hughesfamily.net.au/">
+        <Run Text="Will Hughes" />
+      </Hyperlink>
+      <Run Text=", " />
+      <Hyperlink Tag="http://brendanforster.com/">
+        <Run Text="Brendan Forster" />
+      </Hyperlink>
+      <Run Text=", " />
+      <Hyperlink Tag="http://nickhodge.com/blog/">
+        <Run Text="Nick Hodge" />
+      </Hyperlink>
+      <Run Text=" (" />
+      <Run FontSize="18.667" Text="Lawrence Hargrave" />
+      <Run Text=" Edition)" />
+      <LineBreak />
+      <Run Text="" />
+      <LineBreak />
+      <Run FontSize="24" FontFamily="Segoe UI" Text="Design" />
+      <LineBreak />
+      <Run Text="Hal Saville, " />
+      <Hyperlink Tag="http://www.theleagueofpaul.com/">
+        <Run Text="Paul Jenkins" />
+      </Hyperlink>
+      <Run Text=", " />
+      <Hyperlink Tag="http://nickhodge.com/blog/">
+        <Run Text="Nick Hodge" />
+      </Hyperlink>
+      <Run Text=" (" />
+      <Run Text="Lawrence Hargrave" />
+      <Run Text=" Edition)" />
+      <LineBreak />
+      <LineBreak />
+      <Run FontSize="24" FontFamily="Segoe UI" Text="Components" />
+      <LineBreak />
+      <Run Text="MahTweets make use of many free &amp; open-source third party components:" />
+      <LineBreak />
+      <LineBreak />
+      <Hyperlink Tag="https://github.com/MahApps/MahApps.Twitter">
+        <Run Text="MahApps.Twitter" />
+      </Hyperlink>
+      <Run Text=" (MS-PL), " />
+      <Hyperlink Tag="http://www.castleproject.org/">
+        <Run Text="Castle Core from Castle Project" />
+      </Hyperlink>
+      <Run Text=" (Apache License 2.0), " />
+      <Hyperlink Tag="http://code.google.com/p/autofac/">
+        <Run Text="Autofac" />
+      </Hyperlink>
+      <Run Text=" (MIT), " />
+      <Hyperlink Tag="http://json.codeplex.com/">
+        <Run Text="JSON.NET" />
+      </Hyperlink>
+      <Run Text=" (MIT), " />
+      <Hyperlink Tag="http://ironpython.codeplex.com/">
+        <Run Text="IronPython" />
+      </Hyperlink>
+      <Run Text=" (Apache License 2.0), " />
+      <Hyperlink Tag="https://github.com/danielcrenna/hammock">
+        <Run Text="Hammock" />
+      </Hyperlink>
+      <Run Text=" (MIT), " />
+      <Hyperlink Tag="http://www.fonts2u.com/emoticons.font">
+        <Run Text="Emoticon" />
+      </Hyperlink>
+      <Run Text=" typeface (Freeware) with additions from Nick Hodge, " />
+      <Run Text=" " />
+      <Hyperlink Tag="http://www.justbenicestudio.com/studio/websymbols/">
+        <Run Text="WebSymbols" />
+      </Hyperlink>
+      <Run Text=" (OFL)" />
+      <LineBreak />
+    </TextBlock>
+    <Rectangle Fill="{StaticResource LawrenceHargrave}" Margin="0,0,0,0" Height="165" Width="100"
+               HorizontalAlignment="Left" VerticalAlignment="Top" d:LayoutOverrides="VerticalMargin" DataContext="{Binding}" />
+    <TextBlock x:Name="txtVersionString" Height="23" HorizontalAlignment="Left" Margin="108,0,0,8"
+               Foreground="{DynamicResource MidGreyColour}" TextAlignment="Left" Text="" VerticalAlignment="Bottom" Width="147"
+               d:LayoutOverrides="HorizontalAlignment">
+      <Hyperlink Click="HyperlinkClick" Tag="http://en.wikipedia.org/wiki/Lawrence_Hargrave">
+        <Run FontSize="30" Text="Lawrence Hargrave" />
+      </Hyperlink>
+    </TextBlock>
+  </Grid>
+</UserControl>

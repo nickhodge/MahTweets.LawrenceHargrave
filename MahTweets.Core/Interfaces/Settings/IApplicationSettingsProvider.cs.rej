@@ -1,0 +1,10 @@
+--- IApplicationSettingsProvider.cs
++++ IApplicationSettingsProvider.cs
+@@ -60,6 +59,3 @@
+         bool ScriptingEnabled { get; set; }
+-        #endregion
+-
+-        ObservableCollection<SavedSearch> SavedSearches { get; }
+     }
+ }
+\ No newline at end of file

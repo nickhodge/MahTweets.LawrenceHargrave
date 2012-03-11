@@ -1,0 +1,27 @@
+﻿<UserControl x:Class="MahTweets.UI.Controls.StreamsContainer"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:Converters="clr-namespace:MahTweets.UI.Converters"
+             mc:Ignorable="d" d:DesignHeight="600" d:DesignWidth="600" x:Name="UserControl">
+  <Grid x:Name="grdHolderOfAllTheStreams">
+    <ScrollViewer x:Name="ScrollViewer" HorizontalContentAlignment="Left" VerticalContentAlignment="Stretch"
+                  HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled"
+                  ContextMenuOpening="MainWindowContextMenuOpening">
+      <Grid x:Name="grdHolderOfCurrentStreams">
+        <ItemsControl x:Name="CurrentStreams" ItemsSource="{Binding StreamContainers}"
+                      ItemTemplateSelector="{Binding ViewSelector}" Cursor="Hand">
+          <ItemsControl.ItemsPanel>
+            <ItemsPanelTemplate>
+              <StackPanel x:Name="robertStack" Orientation="Horizontal" Margin="0,0,0,0" />
+            </ItemsPanelTemplate>
+          </ItemsControl.ItemsPanel>
+        </ItemsControl>
+      </Grid>
+      <ScrollViewer.ContextMenu>
+        <ContextMenu />
+      </ScrollViewer.ContextMenu>
+    </ScrollViewer>
+
+  </Grid>
+</UserControl>

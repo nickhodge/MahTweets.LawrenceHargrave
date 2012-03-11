@@ -1,0 +1,51 @@
+﻿<UserControl x:Class="MahTweets.Views.Setup.GeneralSettingsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:controls="clr-namespace:Microsoft.Phone.Controls;assembly=MahTweets.UI" mc:Ignorable="d" d:DesignHeight="600"
+             d:DesignWidth="600">
+  <ScrollViewer>
+    <StackPanel Margin="8">
+      <controls:ToggleSwitch x:Name="tsShortUrls" Header="Expand Shortened Urls" Foreground="Black"
+                             Background="White" SwitchForeground="{DynamicResource BaseColour}" FontFamily="{DynamicResource DefaultFont}"
+                             FontSize="{DynamicResource DefaultFontSize}" BorderBrush="Black" Margin="0,0,0,18"
+                             IsChecked="{Binding ExpandShortenedUrls, Mode=TwoWay}"
+                             ToolTip="Expanding short urls can help identify links you've already visited as well as dangerous or &quot;NSFW&quot; links" />
+      <controls:ToggleSwitch x:Name="tsScripting" Header="Scripting" Foreground="Black" Background="White"
+                             SwitchForeground="{DynamicResource BaseColour}" FontFamily="{DynamicResource DefaultFont}"
+                             FontSize="{DynamicResource DefaultFontSize}" BorderBrush="Black" Margin="0,0,0,18"
+                             IsChecked="{Binding EnableScripting, Mode=TwoWay}"
+                             ToolTip="MahTweets uses Scripting to enable special features. If you are nervous about scripts, please disable." />
+      <controls:ToggleSwitch x:Name="tsMedia" Header="Inline Images" Foreground="Black" Background="White"
+                             SwitchForeground="{DynamicResource BaseColour}" FontFamily="{DynamicResource DefaultFont}"
+                             FontSize="{DynamicResource DefaultFontSize}" BorderBrush="Black" Margin="0,0,0,18"
+                             IsChecked="{Binding DisableMediaProviders, Mode=TwoWay}"
+                             ToolTip="All media will be loaded in the browser instead of inline when this option is enabled" />
+      <controls:ToggleSwitch x:Name="tsPause" Header="Pause Streams On Hover" Foreground="Black" Background="White"
+                             SwitchForeground="{DynamicResource BaseColour}" FontFamily="{DynamicResource DefaultFont}"
+                             FontSize="{DynamicResource DefaultFontSize}" BorderBrush="Black" Margin="0,0,0,18" VerticalAlignment="Top"
+                             IsChecked="{Binding PauseStreams, Mode=TwoWay}"
+                             ToolTip="Columns will pause when you hover over them, useful for Twitter User Streams" />
+      <controls:ToggleSwitch x:Name="tsAutoUrlShorten" Header="Auto-shorten long urls" Foreground="Black"
+                             Background="White" SwitchForeground="{DynamicResource BaseColour}" FontFamily="{DynamicResource DefaultFont}"
+                             FontSize="{DynamicResource DefaultFontSize}" BorderBrush="Black" Margin="0,0,0,18" VerticalAlignment="Top"
+                             IsChecked="{Binding AutoShorten, Mode=TwoWay}" ToolTip="Auto shorten long urls before sending to any social network" />
+
+      <StackPanel HorizontalAlignment="Right" Width="112"
+                  IsEnabled="{Binding IsChecked, ElementName=tsAutoUrlShorten}" Margin="0,-10,0,0">
+        <TextBlock TextWrapping="Wrap" Margin="0,0,0,6" Foreground="{DynamicResource TextColour}"
+                   FontFamily="{DynamicResource DefaultFont}" FontSize="{DynamicResource DefaultFontSize}">Auto Url Shortener</TextBlock>
+        <ComboBox Margin="0" ItemsSource="{Binding UrlShorteners}"
+                  SelectedItem="{Binding SelectedShortener, Mode=TwoWay}">
+          <ComboBox.ItemTemplate>
+            <DataTemplate>
+              <TextBlock Text="{Binding Name}" Foreground="{DynamicResource TextColour}"
+                         FontFamily="{DynamicResource DefaultFont}" FontSize="{DynamicResource DefaultFontSize}" />
+            </DataTemplate>
+          </ComboBox.ItemTemplate>
+        </ComboBox>
+      </StackPanel>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

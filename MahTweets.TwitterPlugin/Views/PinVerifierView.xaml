@@ -1,0 +1,57 @@
+﻿<Controls:ModalControl xmlns:Controls="clr-namespace:MahTweets.UI.Controls;assembly=MahTweets.UI"
+                       x:Class="MahTweets.TwitterPlugin.Views.PinVerifierView"
+                       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" HorizontalAlignment="Center" VerticalAlignment="Center"
+                       Width="650" Height="450" Background="{DynamicResource BackgroundBrush}">
+  <Grid Margin="10">
+    <StackPanel Width="388">
+      <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top"
+                 FontSize="{DynamicResource MainHeadingFontSize}" FontWeight="Bold" Foreground="{DynamicResource MainTextColour}"
+                 Text="Twitter Verification" TextWrapping="Wrap" FontFamily="{StaticResource HeadingFont}" Margin="8,0,0,0" />
+      <TextBlock Margin="8,8,0,0" x:Name="textBlock1" TextWrapping="Wrap"
+                 FontSize="{DynamicResource DefaultFontSize}" Foreground="{DynamicResource MainTextColour}" HorizontalAlignment="Left"
+                 FontFamily="{DynamicResource DefaultFont}" VerticalAlignment="Top" Height="228.333">
+        <Span>
+          <Run Text="MahTweets needs permission to access your Twitter profile. " />
+        </Span>
+        <LineBreak />
+        <Span>
+          <Run Text="" />
+        </Span>
+        <LineBreak />
+        <Span>
+          <Run Text="A browser window will launch, asking you to login. " />
+        </Span>
+        <Run Text=" " />
+        <Run Text="Once you have, a " />
+        <Run FontWeight="Bold" FontStyle="Italic" Text="PIN " />
+        <Run Text="will given" />
+        <Run Text=" to you" />
+        <Run Text=", which needs to be entered into the " />
+        <Run Text="box " />
+        <Run Text="below" />
+        <LineBreak />
+        <LineBreak />
+        <InlineUIContainer>
+          <Border BorderBrush="#FFCACACA" BorderThickness="1" HorizontalAlignment="Center" Margin="48,0,0,0">
+            <Image Margin="0" Source="pack://application:,,,/MahTweets.TwitterPlugin;component/Resources/pinexample.jpg"
+                   Width="242" Height="94" />
+          </Border>
+        </InlineUIContainer>
+        <LineBreak />
+        <LineBreak />
+        <Run Text="The PIN will look something like the above example" />
+        <LineBreak />
+        <Run Text="" />
+        <LineBreak />
+        <Run Text="" />
+        <LineBreak />
+      </TextBlock>
+      <TextBox Margin="8,0" x:Name="txtPIN" BorderBrush="Black" BorderThickness="1,1,1,1" VerticalAlignment="Bottom"
+               Height="63" FontSize="34.667" FontWeight="Bold" TextAlignment="Center" FontFamily="{StaticResource DefaultFont}" />
+      <Button Height="30" Margin="0,10,0,0" x:Name="btnOkay" VerticalAlignment="Bottom" Click="btnOkay_Click"
+              Content="Done" Cursor="Hand" BorderBrush="#FFAFAFAF" Style="{StaticResource TextButtonStyle}" Width="50"
+              HorizontalAlignment="Center" />
+    </StackPanel>
+  </Grid>
+</Controls:ModalControl>

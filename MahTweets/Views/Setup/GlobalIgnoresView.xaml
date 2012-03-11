@@ -1,0 +1,33 @@
+﻿<UserControl x:Class="MahTweets.Views.Setup.GlobalIgnoresView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" mc:Ignorable="d" d:DesignHeight="600" d:DesignWidth="600">
+  <Grid Margin="0" MinHeight="250" Visibility="Visible" d:IsHidden="True">
+    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Words or Phrases to Globally Ignore" VerticalAlignment="Top"
+               Margin="9.093,2.04,0,0" FontFamily="{DynamicResource DefaultFont}" FontSize="{DynamicResource DefaultFontSize}" />
+    <TextBox x:Name="txtFilter" HorizontalAlignment="Left" TextWrapping="Wrap" Margin="9,24,0,0"
+             VerticalAlignment="Top" Width="155" KeyDown="txtFilter_KeyDown"
+             Text="{Binding CurrentText,UpdateSourceTrigger=PropertyChanged}" FontFamily="{DynamicResource DefaultFont}"
+             FontSize="{DynamicResource DefaultFontSize}" />
+    <ListBox Margin="0,52,347,0" HorizontalAlignment="Right" Width="244" Background="{x:Null}"
+             BorderBrush="{x:Null}" Height="232" DataContext="{Binding}" ItemsSource="{Binding GlobalExcludes}"
+             VerticalAlignment="Top" FontFamily="{DynamicResource DefaultFont}" FontSize="{DynamicResource DefaultFontSize}">
+      <ListBox.ItemTemplate>
+        <DataTemplate>
+          <StackPanel Orientation="Horizontal">
+             <TextBlock Text="{Binding}" Padding="0,0,0,0" />
+                        <Button Style="{DynamicResource NavigationButtonStyle}"
+                    Command="{Binding Path=DataContext.RemoveCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ListBox}}}"
+                    CommandParameter="{Binding}">
+                            <TextBlock FontFamily="{DynamicResource WebSymbols}" Foreground="{DynamicResource HeadingColour}" FontSize="{DynamicResource WebSymbolAsMenuFontSize}" Text="'" />
+                        </Button>
+                    </StackPanel>
+        </DataTemplate>
+      </ListBox.ItemTemplate>
+    </ListBox>
+    <Button x:Name="btnAddFilter" Command="{Binding AddCommand}" Content="Add" HorizontalAlignment="Left"
+            VerticalAlignment="Top" Width="75" Margin="178,24,0,0" Style="{DynamicResource TextButtonStyle}"
+            FontFamily="{DynamicResource DefaultFont}" FontSize="{DynamicResource DefaultFontSize}" />
+    </Grid>
+</UserControl>

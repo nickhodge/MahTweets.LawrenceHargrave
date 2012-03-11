@@ -1,0 +1,126 @@
+﻿<settings:SettingsUserControl xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                              xmlns:settings="clr-namespace:MahTweets.Core.Settings;assembly=MahTweets.Core"
+                              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                              xmlns:TwitterPlugin="clr-namespace:MahTweets.TwitterPlugin.UI"
+                              xmlns:Microsoft_Phone_Controls="clr-namespace:Microsoft.Phone.Controls;assembly=MahTweets.UI"
+                              x:Class="MahTweets.TwitterPlugin.Views.TwitterSettings" x:Name="Control" Width="650" Height="450"
+                              Background="{DynamicResource BackgroundBrush}">
+  <settings:SettingsUserControl.Resources>
+    <TwitterPlugin:DoubleToIntConverter x:Key="Converter" />
+    <TwitterPlugin:APICountColorConverter x:Key="APIFreeConverter" />
+    <TwitterPlugin:ListCalculator x:Key="ListCalculator" />
+  </settings:SettingsUserControl.Resources>
+  <Grid>
+    <Grid.Background>
+      <ImageBrush ImageSource="pack://application:,,,/MahTweets.TwitterPlugin;component/Resources/background.png"
+                  Stretch="UniformToFill" />
+    </Grid.Background>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="40" />
+      <RowDefinition />
+    </Grid.RowDefinitions>
+    <Image Source="pack://application:,,,/MahTweets.TwitterPlugin;component/Resources/header.png" Width="125"
+           Height="30" Stretch="Fill" HorizontalAlignment="Left" Margin="10,7.5,0,2.5" />
+    <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="174,0,0,0">
+      <Label Margin="160,7.5,0,4.5" Content="API:" />
+      <Label Margin="0,7.5,0,4.5" x:Name="availCount"
+             Content="{Binding HourlyAPILimit, FallbackValue=150, Mode=OneWay}" />
+      <Label Margin="0,7.5,0,4.5" Content="Free:" />
+      <Label Margin="0,7.5,0,4.5" x:Name="freeCount">
+        <Label.Foreground>
+          <SolidColorBrush
+Color="{Binding Content, Converter={StaticResource APIFreeConverter}, ElementName=freeCount}" />
+        </Label.Foreground>
+      </Label>
+    </StackPanel>
+
+    <Grid Grid.Row="1" Margin="128,1.5,91,-1.5">
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="0.251*" />
+        <ColumnDefinition Width="0.749*" />
+      </Grid.ColumnDefinitions>
+      <Grid.RowDefinitions>
+        <RowDefinition Height="35.833" />
+        <RowDefinition Height="36" />
+        <RowDefinition Height="36.667" />
+        <RowDefinition Height="36" />
+        <RowDefinition Height="36" />
+        <RowDefinition Height="58.667" />
+        <RowDefinition Height="77.333" />
+        <RowDefinition />
+      </Grid.RowDefinitions>
+      <Slider Margin="4,8,27.903,0" Grid.Column="1" x:Name="sliderMainTimeline" SmallChange="5" LargeChange="50"
+              Value="{Binding TimelineFrequency, Converter={StaticResource Converter}, Mode=TwoWay, UpdateSourceTrigger=Default}"
+              ValueChanged="TimelineValueChanged" Maximum="{Binding HourlyAPILimit, FallbackValue=150, Mode=Default}" Height="24.5"
+              VerticalAlignment="Top" />
+      <Slider Margin="4,8,27.903,0" VerticalAlignment="Top" Height="24" x:Name="sliderMentionTimeline"
+              Grid.Column="1" Grid.Row="1" Minimum="0"
+              Value="{Binding MentionFrequency, Converter={StaticResource Converter}, Mode=TwoWay, UpdateSourceTrigger=Default}"
+              Maximum="{Binding HourlyAPILimit, FallbackValue=150, Mode=Default}" SmallChange="5" LargeChange="50"
+              ValueChanged="TimelineValueChanged" />
+      <Slider Margin="4,5,27.903,0" VerticalAlignment="Top" Height="24" x:Name="sliderDMTimeline" Grid.Column="1"
+              Grid.Row="2"
+              Value="{Binding DirectMessageFrequency, Converter={StaticResource Converter}, Mode=TwoWay, UpdateSourceTrigger=Default}"
+              Minimum="0" SmallChange="5" LargeChange="50" ValueChanged="TimelineValueChanged"
+              Maximum="{Binding HourlyAPILimit, FallbackValue=150, Mode=Default}" />
+      <Slider x:Name="sliderListsTimeline" Grid.Column="1" Grid.Row="3" Minimum="0" SmallChange="5"
+              Margin="4,8,27.903,0" Maximum="{Binding HourlyAPILimit, FallbackValue=150, Mode=Default}" LargeChange="50"
+              Value="{Binding ListsFrequency, Converter={StaticResource Converter}, Mode=TwoWay, UpdateSourceTrigger=Default}"
+              ValueChanged="TimelineValueChanged" Height="25.333" VerticalAlignment="Top" />
+      <TextBlock Margin="8,8,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="15" FontWeight="Bold">
+        <Run Text="Main Timeline" />
+      </TextBlock>
+      <TextBlock Margin="8,8,0,0" Text="Mentions" TextWrapping="Wrap" VerticalAlignment="Top" Height="15"
+                 FontWeight="Bold" Grid.Row="1" />
+      <TextBlock Text="Direct Messages" TextWrapping="Wrap" Height="15" FontWeight="Bold" Margin="8,5,8,0"
+                 VerticalAlignment="Top" Grid.Row="2" />
+      <TextBlock Text="Twitter Lists" TextWrapping="Wrap" Height="15" FontWeight="Bold" Margin="8.025,8,0,0"
+                 VerticalAlignment="Top" Grid.Row="3" />
+      <TextBlock Margin="0,12.833,16.999,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="15"
+                 FontWeight="Bold" Grid.Column="1" x:Name="MainTimelineValue"
+                 Text="{Binding Value, Converter={StaticResource Converter}, ElementName=sliderMainTimeline, Mode=Default}"
+                 HorizontalAlignment="Right" RenderTransformOrigin="8.146,2.211" />
+      <TextBlock Margin="0,8,17,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="15" FontWeight="Bold"
+                 Grid.Column="1" x:Name="MentionsTimelineValue"
+                 Text="{Binding Value, Converter={StaticResource Converter}, ElementName=sliderMentionTimeline, Mode=Default}"
+                 HorizontalAlignment="Right" Grid.Row="1" />
+      <TextBlock Margin="0,9,17,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="15" FontWeight="Bold"
+                 Grid.Column="1" x:Name="DMTimelineValue"
+                 Text="{Binding Value, Converter={StaticResource Converter}, ElementName=sliderDMTimeline, Mode=Default}"
+                 HorizontalAlignment="Right" Grid.Row="2" />
+      <TextBlock Margin="0,8,17,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="15" FontWeight="Bold"
+                 Grid.Column="1" x:Name="ListsTimelineValue" HorizontalAlignment="Right" Grid.Row="3">
+        <TextBlock.Text>
+          <MultiBinding Converter="{StaticResource ListCalculator}">
+            <Binding ElementName="sliderListsTimeline" Path="Value" FallbackValue="0.0" />
+            <Binding ElementName="Control" Path="DataContext.MyListCount" FallbackValue="0" />
+            <Binding ElementName="Control" Path="DataContext.SubscribedListCount" FallbackValue="0" />
+          </MultiBinding>
+        </TextBlock.Text>
+
+      </TextBlock>
+      <ComboBox Margin="0,0,8,0" Grid.Row="4" x:Name="cbTweetsPerCall" HorizontalAlignment="Right"
+                VerticalAlignment="Center" Width="90" SelectionChanged="ComboBox_SelectionChanged" Grid.Column="1">
+        <ComboBoxItem Content="20" />
+        <ComboBoxItem Content="50" />
+        <ComboBoxItem Content="100" />
+        <ComboBoxItem Content="200" />
+      </ComboBox>
+      <TextBlock Margin="8,0,14.44,0" Grid.Row="4" Text="Tweets Per Call" TextWrapping="Wrap" FontWeight="Bold"
+                 VerticalAlignment="Center" Height="17.5" />
+      <Button x:Name="btnSave" Content="Save" Grid.Row="7" Height="23" HorizontalAlignment="Left"
+              Margin="8,56.5,0,0" VerticalAlignment="Top" Width="75" Grid.Column="1" />
+      <Microsoft_Phone_Controls:ToggleSwitch x:Name="tsGeocode" Header="Geocode Tweets" Foreground="Black"
+                                             Background="White" SwitchForeground="{DynamicResource BaseColour}" FontFamily="{DynamicResource DefaultFont}"
+                                             FontSize="{DynamicResource DefaultFontSize}" BorderBrush="Black" Margin="-3,0,8.025,29"
+                                             IsChecked="{Binding GeoTag, Mode=TwoWay, UpdateSourceTrigger=Default}" Grid.Row="6" Grid.ColumnSpan="2" />
+      <Microsoft_Phone_Controls:ToggleSwitch x:Name="tsUserStreams" Header="User Streams" Foreground="Black"
+                                             Background="White" SwitchForeground="{DynamicResource BaseColour}" FontFamily="{DynamicResource DefaultFont}"
+                                             FontSize="{DynamicResource DefaultFontSize}" BorderBrush="Black" Margin="-3,8,8.025,9"
+                                             IsChecked="{Binding UserStreams, Mode=TwoWay, UpdateSourceTrigger=Default}" Grid.Row="5" Grid.ColumnSpan="2" />
+    </Grid>
+
+  </Grid>
+</settings:SettingsUserControl>

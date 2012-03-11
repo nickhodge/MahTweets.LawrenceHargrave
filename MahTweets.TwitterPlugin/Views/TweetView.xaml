@@ -1,0 +1,137 @@
+﻿<UserControl x:Class="MahTweets.TwitterPlugin.Views.TweetView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:GUI="clr-namespace:MahTweets.UI.Controls;assembly=MahTweets.UI"
+             xmlns:UI="clr-namespace:MahTweets.TwitterPlugin.UI" xmlns:Views="clr-namespace:MahTweets.TwitterPlugin.Views"
+             xmlns:MahTweets_UI_Converters="clr-namespace:MahTweets.UI.Converters;assembly=MahTweets.UI" mc:Ignorable="d"
+             d:DesignHeight="50" d:DesignWidth="300" DataContext="{Binding}" x:Name="tweetView">
+  <UserControl.Resources>
+    <Views:MoreThanOneTweetWorthConverter x:Key="MoreThanOneTweetWorthConverter" />
+    <UI:OwnTweetConverter x:Key="OwnTweetConverter" />
+    <UI:RetweetButtonVisibleConverter x:Key="RetweetButtonVisibleConverter" />
+  </UserControl.Resources>
+  <GUI:StatusUpdateView x:Name="suvContainer" ContactNameClicked="ContainerContactClicked">
+    <GUI:StatusUpdateView.Resources>
+      <UI:GeoVisibleConverter x:Key="geoVisible" />
+      <DataTemplate x:Key="ContactTemplate">
+        <DataTemplate.Resources>
+          <MahTweets_UI_Converters:BitmapIgnoreMetadataConverter x:Key="BitmapIgnoreMetadataConverter" />
+        </DataTemplate.Resources>
+        <Image Width="30" Height="30"
+               Source="{Binding Owner.ImageUrl, Converter={StaticResource BitmapIgnoreMetadataConverter}}"
+               ToolTip="{Binding Owner.FullName}" />
+      </DataTemplate>
+    </GUI:StatusUpdateView.Resources>
+    <GUI:StatusUpdateView.InlineWithContactName>
+      <StackPanel Orientation="Horizontal">
+        <UI:InReplyToBlock FontSize="10" Margin="0,5,0,0" Cursor="Hand" ReplyID="{Binding InReplyToID}"
+                           ReplyTo="{Binding InReplyTo.Name}" Foreground="{DynamicResource BaseColour}" />
+        <UI:RetweetedBy FontSize="10" Margin="0,5,0,0" Cursor="Hand" By="{Binding RetweetBy}"
+                        Foreground="{DynamicResource BaseColour}" />
+      </StackPanel>
+    </GUI:StatusUpdateView.InlineWithContactName>
+    <GUI:StatusUpdateView.ReplyExtras>
+      <GUI:AccountSelector SelectionMode="Single" x:Name="cbAccounts"
+                           SelectedItemTemplate="{StaticResource ContactTemplate}">
+        <GUI:AccountSelector.ItemTemplate>
+          <DataTemplate>
+            <Image Width="30" Height="30" Margin="0,0" Source="{Binding Owner.ImageUrl}"
+                   ToolTip="{Binding Owner.FullName}" />
+          </DataTemplate>
+        </GUI:AccountSelector.ItemTemplate>
+      </GUI:AccountSelector>
+    </GUI:StatusUpdateView.ReplyExtras>
+    <GUI:StatusUpdateView.BelowTextBox>
+      <StackPanel x:Name="spBelowTextBox">
+        <WrapPanel HorizontalAlignment="Right" Grid.Row="{DynamicResource UpdateTimeGridRow}" Margin="0,0,0,0"
+                   GUI:Margins.Bottom="{DynamicResource UpdateTimeMarginBottom}">
+          <UI:TimeReplyToBlock ReplyID="{Binding InReplyToID}" ReplyTo="{Binding InReplyTo.Name}"
+                               Time="{Binding FriendlyTime}" SourceText="{Binding Source}" SourceUri="{Binding SourceUri}" TextWrapping="Wrap"
+                               FontSize="10" Margin="0,0,0,0" Foreground="{DynamicResource BaseColour}" />
+          <Button Width="14" Height="14" VerticalAlignment="Top" Cursor="Hand" ToolTip="View in a map"
+                  Style="{DynamicResource ButtonClearedStyle}" x:Name="btnMap" Click="BtnMapClick"
+                  Visibility="{Binding Converter={StaticResource geoVisible}}">
+            <TextBlock FontFamily="{DynamicResource WebSymbols}" Foreground="{DynamicResource TextColour}"
+                       FontSize="11" Text="?" Opacity="1" />
+          </Button>
+        </WrapPanel>
+      </StackPanel>
+    </GUI:StatusUpdateView.BelowTextBox>
+    <GUI:StatusUpdateView.BelowReplyExtras>
+      <TextBlock Margin="5,0,0,0"
+                 Visibility="{Binding Path=TextBox.Text.Length, ElementName=txtReply, Converter={StaticResource MoreThanOneTweetWorthConverter}}"
+                 TextWrapping="Wrap" FontSize="10"
+                 Text="Oops! You've gone over 140 characters. This will result in multiple Tweets, but it's okay, MahTweets handles it for you" />
+    </GUI:StatusUpdateView.BelowReplyExtras>
+    <GUI:StatusUpdateView.ContextMenu>
+      <ContextMenu>
+        <MenuItem Header="Reply to all" Click="ReplyAllClick" />
+        <MenuItem Header="Follow" Click="FollowClick" />
+        <MenuItem Header="Unfollow" Click="UnfollowClick" />
+        <MenuItem Header="Block" Click="BlockClick" />
+        <MenuItem Header="Block &amp; report as spam" Click="SpamClick" />
+        <MenuItem Header="Show Profile" Click="ProfileClick" />
+        <MenuItem Header="Delete" Click="DeleteClick"
+                  Visibility="{Binding Path=PlacementTarget.DataContext, RelativeSource={RelativeSource AncestorType={x:Type ContextMenu}, Mode=FindAncestor}, Converter={StaticResource OwnTweetConverter}}" />
+        <!--<MenuItem Header="Delete" Visibility="{Binding RelativeSource={RelativeSource AncestorType={x:Type Views:TweetView}, Mode=FindAncestor}, Converter={StaticResource OwnTweetConverter}}" />-->
+      </ContextMenu>
+    </GUI:StatusUpdateView.ContextMenu>
+
+    <!-- DM button -->
+    <Button HorizontalAlignment="Left" Style="{DynamicResource StatusUpdateButtonStyle}" VerticalAlignment="Top"
+            Width="{DynamicResource UpdateButtonSize}" Height="{DynamicResource UpdateButtonSize}" Click="BtnDirectMessageClick"
+            BorderBrush="{DynamicResource MidGreyColour}" Background="{DynamicResource WhiteColour}" Cursor="Hand"
+            Foreground="{DynamicResource ComplimentaryColour4}" ToolTip="Send a Direct Message" FontSize="10pt" BorderThickness="1">
+      <TextBlock FontFamily="{DynamicResource WebSymbols}" Foreground="{DynamicResource WhiteColour}"
+                 FontSize="11" Text="@" Margin="0,0,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                 Width="{DynamicResource UpdateImageButtonSize}" Height="{DynamicResource UpdateImageButtonSize}" />
+    </Button>
+
+    <!-- Retweet buton -->
+    <Button HorizontalAlignment="Right" VerticalAlignment="Top" Width="{DynamicResource UpdateButtonSize}"
+            Height="{DynamicResource UpdateButtonSize}" Click="BtnRetweetClick" BorderBrush="{DynamicResource MidGreyColour}"
+            Background="{DynamicResource WhiteColour}" Cursor="Hand" Foreground="{DynamicResource ComplimentaryColour4}"
+            ToolTip="Re-Tweet this message" FontSize="10pt" Style="{DynamicResource StatusUpdateButtonStyle}"
+            Visibility="{Binding RelativeSource={RelativeSource AncestorType={x:Type Views:TweetView}, Mode=FindAncestor}, Converter={StaticResource RetweetButtonVisibleConverter}}">
+      <TextBlock FontFamily="{DynamicResource WebSymbols}" Foreground="{DynamicResource WhiteColour}"
+                 FontSize="11" Text="J" Margin="0,0,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                 Width="{DynamicResource UpdateImageButtonSize}" Height="{DynamicResource UpdateImageButtonSize}"
+                 Visibility="{Binding RelativeSource={RelativeSource AncestorType={x:Type Views:TweetView}, Mode=FindAncestor}, Converter={StaticResource RetweetButtonVisibleConverter}}" />
+    </Button>
+
+    <!-- Reply buton -->
+    <Button HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="{DynamicResource UpdateButtonSize}"
+            Height="{DynamicResource UpdateButtonSize}" Click="BtnReplyClick" BorderBrush="{DynamicResource MidGreyColour}"
+            Background="{DynamicResource WhiteColour}" Cursor="Hand" ToolTip="Reply to this person"
+            Style="{DynamicResource StatusUpdateButtonStyle}">
+      <TextBlock FontFamily="{DynamicResource WebSymbols}" Foreground="{DynamicResource WhiteColour}"
+                 FontSize="11" Text="h" Margin="0,0,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                 Width="{DynamicResource UpdateImageButtonSize}" Height="{DynamicResource UpdateImageButtonSize}" />
+    </Button>
+
+    <!-- Favourite buton -->
+    <Button HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="{DynamicResource UpdateButtonSize}"
+            Height="{DynamicResource UpdateButtonSize}" Click="BtnFavouriteClick" BorderBrush="{DynamicResource MidGreyColour}"
+            Background="{DynamicResource WhiteColour}" Cursor="Hand" ToolTip="Mark this Tweet as a Favourite"
+            Style="{DynamicResource StatusUpdateButtonStyle}">
+      <TextBlock FontFamily="{DynamicResource WebSymbols}" FontSize="11" Text="N" Margin="0,0,0,0"
+                 HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="{DynamicResource UpdateImageButtonSize}"
+                 Height="{DynamicResource UpdateImageButtonSize}">
+        <TextBlock.Style>
+          <Style TargetType="{x:Type TextBlock}">
+            <Style.Triggers>
+              <DataTrigger Binding="{Binding Favourite}" Value="False">
+                <Setter Property="Foreground" Value="{DynamicResource WhiteColour}" />
+              </DataTrigger>
+              <DataTrigger Binding="{Binding Favourite}" Value="True">
+                <Setter Property="Foreground" Value="{DynamicResource RedColour}" />
+              </DataTrigger>
+            </Style.Triggers>
+          </Style>
+        </TextBlock.Style>
+      </TextBlock>
+    </Button>
+  </GUI:StatusUpdateView>
+</UserControl>

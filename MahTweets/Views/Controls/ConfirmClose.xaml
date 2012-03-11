@@ -1,0 +1,20 @@
+﻿<UserControl x:Class="MahTweets.Views.Controls.ConfirmClose"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" Background="LightGray" mc:Ignorable="d"
+             d:DesignHeight="100" d:DesignWidth="300" BorderThickness="0">
+  <Grid>
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition />
+      <ColumnDefinition />
+    </Grid.ColumnDefinitions>
+    <TextBlock Grid.ColumnSpan="2" Margin="0,5,0,0" HorizontalAlignment="Center" FontSize="16"
+               Text="Are you sure you want to remove this column?" Width="295.93" TextWrapping="Wrap" TextAlignment="Center" />
+    <Button Margin="45,48.5,15,10" Click="OKClick" Style="{DynamicResource TextButtonStyle}" Height="40">
+      Yes</Button>
+    <Button Grid.Column="1" Margin="15,48.5,45,10" Click="CancelClick" Style="{DynamicResource TextButtonStyle}"
+            Height="40">
+      No</Button>
+  </Grid>
+</UserControl>

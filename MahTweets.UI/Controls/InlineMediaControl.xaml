@@ -1,0 +1,18 @@
+<UserControl xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:Controls="clr-namespace:MahTweets.Core.Media"
+             xmlns:Media="clr-namespace:MahTweets.Core.Media;assembly=MahTweets.Core" mc:Ignorable="d"
+             x:Class="MahTweets.UI.Controls.InlineMediaControl" x:Name="UserControl" VerticalContentAlignment="Stretch"
+             HorizontalContentAlignment="Stretch" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+
+  <Grid x:Name="LayoutRoot">
+    <!--<Image x:Name="img" Margin="0" Grid.Row="1"/>-->
+    <Media:CachedImage x:Name="CachedImage" />
+    <Button x:Name="btnClose" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="18"
+            Style="{DynamicResource ButtonClearedStyle}" ToolTip="Close Image" Height="18" Click="BtnCloseClick">
+      <TextBlock HorizontalAlignment="Right" VerticalAlignment="Bottom" FontFamily="{DynamicResource WebSymbols}"
+                 Foreground="{DynamicResource BlackColour}" FontSize="20" Text=":" Opacity="1" Margin="0,0,0,0" />
+    </Button>
+  </Grid>
+</UserControl>

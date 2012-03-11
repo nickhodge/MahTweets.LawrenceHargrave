@@ -1,0 +1,391 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildCommunityTasksPath>$(SolutionDir)Build\</MSBuildCommunityTasksPath>
+    <Major>3</Major>
+    <Minor>0</Minor>
+    <Build>0</Build>
+    <Revision>0</Revision>
+    <AssemblyCompany>MahApps</AssemblyCompany>
+    <AssemblyProduct>MahTweets</AssemblyProduct>
+    <AssemblyCopyright>Copyright © MahApps 2010</AssemblyCopyright>
+    <AssemblyProduct>MahApps</AssemblyProduct>
+  </PropertyGroup>
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{88A09DBA-A26C-493F-AD66-1C6E0BF3A54D}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MahTweets.Core</RootNamespace>
+    <AssemblyName>MahTweets.Core</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UpgradeBackupLocation />
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>false</DebugSymbols>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <DebugType>none</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Publish|AnyCPU'">
+    <OutputPath>bin\Publish\</OutputPath>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Autofac, Version=2.5.2.830, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Autofac.2.5.2.830\lib\NET40\Autofac.dll</HintPath>
+    </Reference>
+    <Reference Include="Castle.Core">
+      <HintPath>..\packages\Castle.Core.3.0.0.4001\lib\net40-client\Castle.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="IronPython, Version=2.7.0.40, Culture=neutral, PublicKeyToken=7f709c5b713576e1, processorArchitecture=MSIL">
+      <HintPath>..\ThirdPartyLibraries\DLR\IronPython.dll</HintPath>
+    </Reference>
+    <Reference Include="IronPython.Modules, Version=2.7.0.40, Culture=neutral, PublicKeyToken=7f709c5b713576e1, processorArchitecture=MSIL">
+      <HintPath>..\ThirdPartyLibraries\DLR\IronPython.Modules.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Dynamic">
+      <HintPath>..\ThirdPartyLibraries\DLR\Microsoft.Dynamic.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Scripting, Version=1.1.0.20, Culture=neutral, PublicKeyToken=7f709c5b713576e1, processorArchitecture=MSIL">
+      <HintPath>..\ThirdPartyLibraries\DLR\Microsoft.Scripting.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Scripting.Metadata, Version=1.1.0.20, Culture=neutral, PublicKeyToken=7f709c5b713576e1, processorArchitecture=MSIL">
+      <HintPath>..\ThirdPartyLibraries\DLR\Microsoft.Scripting.Metadata.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=4.0.8.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.4.0.8\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="PresentationFramework">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.Services.Client" />
+    <Reference Include="System.Runtime.DurableInstancing" />
+    <Reference Include="System.Runtime.Serialization">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Windows7.SensorAndLocation">
+      <HintPath>..\ThirdPartyLibraries\Windows7.SensorAndLocation.dll</HintPath>
+    </Reference>
+    <Reference Include="WindowsBase">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AsyncWebFetcher.cs" />
+    <Compile Include="BlackBoxRecorder.cs" />
+    <Compile Include="Collections\BindableList.cs" />
+    <Compile Include="Collections\CollectionChangeEvent.cs" />
+    <Compile Include="Collections\CollectionChangeType.cs" />
+    <Compile Include="Collections\MirrorredList.cs" />
+    <Compile Include="Collections\SerializableDictionary.cs" />
+    <Compile Include="Collections\ThreadSafeObservableCollection.cs" />
+    <Compile Include="Commands\ButtonBaseClickCommandBehavior.cs" />
+    <Compile Include="Commands\Click.cs" />
+    <Compile Include="Commands\CommandBehaviorBase.cs" />
+    <Compile Include="Commands\CompositeCommand.cs" />
+    <Compile Include="Commands\DelegateCommand.cs" />
+    <Compile Include="Commands\IActiveAware.cs" />
+    <Compile Include="Commands\SendMessageCommand.cs" />
+    <Compile Include="Commands\WeakEventHandlerManager.cs" />
+    <Compile Include="Composition\CompositionManager.cs" />
+    <Compile Include="Contact.cs" />
+    <Compile Include="ContactComparer.cs" />
+    <Compile Include="Credentials.cs" />
+    <Compile Include="Delegates.cs" />
+    <Compile Include="Events\BackgroundEventSubscription.cs" />
+    <Compile Include="Events\CompositePresentationEvent.cs" />
+    <Compile Include="Events\DataEventArgs.cs" />
+    <Compile Include="Events\DefaultDispatcher.Desktop.cs" />
+    <Compile Include="Events\DelegateReference.cs" />
+    <Compile Include="Events\DispatcherEventSubscription.cs" />
+    <Compile Include="Events\EventAggregator.cs" />
+    <Compile Include="Events\EventBase.cs" />
+    <Compile Include="Events\EventSubscription.cs" />
+    <Compile Include="Events\EventTypes\CloseDialog.cs" />
+    <Compile Include="Events\EventTypes\CheckMahTweetsVersion.cs" />
+    <Compile Include="Events\EventTypes\ShowColumns.cs" />
+    <Compile Include="Events\EventTypes\PasteInlineReply.cs" />
+    <Compile Include="Events\EventTypes\HideNotification.cs" />
+    <Compile Include="Events\EventTypes\MicroblogAdded.cs" />
+    <Compile Include="Events\EventTypes\MicroblogRemoved.cs" />
+    <Compile Include="Events\EventTypes\MoveToEndStream.cs" />
+    <Compile Include="Events\EventTypes\NullEvent.cs" />
+    <Compile Include="Events\EventTypes\PluginMessage.cs" />
+    <Compile Include="Events\EventTypes\ReloadFilter.cs" />
+    <Compile Include="Events\EventTypes\ShowContainer.cs" />
+    <Compile Include="Events\EventTypes\ShowConversation.cs" />
+    <Compile Include="Events\EventTypes\ShowDialog.cs" />
+    <Compile Include="Events\EventTypes\ShowLink.cs" />
+    <Compile Include="Events\EventTypes\ShowNotification.cs" />
+    <Compile Include="Events\EventTypes\ShowProfile.cs" />
+    <Compile Include="Events\EventTypes\ShowSearch.cs" />
+    <Compile Include="Events\EventTypes\StatusHandlerAdded.cs" />
+    <Compile Include="Events\EventTypes\UrlShortenerAdded.cs" />
+    <Compile Include="Events\IDelegateReference.cs" />
+    <Compile Include="Events\IDispatcherFacade.cs" />
+    <Compile Include="Events\IEventAggregator.cs" />
+    <Compile Include="Events\IEventSubscription.cs" />
+    <Compile Include="Events\SubscriptionToken.cs" />
+    <Compile Include="Events\ThreadOption.cs" />
+    <Compile Include="Events\WeakDelegatesManager.cs" />
+    <Compile Include="Extensions\AttributeExtensions.cs" />
+    <Compile Include="Extensions\CollectionExtensions.cs" />
+    <Compile Include="Extensions\CommandExtensions.cs" />
+    <Compile Include="Extensions\EventExtensions.cs" />
+    <Compile Include="Extensions\TypeExtensions.cs" />
+    <Compile Include="Extensions\UpdateTypeExtensions.cs" />
+    <Compile Include="Extensions\WebClientExtensions.cs" />
+    <Compile Include="Extensions\XmlExtensions.cs" />
+    <Compile Include="Factory\ColumnConfiguration.cs" />
+    <Compile Include="Filters\Awesome\ContactFilter.cs" />
+    <Compile Include="Filters\Awesome\FilterSet.cs" />
+    <Compile Include="Filters\Awesome\HyperlinkFilter.cs" />
+    <Compile Include="Filters\Awesome\TextFilter.cs" />
+    <Compile Include="Filters\ContactFilter.cs" />
+    <Compile Include="Filters\Filter.cs" />
+    <Compile Include="Filters\FilterBehaviour.cs" />
+    <Compile Include="Filters\StreamModel.cs" />
+    <Compile Include="Filters\TextFilter.cs" />
+    <Compile Include="Filters\UpdateTypeFilter.cs" />
+    <Compile Include="Extensions\DispatcherExtensions.cs" />
+    <Compile Include="Global\GlobalDispatcher.cs" />
+    <Compile Include="Global\GlobalPulse.cs" />
+    <Compile Include="Global\GlobalPulseManager.cs" />
+    <Compile Include="Global\GlobalWindows.cs" />
+    <Compile Include="Global\IGlobalPulseEvent.cs" />
+    <Compile Include="Interfaces\Application\IContact.cs" />
+    <Compile Include="Interfaces\Application\IContactService.cs" />
+    <Compile Include="Interfaces\Application\IContactsRepository.cs" />
+    <Compile Include="Interfaces\Application\IContainerConfiguration.cs" />
+    <Compile Include="Interfaces\Application\IContainerFactory.cs" />
+    <Compile Include="Interfaces\Application\IExceptionReporter.cs" />
+    <Compile Include="Interfaces\Application\IFilter.cs" />
+    <Compile Include="Interfaces\Application\IHashtagService.cs" />
+    <Compile Include="Interfaces\Application\IManualLongUrlRetrieverService.cs" />
+    <Compile Include="Interfaces\Application\IScriptingConfiguration.cs" />
+    <Compile Include="Interfaces\Application\IScriptingHelper.cs" />
+    <Compile Include="Interfaces\Application\IPluginLoader.cs" />
+    <Compile Include="Interfaces\Application\IPluginRepository.cs" />
+    <Compile Include="Hashtag.cs" />
+    <Compile Include="Interfaces\Application\IScriptingManager.cs" />
+    <Compile Include="Interfaces\Application\IScriptingUIHelper.cs" />
+    <Compile Include="Interfaces\Application\IScriptingLibrarian.cs" />
+    <Compile Include="Interfaces\Application\IShell.cs" />
+    <Compile Include="Interfaces\Application\IUrlExpandService.cs" />
+    <Compile Include="Interfaces\IAutoNotifyPropertyChanged.cs" />
+    <Compile Include="Interfaces\IStorage.cs" />
+    <Compile Include="Interfaces\Plugins\IMicroblogSource.cs" />
+    <Compile Include="Interfaces\Plugins\IPluginSettings.cs" />
+    <Compile Include="Interfaces\Plugins\StatusUpdate.cs" />
+    <Compile Include="Interfaces\Settings\IColumnsSettingsProvider.cs" />
+    <Compile Include="Interfaces\ViewModels\IBaseViewModel.cs" />
+    <Compile Include="Interfaces\ViewModels\IContainerViewModel.cs" />
+    <Compile Include="Interfaces\ViewModels\IMainViewModel.cs" />
+    <Compile Include="Interfaces\ViewModels\IResourcesViewModel.cs" />
+    <Compile Include="Interfaces\ViewModels\ISearchViewModel.cs" />
+    <Compile Include="Interfaces\ViewModels\IStreamViewModel.cs" />
+    <Compile Include="Link.cs" />
+    <Compile Include="Media\Attachments\ImageAttachment.xaml.cs">
+      <DependentUpon>ImageAttachment.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Media\Attachments\ImageAttachmentView.cs" />
+    <Compile Include="Media\Attachments\ImageMinimisedAttachment.xaml.cs">
+      <DependentUpon>ImageMinimisedAttachment.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Media\Attachments\LinkAttachment.xaml.cs">
+      <DependentUpon>LinkAttachment.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Media\CachedImage.xaml.cs">
+      <DependentUpon>CachedImage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Media\Dragger.cs" />
+    <Compile Include="Media\InlineLink.cs" />
+    <Compile Include="SavedSearch.cs" />
+    <Compile Include="Interfaces\Application\IStatusHandlerManager.cs" />
+    <Compile Include="Interfaces\IStatusUpdateAttachment.cs" />
+    <Compile Include="Interfaces\Plugins\FileDetails.cs" />
+    <Compile Include="Interfaces\Plugins\FileType.cs" />
+    <Compile Include="Interfaces\Plugins\IHaveSettings.cs" />
+    <Compile Include="Interfaces\Application\IStatusUpdateService.cs" />
+    <Compile Include="Interfaces\Application\IStatusUpdateRepository.cs" />
+    <Compile Include="Interfaces\Plugins\IStatusHandler.cs" />
+    <Compile Include="Interfaces\Plugins\IStyle.cs" />
+    <Compile Include="Interfaces\Notify.cs" />
+    <Compile Include="Interfaces\Plugins\NormalUpdate.cs" />
+    <Compile Include="Interfaces\Plugins\SelfUpdate.cs" />
+    <Compile Include="Interfaces\Plugins\UpdateType.cs" />
+    <Compile Include="GeoLocation.cs" />
+    <Compile Include="Location\Distance.cs" />
+    <Compile Include="Location\DistanceUnit.cs" />
+    <Compile Include="Location\GlobalPosition.cs" />
+    <Compile Include="Location\Haversine.cs" />
+    <Compile Include="Media\IMediaProvider.cs" />
+    <Compile Include="Interfaces\Plugins\IMicroblog.cs" />
+    <Compile Include="Interfaces\Plugins\IPlugin.cs" />
+    <Compile Include="Interfaces\Plugins\ISearchProvider.cs" />
+    <Compile Include="Interfaces\Plugins\IStatusUpdate.cs" />
+    <Compile Include="Interfaces\Plugins\IUrlShortener.cs" />
+    <Compile Include="Interfaces\Settings\IAccountSettingsProvider.cs" />
+    <Compile Include="Interfaces\Settings\IApplicationSettingsProvider.cs" />
+    <Compile Include="Interfaces\Settings\IPluginSettingsProvider.cs" />
+    <Compile Include="Interfaces\Settings\ISettingsProvider.cs" />
+    <Compile Include="Logging.cs" />
+    <Compile Include="Media\MediaHandling.cs" />
+    <Compile Include="Media\MediaObject.cs" />
+    <Compile Include="Media\MediaType.cs" />
+    <Compile Include="PluginEventHandler.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Extensions\ReflectionExtensions.cs" />
+    <Compile Include="Interfaces\Application\IScriptingEngine.cs" />
+    <Compile Include="Scripting\DynamicLanguagesScriptEngine.cs" />
+    <Compile Include="Scripting\ScopeVariable.cs" />
+    <Compile Include="Scripting\ScopeVariables.cs" />
+    <Compile Include="Scripting\ScriptCollectionEventListener.cs" />
+    <Compile Include="Scripting\ScriptDirectories.cs" />
+    <Compile Include="Scripting\ScriptDirectory.cs" />
+    <Compile Include="Scripting\ScriptEntryPoint.cs" />
+    <Compile Include="Scripting\ScriptEntryPoints.cs" />
+    <Compile Include="Scripting\ScriptFile.cs" />
+    <Compile Include="Scripting\ScriptingConfiguration.cs" />
+    <Compile Include="Scripting\ScriptingManager.cs" />
+    <Compile Include="Scripting\ScriptingUIHelper.cs" />
+    <Compile Include="Scripting\ScriptConsole.xaml.cs">
+      <DependentUpon>ScriptConsole.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Scripting\ScriptFilter.cs" />
+    <Compile Include="Scripting\ScriptLibrarian.cs" />
+    <Compile Include="Serialization.cs" />
+    <Compile Include="Settings\SettingsClassAttribute.cs" />
+    <Compile Include="Settings\SettingsUserControl.cs" />
+    <Compile Include="Storage.cs" />
+    <Compile Include="StyleVariant.cs" />
+    <Compile Include="Utilities\HashUtils.cs" />
+    <Compile Include="Utilities\ImageUtility.cs" />
+    <Compile Include="Extensions\StringExtensions.cs" />
+    <Compile Include="Composition\Uuid.cs" />
+    <Compile Include="VersionCheck\ICurrentVersionCheck.cs" />
+    <Compile Include="VersionCheck\UpdateNotification.xaml.cs">
+      <DependentUpon>UpdateNotification.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="VersionCheck\VersionCheck.cs" />
+    <Compile Include="ViewModels\BaseViewModel.cs" />
+    <Compile Include="ViewModels\ContainerViewModel.cs" />
+    <Compile Include="ViewModels\ConversationViewModel.cs" />
+    <Compile Include="ViewModels\ProfileViewModel.cs" />
+    <Compile Include="ViewModels\StreamConfigurationViewModel.cs" />
+    <Compile Include="Views\IView.cs" />
+    <Compile Include="WeakEventManagerBase.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Media\Attachments\ImageAttachment.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Media\Attachments\ImageMinimisedAttachment.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Media\Attachments\LinkAttachment.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Media\CachedImage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Scripting\ScriptConsole.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="VersionCheck\UpdateNotification.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Interfaces\Views\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <!-- import the MSBuild assembly-->
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- <Import Project="$(SolutionDir)\Build\MSBuild.Mercurial.tasks" />
+  <Import Project="$(SolutionDir)\Build\MSBuild.Community.Tasks.Targets" />
+  <Target Name="Version" Condition=" '$(Configuration)' == 'Debug' ">
+    <Version VersionFile="$(SolutionDir)\Build\version.txt" RevisionType="None">
+      <Output TaskParameter="Major" PropertyName="Major" />
+      <Output TaskParameter="Minor" PropertyName="Minor" />
+      <Output TaskParameter="Build" PropertyName="Build" />
+      <Output TaskParameter="Revision" PropertyName="Revision" />
+    </Version>
+  </Target>
+  <Target Name="AssemblyInfo">
+    <HgVersion LocalPath="$(ProjectDir)" Condition=" '$(Configuration)' == 'Debug' ">
+      <Output TaskParameter="Revision" PropertyName="Revision" />
+    </HgVersion>
+    <MakeDir Directories="Properties" Condition="!Exists('Properties')" />
+    <AssemblyInfo CodeLanguage="CS" OutputFile="Properties\AssemblyInfo.cs" AssemblyTitle="MahTweets Core Library" AssemblyCompany="$(AssemblyCompany)" AssemblyProduct="$(AssemblyProduct)" AssemblyCopyright="$(AssemblyCopyright)" ComVisible="false" AssemblyVersion="$(Major).$(Minor).$(Build).$(Revision)" AssemblyFileVersion="$(Major).$(Minor).$(Build).$(Revision)" Condition="$(Revision) != '0' " />
+  </Target>
+  <Target Name="BeforeBuild">
+    <CallTarget Targets="Version" />
+    <CallTarget Targets="AssemblyInfo" />
+  </Target> -->
+</Project>

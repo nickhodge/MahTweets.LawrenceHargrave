@@ -1,0 +1,43 @@
+﻿<UserControl x:Class="MahTweets2.TwitterPlugin.IsConnected"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:GUI="clr-namespace:MahTweets2.TwitterPlugin.UI"
+    x:Name="Control" Width="60">
+    <UserControl.Resources>
+        <GUI:StatusColorConverter x:Key="ConnectedConverter"></GUI:StatusColorConverter>
+        <GUI:APICountColorConverter x:Key="APICountConverter"></GUI:APICountColorConverter>
+    </UserControl.Resources>
+    <Grid Margin="0,0,0,5">
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Button x:Name="btnRefresh" Height="30" Cursor="Hand" Margin="0" Grid.RowSpan="2" Width="30" HorizontalAlignment="Left" ToolTip="Refresh" Click="Button_Click"  Style="{DynamicResource GeneralButtonStyle}" VerticalAlignment="Bottom">
+            <Image Source="/MahTweets2;component/Icons/arrow_refresh.png" Height="14" Width="14" />
+        </Button>
+        <Border Grid.Row="0" Grid.Column="1" CornerRadius="1">
+            <Border.Background>
+                <SolidColorBrush>
+                    <SolidColorBrush.Color>
+                        <MultiBinding Converter="{StaticResource ConnectedConverter}">
+                            <Binding ElementName="Control" Path="DataContext.IsConnected"></Binding>
+                            <Binding ElementName="Control" Path="DataContext.IsPermitted"></Binding>
+                        </MultiBinding>
+                    </SolidColorBrush.Color>
+                </SolidColorBrush>
+            </Border.Background>
+            <TextBlock  HorizontalAlignment="Center" FontWeight="Bold" Text="{Binding Path=Message}" />
+        </Border>
+        <Border Grid.Row="1" Grid.Column="1" CornerRadius="1" >
+            <Border.Background>
+                <SolidColorBrush Color="{Binding Path=Remaining, Converter={StaticResource APICountConverter}}">
+                </SolidColorBrush>
+            </Border.Background>
+            <TextBlock  HorizontalAlignment="Center" FontWeight="Bold" Text="{Binding Path=Remaining}" />
+        </Border>
+    </Grid>
+</UserControl>

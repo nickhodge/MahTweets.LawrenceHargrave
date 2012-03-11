@@ -1,0 +1,41 @@
+﻿<UserControl x:Name="userControl" x:Class="MahTweets.UI.Controls.CompositionBox"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:Controls="clr-namespace:MahTweets.UI.Controls"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" d:DesignWidth="150"
+             d:DesignHeight="50">
+  <UserControl.Resources>
+    <Controls:CompositionTextBox x:Key="CompositionTextBoxDataSource" d:IsDataSource="True" />
+  </UserControl.Resources>
+  <StackPanel DataContext="{Binding Source={StaticResource CompositionTextBoxDataSource}}">
+    <Grid x:Name="grdTweetEntryBox">
+      <Rectangle Fill="White" RenderTransformOrigin="0,0" Margin="0,0" Stroke="{DynamicResource WhiteColour}" />
+
+      <TextBlock x:Name="compositionTextCharacterCount" HorizontalAlignment="Right"
+                 Text="{Binding Text.Length, ElementName=txtUpdateBox, Mode=Default}" TextWrapping="Wrap" Margin="0,0,5,-2"
+                 Opacity="1.0" Foreground="{DynamicResource Under70Colour}" TextAlignment="Right"
+                 FontSize="{DynamicResource AltHeadingFontSize}" IsHitTestVisible="False" FontFamily="{DynamicResource AltHeadingFont}"
+                 VerticalAlignment="Bottom" />
+
+      <TextBlock x:Name="compositionTextCharacterLengthLeft" HorizontalAlignment="Right" TextWrapping="Wrap"
+                 Margin="0,0,5,-2" Opacity="1.0" Visibility="Hidden" Foreground="{DynamicResource Under70Colour}" TextAlignment="Right"
+                 FontSize="{DynamicResource StatusFontSize}" IsHitTestVisible="False" FontFamily="{DynamicResource AltHeadingFont}"
+                 VerticalAlignment="Top" />
+
+
+      <Controls:CompositionTextBox x:Name="txtUpdateBox" UndoLimit="10" SpellCheck.IsEnabled="True"
+                                   Margin="0,0,0,0" AcceptsReturn="True" Height="50" AllowDrop="True" BorderBrush="{x:Null}" BorderThickness="0"
+                                   FontSize="{DynamicResource DefaultFontSize}" AutoWordSelection="True"
+                                   ContextMenuOpening="contextMenuSelectedTextOpening">
+        <Controls:CompositionTextBox.ContextMenu>
+          <ContextMenu x:Name="_selectedtext" />
+        </Controls:CompositionTextBox.ContextMenu>
+      </Controls:CompositionTextBox>
+    </Grid>
+    <Popup x:Name="popAutoComplete" MaxHeight="400" PlacementTarget="{Binding ElementName=txtUpdateBox}"
+           Placement="Bottom" AllowsTransparency="True" HorizontalAlignment="Left" Margin="0,0,0,0">
+      <Controls:AutoCompleteFloatingPane Padding="0" x:Name="ctlAutoComplete" VerticalAlignment="Top"
+                                         HorizontalAlignment="Left" MinWidth="200" Visibility="Collapsed" />
+    </Popup>
+  </StackPanel>
+</UserControl>

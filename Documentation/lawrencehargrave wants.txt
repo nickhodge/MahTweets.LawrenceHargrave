@@ -1,0 +1,69 @@
+General Post Posting features to be done
+
+- re-add colour pickers: http://wpftoolkit.codeplex.com/wikipage?title=ColorPicker&referringTitle=Home
+
+- image loading / http://stackoverflow.com/questions/2382663/ensuring-that-things-run-on-the-ui-thread-in-wpf
+
+- chain .net 4 client profile install (bootstrap)
+
+- drag URL into composition box from within MT (ie: link from time) == correct action
+
+- NUnit tests of things I've added
+
+- contacts between columns as filter drag & drop
+
+- replyall into twitter.cs
+- add handler for shift/alt/ctl reply to reply all
+- similar with RT to denote RT type (classic, new)
+
+- global twitter client watch
+- global hashtag watch; hashtag auto-complete
+
+- stripping tags inside H1 (wikipedia named title)
+
+- scriptfilter to remember folder tokens, not full paths
+
+- drag & drop bottom of column to desktop and get a .csv
+- http://stackoverflow.com/questions/4861214/wpf-drag-and-drop-virtual-files-into-windows-explorer
+- http://drwpf.com/blog/page/2/
+- http://social.msdn.microsoft.com/Forums/en/wpf/thread/d32bb0af-b14f-4e88-ad36-098d11cd375c
+
+- # of tweets, followers in popout for account selection
+-- gather data when creditials are first initiated.
+-- store the previous numbers; show difference in the popout
+
+- continue to decouple via Events
+
+- manuallongurl service
+
+- GIFs
+-- http://stackoverflow.com/questions/210922/how-do-i-get-an-animated-gif-to-work-in-wpf
+-- http://stackoverflow.com/questions/2097152/creating-wpf-bitmapimage-from-memorystream-png-gif
+- fix google translate .py to bing translate
+- Semantic html5 reading of a page in thingy
+-- add additional, but initially non-visible area where additional semantic info can be shown from parsing Html5
+- MahApps.Metro change to WPF UI
+- advanced: warehouse/inventory flow as 'sources' in streams; then 'filters'
+-- a streamcolumn has sources,filters attached
+-- ux for wiring together
+- GLOBAL IGNORES / GLOBAL HIGHLIGHTS
+-- but also column "ignore" ignores/highlights
+-- and also column ignores/highlights
+- change from PRISM pubsub to Messenger from MvvmLight (or similar)
+--> http://blog.galasoft.ch/archive/2009/09/27/mvvm-light-toolkit-messenger-v2-beta.aspx
+-	Yfrog when video show video picturey thing
+- http://msdn.microsoft.com/en-us/library/system.collections.concurrent.aspx
+- streamsearch reimplimented/turned on
+- background of stream; diff % opacity indicate these 
+- tooltip the filtering of contacts/three way check box
+- animated gifs?
+- hover image preview
+- userstreams DELETE?
+- update Windows integration stuffs
+- alternative hashtag colouration
+- fix colour selection, full-stop
+-- https://github.com/markrendle/WpfPrimitives
+- "organise by" by date/time, name, by hashtag
+- tweet archive to database
+- javascript ALL THE THINGS
+- `backtick in composition box + underneath column status box; wired to commands + variables

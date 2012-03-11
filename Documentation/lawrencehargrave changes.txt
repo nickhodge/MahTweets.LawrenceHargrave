@@ -1,0 +1,51 @@
+MahTweets LH (Lawrence Hargrave)
+
+Changes from the 3.5.0.1569
+
+- remove Facebook, Foursquare, Yammer, Identica social media plugins
+- remove all uploading plugins
+- remove IronRuby
+
+- update to latest JSON.NET, Hammock & MahApps.Twitter
+-- this fixed the missing Direct Messages problem
+- update to latest Ironpython release; Microsoft.Scripting & DLR
+
+- added Camera+, Dailybooth, Instagram, Lockerz, Picplz, Imgur, Lightbox image "MediaProviders" for inline display of images
+- a tweet will show an image icon when there is link to an image; click on this to preview the image; click on URL to show image on the original site
+- added updated longurlplease domains
+- cleaned up text parsing in tweets to "pretty up" display; using an easier mechanism for changing/modifying tweets
+-- more than just emoticons!
+
+- drag and drop from "x minutes ago" text to desktop/another application takes a URL of that particular tweet
+
+- cannot RT someone who is "Protected" account. The RT button is gone
+
+- shortening all URLs (visually) with a tooltip of the long url using ellipsis
+- removal of various UI clutter elements
+- stop caching favicon.ico into %appcache% directory
+
+- removal of style & error logging services (required backend systems)
+- changed "Blackboxrecorder" to only create a directory if it is actually logging something
+
+- as Google translate APIs are fully paid only, the translation script has been removed. sadly.
+
+- UI rejig. removal of unneeded 'ui clutter'; change around positioning of icons. line up more things. Font sizing, Pixel pushing. Changing default font. XAML-herding.
+
+- F4 clears all, F5 refreshes all
+- control-F find control-S setup control-n new column
+
+- added emoticons for common emotional icons text strings; plus other little ones that will be a surprise if they appear!
+
+- About box changed to reflect changes to included open source libraries
+
+- paste (text) onto a selected tweet, inline reply auto completed (DM/reply) with the text or URL. Drag text onto a tweet, automatically shows & inserts into reply
+
+- Inline reply will auto-size based on size of text as you type it.
+
+- preferences are stored in two places. Accounts, plugin settings, caches (disk storage) are in APPDATA
+- preferences for columns (filters, column names, ordering, widths) is stored in USERDOCS\MahTweets
+-- this permits easy transport from device to device; and identifiable info is salted & encrypted
+
+- Columns can be resized. this will be remembered across launches
+
+- composition box changes colour depending on how many characters you have typed; go over 140 and the number of characters you will need to delete will be shown

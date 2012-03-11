@@ -1,0 +1,64 @@
+    public static string MicrosoftTranslate_GetAccessToken()
+    {
+        // http://msdn.microsoft.com/en-us/library/hh454950.aspx
+        const string clientappid = "MahTweetsLH";
+        const string clientsecret = "qfxZC6dN+OzdUOiKEquQDXyuoSFYF+309AeGbMVS/+Q=";
+        var accesstokenrequest = String.Format(@"grant_type=client_credentials&client_id={0}&client_secret={1}&scope=http://api.microsofttranslator.com", clientappid, Uri.EscapeDataString(clientsecret));
+        var u = new Uri("https://datamarket.accesscontrol.windows.net/v2/OAuth2-13");
+
+        var webRequest = WebRequest.Create(u);
+        webRequest.ContentType = "application/x-www-form-urlencoded";
+        webRequest.Method = "POST";
+        var bytes = Encoding.ASCII.GetBytes(accesstokenrequest);
+        webRequest.ContentLength = bytes.Length;
+        var os = webRequest.GetRequestStream();
+        if (os == null) return null;
+        os.Write(bytes, 0, bytes.Length);
+        var webResponse = webRequest.GetResponse();
+        var rs = webResponse.GetResponseStream();
+        if (rs == null) return null;
+        var streamrdr = new StreamReader(rs);
+        var resptext = streamrdr.ReadToEnd().Trim();
+        var jo = JObject.Parse(resptext);
+        return jo == null ? null : jo["access_token"].ToString();
+    }
+
+    public static string MicrosoftTranslate_DetermineSourceLanguage(string access_token, string sourceText)
+    {
+        // http://msdn.microsoft.com/en-us/library/ff512387.aspx
+        //var detect_language_url = "http://api.microsofttranslator.com/v2/Http.svc/Detect?appId=&text={0}";
+        //var u = new Uri(String.Format(detect_language_url, Uri.EscapeDataString(sourceText)));
+        //var wreq = WebRequest.Create(u);
+        //wreq.Method = "GET";
+        ////wreq.Headers.Add(HttpRequestHeader.Authorization, access_token);
+        //var wresp = wreq.GetResponse();
+        //var rs = wresp.GetResponseStream();
+        //if (rs == null) return null;
+        //var streamrdr = new StreamReader(rs);
+        //var resptext = streamrdr.ReadToEnd().Trim();
+        //return resptext;
+        return "fr";
+    }
+
+    public static string MicrosoftTranslate_TranslateToEnglish(string access_token, string sourceText, string sourceLangCode, string destLangCode)
+    {
+        // http://msdn.microsoft.com/en-us/library/ff512387.aspx
+        var translate_to_english_url = "http://api.microsofttranslator.com/V2/Http.svc/Translate?appID=3BA09947B8CC5875868BED9CBCDF041AC94FD86D";
+        var post_request = String.Format(@"&text;={0}&from;={1}&to;={2}", Uri.EscapeDataString(sourceText), sourceLangCode, destLangCode);
+        var u = new Uri(translate_to_english_url);
+        var wreq = WebRequest.Create(u);
+        wreq.Method = "POST";
+        wreq.ContentType = "text/plain";
+        wreq.Headers.Add(HttpRequestHeader.Authorization, "Bearer " + access_token);
+        var bytes = Encoding.ASCII.GetBytes(post_request);
+        wreq.ContentLength = bytes.Length;
+        var os = wreq.GetRequestStream();
+        if (os == null) return null;
+        os.Write(bytes, 0, bytes.Length);
+        var wres = wreq.GetResponse();
+        var stream = wres.GetResponseStream();
+        if (stream == null) return null;
+        var streamrdr = new StreamReader(stream);
+        var translated = streamrdr.ReadToEnd().Trim();
+        return translated;
+    }
