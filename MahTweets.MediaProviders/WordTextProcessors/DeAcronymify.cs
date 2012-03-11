@@ -26,6 +26,7 @@ namespace MahTweets.TweetProcessors.WordTextProcessors
                                                                               {@"bil","brother in law"},
                                                                               {@"iirc","if I recall correctly"},
                                                                               {@"afaict","as far as I can tell"},
+                                                                              {@"jsyk","just so you know"},
                                                                           };
                                                            // mapping acronyms to a phrase; just the more obscure ones. keeping away from the sweary & well known ones like GTFO
 
