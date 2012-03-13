@@ -162,6 +162,7 @@
     <Compile Include="Events\EventSubscription.cs" />
     <Compile Include="Events\EventTypes\CloseDialog.cs" />
     <Compile Include="Events\EventTypes\CheckMahTweetsVersion.cs" />
+    <Compile Include="Events\EventTypes\GlobalExclusionChanged.cs" />
     <Compile Include="Events\EventTypes\ShowColumns.cs" />
     <Compile Include="Events\EventTypes\PasteInlineReply.cs" />
     <Compile Include="Events\EventTypes\HideNotification.cs" />

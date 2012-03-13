@@ -413,7 +413,7 @@ namespace MahTweets
                     if (droppedFilePaths == null)
                         return;
 
-                    string fileName = droppedFilePaths[0];
+                    var fileName = droppedFilePaths[0];
 
                     if (fileName.ToLower().EndsWith(".jpg") ||
                         fileName.ToLower().EndsWith(".jpeg") ||
@@ -433,7 +433,7 @@ namespace MahTweets
 
         private void AvatarChangeDragOver(object sender, DragEventArgs e)
         {
-            object mb = ((FrameworkElement) sender).Tag;
+            var mb = ((FrameworkElement) sender).Tag;
             if (mb is IMicroblog)
                 e.Effects = DragDropEffects.Copy;
             else

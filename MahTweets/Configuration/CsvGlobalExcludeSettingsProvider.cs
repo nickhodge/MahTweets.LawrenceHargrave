@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 using LINQtoCSV;
 using MahTweets.Core;
 using MahTweets.Core.Composition;
+using MahTweets.Core.Events;
+using MahTweets.Core.Events.EventTypes;
 using MahTweets.Core.Interfaces.Application;
 
 namespace MahTweets.Configuration
@@ -58,17 +60,23 @@ namespace MahTweets.Configuration
             } 
         }
 
+        private void SendUpdateEvent()
+        {
+            var eventAggregator = CompositionManager.Get<IEventAggregator>();
+            eventAggregator.GetEvent<GlobalExclusionChanged>().Publish(null);
+        }
+
         public void Add(string newAddition)
         {
             GlobalExcludeItems.Add(newAddition);
-            // send event
+            SendUpdateEvent();
         }
 
         public void Remove(string deleteAddition)
         {
             if (!GlobalExcludeItems.Contains(deleteAddition)) return;
             GlobalExcludeItems.Remove(deleteAddition);
-            // send event
+            SendUpdateEvent();
         }
 
         public void Read()
@@ -87,7 +95,7 @@ namespace MahTweets.Configuration
             }
             if (GlobalExcludeItems == null) // list didnt exist on disk
                 GlobalExcludeItems = new ObservableCollection<string>();
-            //send event
+            SendUpdateEvent();
         }
 
         public void Write()
