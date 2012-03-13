@@ -62,6 +62,8 @@
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -141,7 +143,7 @@
       <HintPath>..\packages\Castle.Core.3.0.0.4001\lib\net40-client\Castle.Core.dll</HintPath>
     </Reference>
     <Reference Include="LINQtoCSV">
-      <HintPath>..\packages\LinqToCsv.1.0.0.0\lib\LINQtoCSV.dll</HintPath>
+      <HintPath>..\packages\LINQtoCSV.1.2.0.0\lib\LINQtoCSV.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Dynamic">
       <HintPath>..\ThirdPartyLibraries\DLR\Microsoft.Dynamic.dll</HintPath>
@@ -549,6 +551,7 @@
     <Folder Include="Views\Shell\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
   <!--<Import Project="$(SolutionDir)\Build\MSBuild.Mercurial.tasks" Condition="EXISTS($(SolutionDir))" />
   <Import Project="$(SolutionDir)\Build\MSBuild.Community.Tasks.Targets" Condition="EXISTS($(SolutionDir))" />
   <Target Name="Version" Condition=" '$(Configuration)' == 'Debug' ">

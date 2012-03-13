@@ -10,6 +10,8 @@
     <AssemblyProduct>MahTweets</AssemblyProduct>
     <AssemblyCopyright>Copyright © MahApps 2010</AssemblyCopyright>
     <AssemblyProduct>MahApps</AssemblyProduct>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
   </PropertyGroup>
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -104,6 +106,7 @@
   </ItemGroup>
   <!-- import the MSBuild assembly-->
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
   <!-- <Import Project="$(SolutionDir)\Build\MSBuild.Mercurial.tasks" />
   <Import Project="$(SolutionDir)\Build\MSBuild.Community.Tasks.Targets" />
   <Target Name="Version" Condition=" '$(Configuration)' == 'Debug' ">
