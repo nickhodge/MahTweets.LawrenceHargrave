@@ -186,7 +186,7 @@ namespace MahTweets.Services
                 {
                     if (_incomingUpdates.Any())
                     {
-                        IStatusUpdate update = _incomingUpdates.Dequeue();
+                        var update = _incomingUpdates.Dequeue();
                         OutgoingUpdates.Add(update);
                     }
                 }

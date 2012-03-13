@@ -47,7 +47,6 @@ namespace MahTweets.ViewModels
 
         public BindableList<IStatusUpdate> Updates { get; set; }
 
-
         public new string Title
         {
             get { return StreamConfiguration.Filters.GroupName; }
@@ -185,6 +184,7 @@ namespace MahTweets.ViewModels
         {
             //This operation cannot be simply threaded, the results have been logged in MT-141
             Updates = new BindableList<IStatusUpdate>(_statusUpdate.OutgoingUpdates);
+            RaisePropertyChanged(() => Updates);
         }
 
         private void TriggerUpdate(NullEvent obj)

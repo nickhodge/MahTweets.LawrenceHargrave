@@ -21,7 +21,7 @@ namespace MahTweets.Views
 {
     public partial class StreamView
     {
-        private CollectionViewSource _CVS;
+        private CollectionViewSource _cvs;
 
         public StreamView()
         {
@@ -50,7 +50,7 @@ namespace MahTweets.Views
 
         public CollectionViewSource CVS
         {
-            get { return _CVS ?? (_CVS = (CollectionViewSource) (FindResource("UpdatesCollectionView"))); }
+            get { return _cvs ?? (_cvs = (CollectionViewSource) (FindResource("UpdatesCollectionView"))); }
         }
 
         private static void StreamViewLoaded(object sender, RoutedEventArgs e)
@@ -212,7 +212,7 @@ namespace MahTweets.Views
         private void BtnColourClick(object sender, RoutedEventArgs e)
         {
             var btnColour = (Button) sender;
-            var _eventAggregator = CompositionManager.Get<IEventAggregator>();
+            var eventAggregator = CompositionManager.Get<IEventAggregator>();
             //var filterColourPicker = new FilterColourPicker((c) =>
             //{
             //    btnColour.Tag = c;
@@ -276,7 +276,7 @@ namespace MahTweets.Views
         private void BtnColourClick1(object sender, RoutedEventArgs e)
         {
             var btnColour = (Button) sender;
-            var _eventAggregator = CompositionManager.Get<IEventAggregator>();
+            var eventAggregator = CompositionManager.Get<IEventAggregator>();
             //var filterColourPicker = new FilterColourPicker((c) =>
             //                                                    {
             //                                                        btnColour.Tag = c;
@@ -369,26 +369,28 @@ namespace MahTweets.Views
 
             if (e.Key == Key.Right)
             {
-                IEnumerable<IContainerViewModel> x =
+                var x =
                     application.ViewModel.Model.StreamContainers.Where(i => i.Position == (ViewModel.Position + 1));
-                if (x.Any())
+                foreach (IContainerViewModel model in x)
                 {
                     var streamView = x.First().View as StreamView;
                     if (streamView == null) return;
-                    ListBox sv = (streamView).svUpdates;
+                    var sv = (streamView).svUpdates;
                     sv.Focus();
+                    break;
                 }
             }
             else if (e.Key == Key.Left)
             {
-                IEnumerable<IContainerViewModel> x =
+                var x =
                     application.ViewModel.Model.StreamContainers.Where(i => i.Position == (ViewModel.Position - 1));
-                if (x.Any())
+                foreach (IContainerViewModel model in x)
                 {
                     var streamView = x.First().View as StreamView;
                     if (streamView == null) return;
-                    ListBox sv = (streamView).svUpdates;
+                    var sv = (streamView).svUpdates;
                     sv.Focus();
+                    break;
                 }
             }
         }
