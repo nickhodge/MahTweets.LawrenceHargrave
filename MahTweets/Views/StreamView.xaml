@@ -254,7 +254,7 @@ IsHitTestVisible="{Binding StreamConfiguration.ShowConfiguration, Converter={Sta
                 <WrapPanel Margin="3,3,3,3" x:Name="wp">
                   <WrapPanel.Background>
                     <LinearGradientBrush>
-                      <GradientStop Color="White" Offset="0" />
+                      <GradientStop Color="{DynamicResource White}" Offset="0" />
                       <GradientStop Offset="1">
                         <GradientStop.Color>
                           <MultiBinding Converter="{StaticResource ContactColorConverter}"

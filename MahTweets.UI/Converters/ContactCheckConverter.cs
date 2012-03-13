@@ -2,6 +2,7 @@
 using System.Globalization;
 using System.Linq;
 using System.Windows.Data;
+using System.Windows.Media;
 using MahTweets.Core;
 using MahTweets.Core.Filters;
 
@@ -80,14 +81,13 @@ namespace MahTweets.UI.Converters
                 return null;
             }
 
-            Filter found = filters.GetFiltersFor(contact).FirstOrDefault();
+            var found = filters.GetFiltersFor(contact).FirstOrDefault();
 
             //Indetermine state of checkboxes == null
-            if (found != null)
-            {
-                return found.Color;
-            }
-            return false;
+            var myArgbColor = new Color();
+            myArgbColor = Color.FromArgb(255, 255, 255, 255);
+
+            return found != null ? found.Color : myArgbColor;
         }
 
         /// <summary>
