@@ -42,5 +42,5 @@ With loving care, many changes have been made.
 
 As at 11th March 2012 there are many things that need doing:
 
-* [Short Term Fixes](https://github.com/nickhodge/MahTweets.LawrenceHargrave/) required
+* [Short Term Fixes](https://github.com/nickhodge/MahTweets.LawrenceHargrave/shorttermfixes) required
 * [Long Term Fixes](https://github.com/nickhodge/MahTweets.LawrenceHargrave/wiki/longtermfixes) required
