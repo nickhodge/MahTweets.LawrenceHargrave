@@ -12,7 +12,7 @@ Paul Jenkins started a great Twitter client back in the day - it was a thing of 
 
 As time passed, more people rallied to his cause - ideas were suggested, code was written, and great features were added to the app. MahTweets became the home of experimentation with new things. All sorts of doohickeys were added. Features tried, failed and removed. The scope of MahTweets grew to being a rich social media client. Everyone's ideas were committed to code and binaries where shipped.
 
-But, like all good things, the band couldn't last forever. MahTweets was officially retired in October 2011, and the code lived on Codeplex for people to view and fork.
+But, like all good things, the band couldn't last forever. MahTweets was [officially retired in October 2011](http://www.theleagueofpaul.com/mahtweets-is-dead), and the code lived on Codeplex for people to view and fork.
 
 ## Enter MahTweets.LawrenceHargrave
 
