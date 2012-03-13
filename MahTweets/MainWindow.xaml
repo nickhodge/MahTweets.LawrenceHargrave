@@ -1,13 +1,14 @@
-﻿<Window xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+﻿<Controls1:MetroWindow xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:mtGuiControls="clr-namespace:MahTweets.UI.Controls;assembly=MahTweets.UI"
         xmlns:Controls="clr-namespace:MahTweets.Views.Controls"
-        Closing="WindowClosing" x:Name="window" WindowStyle="None" AllowsTransparency="True"
+                      xmlns:Controls1="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+                      Closing="WindowClosing" x:Name="window" WindowStyle="None" AllowsTransparency="True"
         mc:Ignorable="d" x:Class="MahTweets.MainWindow" Title="MahTweets" Height="600" Width="850" Icon="mahtweetsicon.ico"
         FontFamily="{DynamicResource DefaultFont}" Foreground="{DynamicResource MainTextColour}"
         FontSize="{DynamicResource DefaultFontSize}" Background="{x:Null}" AllowDrop="True" Drop="WindowDrop"
-        ResizeMode="CanResizeWithGrip" UseLayoutRounding="False" StateChanged="WindowStateChanged">
+        ResizeMode="CanResizeWithGrip" UseLayoutRounding="False" ShowIconOnTitleBar="False" ShowTitleBar="False">
 
   <Window.InputBindings>
     <KeyBinding Gesture="CTRL+W" Command="{Binding ClearAllCommand}" />
@@ -18,7 +19,19 @@
   </Window.InputBindings>
 
   <Window.Resources>
-    <CollectionViewSource x:Key="cvsTargets" Source="{Binding CurrentMicroblogs}" Filter="CvsTargetsFilter" />
+            <ResourceDictionary>
+            <CollectionViewSource x:Key="cvsTargets" Source="{Binding CurrentMicroblogs}" Filter="CvsTargetsFilter" />
+            <ResourceDictionary.MergedDictionaries>
+                    <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Colours.xaml" />
+                    <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Fonts.xaml" />
+                    <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml" />
+                    <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.AnimatedSingleRowTabControl.xaml" />
+                    <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Icons/MergedResources.xaml" />
+                    <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/Blue.xaml" />
+                    <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/BaseLight.xaml" />
+                </ResourceDictionary.MergedDictionaries>
+            </ResourceDictionary>
+        
   </Window.Resources>
 
   <Grid x:Name="LayoutRoot">
@@ -181,7 +194,7 @@ Value="False">
 
         </StackPanel>
                 
-        <!--minimise,maximise,close-->
+        <!--minimise,maximise,close
         <StackPanel x:Name="windowControls" Margin="0" Height="20" VerticalAlignment="Top"
                     Orientation="Horizontal" Grid.Column="3" HorizontalAlignment="Right" RenderTransformOrigin="0.5,0.5">
           <StackPanel.RenderTransform>
@@ -209,7 +222,7 @@ Value="False">
             <TextBlock FontFamily="{DynamicResource UIFont}" Foreground="{DynamicResource WhiteColour}"
                        FontSize="16" Text="&#x0072;" Margin="0,0,0,0" />
           </Button>
-        </StackPanel>
+        </StackPanel>-->
       </Grid>
 
 
@@ -217,4 +230,4 @@ Value="False">
     </Grid>
     <Controls:ModalPanel />
   </Grid>
-</Window>
+</Controls1:MetroWindow>

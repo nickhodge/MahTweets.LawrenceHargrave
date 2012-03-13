@@ -4,6 +4,7 @@
     <ResourceDictionary Source="/MahTweets;component/Themes/Base.xaml" />
     <ResourceDictionary Source="/MahTweets.TwitterPlugin;component/Resources/Resources.xaml" />
     <ResourceDictionary Source="/MahTweets;component/Themes/Generic.xaml" />
-  </ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/MahTweets;component/Resources/Icons.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
   <!-- Resource dictionary entries should be defined here. -->
 </ResourceDictionary>

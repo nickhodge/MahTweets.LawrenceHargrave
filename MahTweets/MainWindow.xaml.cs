@@ -398,10 +398,10 @@ namespace MahTweets
             WindowState = WindowState == WindowState.Normal ? WindowState.Maximized : WindowState.Normal;
         }
 
-        private void SetWindowMode(WindowMode windowMode)
-        {
-            btnMax.ToolTip = windowMode == WindowMode.Maximise ? "Restore" : "Maximise";
-        }
+        //private void SetWindowMode(WindowMode windowMode)
+        //{
+        //    btnMax.ToolTip = windowMode == WindowMode.Maximise ? "Restore" : "Maximise";
+        //}
 
         private void AvatarChangeDrop(object sender, DragEventArgs e)
         {
@@ -440,12 +440,12 @@ namespace MahTweets
                 e.Effects = DragDropEffects.None;
         }
 
-        private void WindowStateChanged(object sender, EventArgs e)
-        {
-            SetWindowMode(WindowState == WindowState.Maximized
-                              ? WindowMode.Maximise
-                              : WindowMode.Normal);
-        }
+        //private void WindowStateChanged(object sender, EventArgs e)
+        //{
+        //    SetWindowMode(WindowState == WindowState.Maximized
+        //                      ? WindowMode.Maximise
+        //                      : WindowMode.Normal);
+        //}
 
         private void DragMoveWindow(object sender, MouseButtonEventArgs e)
         {
