@@ -1,14 +1,17 @@
 ﻿<Controls1:MetroWindow xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         xmlns:mtGuiControls="clr-namespace:MahTweets.UI.Controls;assembly=MahTweets.UI"
         xmlns:Controls="clr-namespace:MahTweets.Views.Controls"
                       xmlns:Controls1="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
-                      Closing="WindowClosing" x:Name="window" WindowStyle="None" AllowsTransparency="True"
+                       xmlns:Behaviors="clr-namespace:MahApps.Metro.Behaviours;assembly=MahApps.Metro"
+                       Closing="WindowClosing" x:Name="window" WindowStyle="None" AllowsTransparency="True"
         mc:Ignorable="d" x:Class="MahTweets.MainWindow" Title="MahTweets" Height="600" Width="850" Icon="mahtweetsicon.ico"
         FontFamily="{DynamicResource DefaultFont}" Foreground="{DynamicResource MainTextColour}"
         FontSize="{DynamicResource DefaultFontSize}" Background="{x:Null}" AllowDrop="True" Drop="WindowDrop"
-        ResizeMode="CanResizeWithGrip" UseLayoutRounding="False" ShowIconOnTitleBar="False" ShowTitleBar="True"  >
+        ResizeMode="CanResizeWithGrip" UseLayoutRounding="False" ShowIconOnTitleBar="False" ShowTitleBar="True" >
 
   <Window.InputBindings>
     <KeyBinding Gesture="CTRL+W" Command="{Binding ClearAllCommand}" />
@@ -17,6 +20,10 @@
     <KeyBinding Gesture="CTRL+S" Command="{Binding SetupCommand}" />
     <KeyBinding Gesture="CTRL+F" Command="{Binding SearchCommand}" />
   </Window.InputBindings>
+    
+    <i:Interaction.Behaviors>
+        <Behaviors:BorderlessWindowBehavior/>
+    </i:Interaction.Behaviors>
     
     <Controls1:MetroWindow.WindowCommands>
         <Controls1:WindowCommands>
