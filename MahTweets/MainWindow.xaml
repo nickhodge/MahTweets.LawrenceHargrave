@@ -111,7 +111,7 @@ Value="False">
         <Grid.ColumnDefinitions>
           <ColumnDefinition Width="80" />
           <ColumnDefinition Width="*" MinWidth="350" />
-          <ColumnDefinition Width="200" MinWidth="200" />
+          <ColumnDefinition Width="130" MinWidth="130" />
           <ColumnDefinition Width="80" />
         </Grid.ColumnDefinitions>
 
