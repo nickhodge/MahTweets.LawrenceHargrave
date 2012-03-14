@@ -8,7 +8,7 @@
         mc:Ignorable="d" x:Class="MahTweets.MainWindow" Title="MahTweets" Height="600" Width="850" Icon="mahtweetsicon.ico"
         FontFamily="{DynamicResource DefaultFont}" Foreground="{DynamicResource MainTextColour}"
         FontSize="{DynamicResource DefaultFontSize}" Background="{x:Null}" AllowDrop="True" Drop="WindowDrop"
-        ResizeMode="CanResizeWithGrip" UseLayoutRounding="False" ShowIconOnTitleBar="False" ShowTitleBar="False">
+        ResizeMode="CanResizeWithGrip" UseLayoutRounding="False" ShowIconOnTitleBar="False" ShowTitleBar="True"  >
 
   <Window.InputBindings>
     <KeyBinding Gesture="CTRL+W" Command="{Binding ClearAllCommand}" />
@@ -17,6 +17,12 @@
     <KeyBinding Gesture="CTRL+S" Command="{Binding SetupCommand}" />
     <KeyBinding Gesture="CTRL+F" Command="{Binding SearchCommand}" />
   </Window.InputBindings>
+    
+    <Controls1:MetroWindow.WindowCommands>
+        <Controls1:WindowCommands>
+            <Button Content="settings" Command="{Binding SetupCommand}"/>
+        </Controls1:WindowCommands>
+    </Controls1:MetroWindow.WindowCommands>
 
   <Window.Resources>
             <ResourceDictionary>
@@ -26,7 +32,6 @@
                     <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Fonts.xaml" />
                     <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml" />
                     <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.AnimatedSingleRowTabControl.xaml" />
-                    <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Icons/MergedResources.xaml" />
                     <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/Blue.xaml" />
                     <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/BaseLight.xaml" />
                 </ResourceDictionary.MergedDictionaries>
@@ -168,11 +173,11 @@ Value="False">
                        FontSize="30" Text="b" Opacity="1" Margin="10,0,0,0" />
           </Button>
 
-          <Button Style="{DynamicResource NavigationButtonStyle}" Padding="0"
+                    <!--<Button Style="{DynamicResource NavigationButtonStyle}" Padding="0"
                   Command="{Binding RefreshCommand}" ToolTip="Refresh all (F5)">
             <TextBlock FontFamily="{DynamicResource WebSymbols}" Foreground="{DynamicResource WhiteColour}"
                        FontSize="30" Text="*" Opacity="1" Margin="10,0,0,0" />
-          </Button>
+          </Button>-->
 
           <Button Style="{DynamicResource NavigationButtonStyle}" Padding="0"
                   Command="{Binding SearchCommand}" ToolTip="New Search Column (Ctrl-f)">
@@ -180,11 +185,11 @@ Value="False">
                        FontSize="30" Text="L" Opacity="1" Margin="10,0,0,0" />
           </Button>
 
-          <Button x:Name="Setup" Style="{DynamicResource NavigationButtonStyle}" Padding="0"
+          <!--<Button x:Name="Setup" Style="{DynamicResource NavigationButtonStyle}" Padding="0"
                   Command="{Binding SetupCommand}" ToolTip="Setup (Ctrl-s)">
             <TextBlock FontFamily="{DynamicResource WebSymbols}" Foreground="{DynamicResource WhiteColour}"
                        FontSize="30" Text="S" Opacity="1" Margin="10,0,0,0" />
-          </Button>
+          </Button>-->
 
           <Button Style="{DynamicResource NavigationButtonStyle}" Padding="0"
                   Command="{Binding AddColumnCommand}" ToolTip="Add New Column (Ctrl-n)">

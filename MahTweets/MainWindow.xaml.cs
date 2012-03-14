@@ -7,6 +7,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Input;
+using MahApps.Metro.Controls;
 using MahTweets.Configuration;
 using MahTweets.Core.Composition;
 using MahTweets.Core.Events;
@@ -26,7 +27,7 @@ using Microsoft.WindowsAPICodePack.Taskbar;
 
 namespace MahTweets
 {
-    public partial class MainWindow : IShell
+    public partial class MainWindow : MetroWindow, IShell
     {
         public static readonly RoutedUICommand ShowSetup = new RoutedUICommand("Initiated show setup", "ShowSetup",
                                                                                typeof (MainWindow));
@@ -383,26 +384,6 @@ namespace MahTweets
                                               : Visibility.Hidden;
         }
 
-        private void CloseClick(object sender, RoutedEventArgs e)
-        {
-            Application.Current.Shutdown();
-        }
-
-        private void MinimizeClick(object sender, RoutedEventArgs e)
-        {
-            WindowState = WindowState.Minimized;
-        }
-
-        private void MaximizeClick(object sender, RoutedEventArgs e)
-        {
-            WindowState = WindowState == WindowState.Normal ? WindowState.Maximized : WindowState.Normal;
-        }
-
-        //private void SetWindowMode(WindowMode windowMode)
-        //{
-        //    btnMax.ToolTip = windowMode == WindowMode.Maximise ? "Restore" : "Maximise";
-        //}
-
         private void AvatarChangeDrop(object sender, DragEventArgs e)
         {
             try
@@ -439,13 +420,6 @@ namespace MahTweets
             else
                 e.Effects = DragDropEffects.None;
         }
-
-        //private void WindowStateChanged(object sender, EventArgs e)
-        //{
-        //    SetWindowMode(WindowState == WindowState.Maximized
-        //                      ? WindowMode.Maximise
-        //                      : WindowMode.Normal);
-        //}
 
         private void DragMoveWindow(object sender, MouseButtonEventArgs e)
         {
