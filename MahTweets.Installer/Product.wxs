@@ -12,7 +12,7 @@
     <MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
     <MediaTemplate EmbedCab="yes"/>
 
-    <Icon Id="mahtweetsicon.ico" SourceFile="..\MahTweets\bin\x86\Release\mahtweetsicon.ico" />
+    <Icon Id="mahtweetsicon.ico" SourceFile="..\MahTweets\mahtweets.ico" />
     
     <Feature Id="ProductFeature" Title="MahTweets.Installer" Level="1">
 			<ComponentGroupRef Id="ProductComponents" />
@@ -71,7 +71,7 @@
         <File Id="MahTweetsEXEmanifest" Name="MahTweets.exe.manifest" Source="..\MahTweets\bin\x86\Release\MahTweets.exe.manifest" Vital="yes" />
       </Component>
       <Component Id="mahtweetsiconICO" Guid="855193C7-E882-4BD8-8593-EFE291520504" Directory="INSTALLFOLDER">
-        <File Id="mahtweetsiconICO" Name="mahtweetsicon.ico" Source="..\MahTweets\bin\x86\Release\mahtweetsicon.ico" Vital="yes" />
+        <File Id="mahtweetsiconICO" Name="mahtweetsicon.ico" Source="..\MahTweets\mahtweets.ico" Vital="yes" />
       </Component>
       <Component Id="Windows7SensorAndLocationDLL" Guid="855193C7-E882-4BD8-8593-EFE291520505" Directory="INSTALLFOLDER">
         <File Id="Windows7SensorAndLocationDLL" Name="Windows7.SensorAndLocation.dll" Source="..\MahTweets\bin\x86\Release\Windows7.SensorAndLocation.dll" Vital="yes" />
@@ -142,8 +142,8 @@
       <Component Id="AutofacDLL" Guid="855193C7-E882-4BD8-8593-EFE291520528" Directory="INSTALLFOLDER">
         <File Id="AutofacDLL" Name="Autofac.dll" Source="..\MahTweets\bin\x86\Release\Autofac.dll" Vital="yes" />
       </Component>
-      <Component Id="AsyncCtpLibraryDLL" Guid="855193C7-E882-4BD8-8593-EFE291520529" Directory="INSTALLFOLDER">
-        <File Id="AsyncCtpLibraryDLL" Name="AsyncCtpLibrary.dll" Source="..\MahTweets\bin\x86\Release\AsyncCtpLibrary.dll" Vital="yes" />
+      <Component Id="LINQtoCSV" Guid="855193C7-E882-4BD8-8593-EFE291520529" Directory="INSTALLFOLDER">
+        <File Id="LINQtoCSV" Name="LINQtoCSV.dll" Source="..\MahTweets\bin\x86\Release\LINQtoCSV.dll" Vital="yes" />
       </Component>
       <Component Id="EmoticonsTTF" Guid="855193C7-E882-4BD8-8593-EFE291520530" Directory="FONTSINSTALLFOLDER">
         <File Id="EmoticonsTTF" Name="Emoticons.ttf" Source="..\MahTweets\bin\x86\Release\Fonts\Emoticons.ttf" Vital="yes" />
