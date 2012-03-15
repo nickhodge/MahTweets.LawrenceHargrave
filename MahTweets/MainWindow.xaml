@@ -8,10 +8,10 @@
                       xmlns:Controls1="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
                        xmlns:Behaviors="clr-namespace:MahApps.Metro.Behaviours;assembly=MahApps.Metro"
                        Closing="WindowClosing" x:Name="window" WindowStyle="None" AllowsTransparency="True"
-        mc:Ignorable="d" x:Class="MahTweets.MainWindow" Title="MahTweets" Height="600" Width="850" Icon="mahtweetsicon.ico"
+        mc:Ignorable="d" x:Class="MahTweets.MainWindow" Title="MahTweets" Height="600" Width="850" Icon="mahtweets.ico"
         FontFamily="{DynamicResource DefaultFont}" Foreground="{DynamicResource MainTextColour}"
         FontSize="{DynamicResource DefaultFontSize}" Background="{x:Null}" AllowDrop="True" Drop="WindowDrop"
-        ResizeMode="CanResizeWithGrip" UseLayoutRounding="False" ShowIconOnTitleBar="False" ShowTitleBar="True" >
+        ResizeMode="CanResizeWithGrip" UseLayoutRounding="False" ShowIconOnTitleBar="True" ShowTitleBar="True" >
 
   <Window.InputBindings>
     <KeyBinding Gesture="CTRL+W" Command="{Binding ClearAllCommand}" />
@@ -28,6 +28,7 @@
     <Controls1:MetroWindow.WindowCommands>
         <Controls1:WindowCommands>
             <Button Content="settings" Command="{Binding SetupCommand}"/>
+            <Button Content="about" Command="{Binding AboutCommand}"/>
         </Controls1:WindowCommands>
     </Controls1:MetroWindow.WindowCommands>
 
@@ -109,22 +110,12 @@ Value="False">
       <!-- "Tweetbox" , menu items & windows controls-->
       <Grid Panel.ZIndex="1" x:Name="CompositionBoxArea" Grid.Row="0" Margin="0,0,0,0">
         <Grid.ColumnDefinitions>
-          <ColumnDefinition Width="80" />
+          <ColumnDefinition Width="10" />
           <ColumnDefinition Width="*" MinWidth="350" />
           <ColumnDefinition Width="130" MinWidth="130" />
           <ColumnDefinition Width="80" />
         </Grid.ColumnDefinitions>
 
-        <!-- about MahTweets, icon selector-->
-        <StackPanel Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left"
-                    Orientation="Horizontal" Margin="0,-10,0,0">
-          <Rectangle Fill="{DynamicResource ComplimentaryColour1}"
-                     Opacity="{DynamicResource BaseColourOpacityAccent2}" Width="10" Height="40" />
-          <Button Style="{DynamicResource ButtonClearedStyle}" Command="{Binding AboutCommand}"
-                  Padding="0,0,0,0" ToolTip="About MahTweets">
-            <Rectangle Fill="{DynamicResource LawrenceHargrave}" Width="40" Height="40" />
-          </Button>
-        </StackPanel>
 
         <!-- account selector and composition box-->
         <Grid x:Name="grdAccountCompBoxHolder" Background="{x:Null}" Height="70" VerticalAlignment="Center"
