@@ -145,6 +145,9 @@
       <Component Id="LINQtoCSV" Guid="855193C7-E882-4BD8-8593-EFE291520529" Directory="INSTALLFOLDER">
         <File Id="LINQtoCSV" Name="LINQtoCSV.dll" Source="..\MahTweets\bin\x86\Release\LINQtoCSV.dll" Vital="yes" />
       </Component>
+      <Component Id="MahAppsMetrodll" Guid="855193C7-E882-4BD8-8593-EFE291520545" Directory="INSTALLFOLDER">
+        <File Id="MahAppsMetrodll" Name="MahApps.Metro.dll" Source="..\MahTweets\bin\x86\Release\MahApps.Metro.dll" Vital="yes" />
+      </Component>
       <Component Id="EmoticonsTTF" Guid="855193C7-E882-4BD8-8593-EFE291520530" Directory="FONTSINSTALLFOLDER">
         <File Id="EmoticonsTTF" Name="Emoticons.ttf" Source="..\MahTweets\bin\x86\Release\Fonts\Emoticons.ttf" Vital="yes" />
       </Component>
