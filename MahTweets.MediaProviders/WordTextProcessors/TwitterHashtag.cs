@@ -55,7 +55,7 @@ namespace MahTweets.TweetProcessors.WordTextProcessors
             il.ToolTip = "Search for " + word + " in your current tweet stream";
             il.MouseLeftButtonDown +=
                 (s, e) => PluginEventHandler.FireEvent("searchHashtag", oStatusUpdate, mc[0].Value);
-            miIgnore.Click += (s, e) => _textProcessorEngine.ApplicationSettings.GlobalExclude.Add(word);
+            miIgnore.Click += (s, e) => _textProcessorEngine.GlobalExcludeSettings.Add(word);
             return il;
         }
 

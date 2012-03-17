@@ -13,14 +13,14 @@ namespace MahTweets.ViewModels.Setup
 {
     public class GlobalIgnoresViewModel : BaseViewModel
     {
-        private readonly IApplicationSettingsProvider _applicationSettingsProvider;
+        private readonly IGlobalExcludeSettings _globalExcludeSettingsProvider;
         private string _currentText;
         private bool _isModified;
 
         public GlobalIgnoresViewModel(
-            IApplicationSettingsProvider applicationSettingsProvider)
+            IGlobalExcludeSettings globalExcludeSettingsProvider)
         {
-            _applicationSettingsProvider = applicationSettingsProvider;
+            _globalExcludeSettingsProvider = globalExcludeSettingsProvider;
 
             ClearCommand = new DelegateCommand(Clear, () => CanClear);
             AddCommand = new DelegateCommand(Add, () => CanAdd);
@@ -29,7 +29,7 @@ namespace MahTweets.ViewModels.Setup
 
         public ObservableCollection<string> GlobalExcludes
         {
-            get { return _applicationSettingsProvider.GlobalExclude; }
+            get { return _globalExcludeSettingsProvider.GlobalExcludeItems; }
         }
 
         public string CurrentText
@@ -49,7 +49,7 @@ namespace MahTweets.ViewModels.Setup
 
         public bool CanClear
         {
-            get { return _applicationSettingsProvider.GlobalExclude.Any(); }
+            get { return _globalExcludeSettingsProvider.GlobalExcludeItems.Any(); }
         }
 
         public bool CanAdd
@@ -59,7 +59,7 @@ namespace MahTweets.ViewModels.Setup
 
         public void Clear()
         {
-            _applicationSettingsProvider.GlobalExclude.Clear();
+            _globalExcludeSettingsProvider.GlobalExcludeItems.Clear();
 
             _isModified = true;
 
@@ -69,13 +69,13 @@ namespace MahTweets.ViewModels.Setup
 
         public void Remove(String Text)
         {
-            _applicationSettingsProvider.GlobalExclude.Remove(Text);
+            _globalExcludeSettingsProvider.GlobalExcludeItems.Remove(Text);
             RaisePropertyChanged(() => GlobalExcludes);
         }
 
         public void Add()
         {
-            _applicationSettingsProvider.GlobalExclude.Add(CurrentText);
+            _globalExcludeSettingsProvider.GlobalExcludeItems.Add(CurrentText);
             RaisePropertyChanged(() => GlobalExcludes);
             CurrentText = string.Empty;
 

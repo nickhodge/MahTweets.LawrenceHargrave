@@ -20,6 +20,7 @@ namespace MahTweets.TweetProcessors
         IEnumerable<IParagraphTransfomProvider> SentenceProcessors { get; }
         IEnumerable<IMediaProvider> MediaProcessors { get; }
         IEnumerable<IAdditonalTextSmarts> AdditonalTextSmarts { get; }
+        IGlobalExcludeSettings GlobalExcludeSettings { get; }
 
         Brush BrHover { get; }
         Brush BrNormal { get; }

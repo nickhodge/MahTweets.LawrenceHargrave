@@ -10,10 +10,11 @@ using MahTweets.Core.Composition;
 using MahTweets.Core.Events;
 using MahTweets.Core.Events.EventTypes;
 using MahTweets.Core.Interfaces.Application;
+using MahTweets.Core.Interfaces.Settings;
 
 namespace MahTweets.Configuration
 {
-    public class GlobalExclude : INotifyPropertyChanged
+    public class GlobalExclude : IGlobalExcludeSettings, INotifyPropertyChanged
     {
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -26,8 +27,9 @@ namespace MahTweets.Configuration
         private readonly Object _writependinglock = new object();
         private Boolean _writequeued;
         private readonly FileSystemWatcher _watcher;
+        private const string _globalExcludeSettingsFileName = "Global Exclusion Strings.mtdata";
 
-        public GlobalExclude(string fileName)
+        public GlobalExclude()
         {
             _csvFileDescription = new CsvFileDescription
                                       {
@@ -38,7 +40,7 @@ namespace MahTweets.Configuration
             _csvContext = new CsvContext();
             _writequeued = false;
             _storage = new Storage();
-            _filename = _storage.CombineDocumentsFullPath(fileName);
+            _filename = _storage.CombineDocumentsFullPath(_globalExcludeSettingsFileName);
             Read(); // do initial read
             _watcher = new FileSystemWatcher {Path=Path.GetDirectoryName(_filename), Filter  = Path.GetFileName(_filename), NotifyFilter = NotifyFilters.LastWrite};
             _watcher.Changed += OnChanged;
@@ -100,7 +102,7 @@ namespace MahTweets.Configuration
 
         public void Write()
         {
-            if (_writequeued) return;
+           if (_writequeued) return;
             _writequeued = true;
             Task.Run(() => QueuedWrite());
             _writequeued = false;

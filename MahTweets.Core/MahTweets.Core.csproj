@@ -238,6 +238,7 @@
     <Compile Include="Interfaces\Plugins\IPluginSettings.cs" />
     <Compile Include="Interfaces\Plugins\StatusUpdate.cs" />
     <Compile Include="Interfaces\Settings\IColumnsSettingsProvider.cs" />
+    <Compile Include="Interfaces\Settings\IGlobalExcludeSettings.cs" />
     <Compile Include="Interfaces\ViewModels\IBaseViewModel.cs" />
     <Compile Include="Interfaces\ViewModels\IContainerViewModel.cs" />
     <Compile Include="Interfaces\ViewModels\IMainViewModel.cs" />

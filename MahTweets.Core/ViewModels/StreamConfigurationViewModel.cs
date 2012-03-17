@@ -21,6 +21,7 @@ namespace MahTweets.Core.ViewModels
     {
         private readonly IAccountSettingsProvider _accountSettingsProvider;
         private readonly IApplicationSettingsProvider _applicationSettingsProvider;
+        private readonly IGlobalExcludeSettings _globalExcludeSettings;
         private readonly IColumnsSettingsProvider _columnsSettingsProvider;
         private readonly IContactService _contactService;
         private readonly IScriptingLibrarian _scriptLibrary;
@@ -30,12 +31,14 @@ namespace MahTweets.Core.ViewModels
 
         public StreamConfigurationViewModel(
             IApplicationSettingsProvider applicationSettingsProvider,
+            IGlobalExcludeSettings globalExcludeSettings,
             IAccountSettingsProvider accountSettingsProvider,
             IColumnsSettingsProvider columnsSettingsProvider,
             IContactService contactService)
         {
             _applicationSettingsProvider = applicationSettingsProvider;
             _accountSettingsProvider = accountSettingsProvider;
+            _globalExcludeSettings = globalExcludeSettings;
             _columnsSettingsProvider = columnsSettingsProvider;
             _contactService = contactService;
             _scriptLibrary = CompositionManager.Get<IScriptingLibrarian>();
@@ -100,7 +103,7 @@ namespace MahTweets.Core.ViewModels
         {
             if (update == null) return false;
 
-            if (_applicationSettingsProvider.GlobalExclude.Any(ignore => !update.Filter(ignore)))
+            if (_globalExcludeSettings.GlobalExcludeItems.Any(ignore => !update.Filter(ignore)))
             {
                 return false;
             }

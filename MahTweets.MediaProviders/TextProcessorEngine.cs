@@ -29,6 +29,7 @@ namespace MahTweets.TweetProcessors
         public IUrlExpandService UrlExpanders { get; private set; }
         public IApplicationSettingsProvider ApplicationSettings { get; private set; }
         public IEnumerable<IAdditonalTextSmarts> AdditonalTextSmarts { get; private set; }
+        public IGlobalExcludeSettings GlobalExcludeSettings { get; private set; }
 
         public Brush BrHover { get; private set; }
         public Brush BrBase { get; private set; }
@@ -77,6 +78,7 @@ namespace MahTweets.TweetProcessors
             UrlExpanders = CompositionManager.Get<IUrlExpandService>(); //get & cache
             ApplicationSettings = CompositionManager.Get<IApplicationSettingsProvider>(); //get & cache
             AdditonalTextSmarts = CompositionManager.GetAll<IAdditonalTextSmarts>(); //get & cache
+            GlobalExcludeSettings = CompositionManager.Get<IGlobalExcludeSettings>(); //get & cache
 
             _setup = true;
         }
