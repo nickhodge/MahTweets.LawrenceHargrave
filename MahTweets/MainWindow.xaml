@@ -110,7 +110,7 @@ Value="False">
       <!-- "Tweetbox" , menu items & windows controls-->
       <Grid Panel.ZIndex="1" x:Name="CompositionBoxArea" Grid.Row="0" Margin="0,0,0,0">
         <Grid.ColumnDefinitions>
-          <ColumnDefinition Width="10" />
+          <ColumnDefinition Width="20" />
           <ColumnDefinition Width="*" MinWidth="350" />
           <ColumnDefinition Width="130" MinWidth="130" />
           <ColumnDefinition Width="80" />
