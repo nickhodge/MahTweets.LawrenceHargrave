@@ -3,18 +3,18 @@ using LINQtoCSV;
 
 namespace MahTweets.Core.Interfaces.Settings
 {
-    public interface IGlobalExcludeSettings
+    public interface IHighlighterSettings
     {
-        ObservableCollection<string> GlobalExcludeItems { get; set; }
+        ObservableCollection<string> HighlightWords { get; set; }
         void Add(string newAddition);
         void Remove(string deleteAddition);
         void Read();
         void Write();
     }
 
-    public class GlobalExcludeItem
+    public class HighlightWordsItem
     {
-        [CsvColumn(Name = "TextStringToExclude", FieldIndex = 1)]
+        [CsvColumn(Name = "TextStringToHighlight", FieldIndex = 1)]
         public string Text { get; set; }
     }
 

@@ -90,6 +90,9 @@
     <Reference Include="IronPython.Modules, Version=2.7.0.40, Culture=neutral, PublicKeyToken=7f709c5b713576e1, processorArchitecture=MSIL">
       <HintPath>..\MahTweets\IronPython.Modules.dll</HintPath>
     </Reference>
+    <Reference Include="LINQtoCSV">
+      <HintPath>..\packages\LINQtoCSV.1.2.0.0\lib\LINQtoCSV.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Dynamic">
       <HintPath>..\MahTweets\Microsoft.Dynamic.dll</HintPath>
@@ -162,6 +165,9 @@
     <Compile Include="Events\EventSubscription.cs" />
     <Compile Include="Events\EventTypes\CloseDialog.cs" />
     <Compile Include="Events\EventTypes\CheckMahTweetsVersion.cs" />
+    <Compile Include="Events\EventTypes\AcronymsChanged.cs" />
+    <Compile Include="Events\EventTypes\AdditionalSmartsChanged.cs" />
+    <Compile Include="Events\EventTypes\HighlightWordsChanged.cs" />
     <Compile Include="Events\EventTypes\GlobalExclusionChanged.cs" />
     <Compile Include="Events\EventTypes\ShowColumns.cs" />
     <Compile Include="Events\EventTypes\PasteInlineReply.cs" />
@@ -237,6 +243,9 @@
     <Compile Include="Interfaces\Plugins\IMicroblogSource.cs" />
     <Compile Include="Interfaces\Plugins\IPluginSettings.cs" />
     <Compile Include="Interfaces\Plugins\StatusUpdate.cs" />
+    <Compile Include="Interfaces\Settings\IAdditonalSmartsSettingsProvider.cs" />
+    <Compile Include="Interfaces\Settings\IAcronymSettingsProvider.cs" />
+    <Compile Include="Interfaces\Settings\IHighlighterSettings.cs" />
     <Compile Include="Interfaces\Settings\IColumnsSettingsProvider.cs" />
     <Compile Include="Interfaces\Settings\IGlobalExcludeSettings.cs" />
     <Compile Include="Interfaces\ViewModels\IBaseViewModel.cs" />

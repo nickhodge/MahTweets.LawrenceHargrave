@@ -37,8 +37,6 @@ namespace MahTweets.Core.Interfaces.Settings
 
         IList<IMediaProvider> MediaProviders { get; }
 
-        ObservableCollection<string> GlobalExclude { get; }
-
         ObservableCollection<SavedSearch> SavedSearches { get; }
 
         bool DisableMediaProviders { get; set; }

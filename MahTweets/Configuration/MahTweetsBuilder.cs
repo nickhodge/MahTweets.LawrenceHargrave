@@ -74,9 +74,21 @@ namespace MahTweets.Configuration
                 .As<IUrlExpandService>()
                 .SingleInstance();
 
-            this.RegisterType<GlobalExclude>()
+            this.RegisterType<GlobalExcludeSettingProvider>()
                 .As<IGlobalExcludeSettings>()
                 .SingleInstance();
+
+            this.RegisterType<GlobalExcludeSettingProvider>()
+                .As<IGlobalExcludeSettings>()
+                .SingleInstance();
+
+            this.RegisterType<AcronymSettingsProvider>()
+                .As<IAcronymSettingsProvider>()
+                .SingleInstance();
+
+            this.RegisterType<AdditonalSmartsSettingsProvider>()
+                 .As<IAdditonalSmartsSettingsProvider>()
+                 .SingleInstance();
 
             this.RegisterType<ManualLongUrlRetrieverService>()
                 .As<IManualLongUrlRetrieverService>()

@@ -4,23 +4,25 @@ using System.Net;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using MahTweets.Core;
+using MahTweets.Core.Composition;
+using MahTweets.Core.Interfaces.Settings;
 
 namespace MahTweets.TweetProcessors.AdditionalSmarts
 {
-    public class TitleFroYoutube : IAdditonalTextSmarts
+    public class TitleFromYoutube : IAdditonalTextSmarts
     {
-        private static readonly string[] _pageTitleSources =
-            new[]
-                {
-                    "youtube.com",
-                    "youtu.be",
-                };
+        private readonly IAdditonalSmartsSettingsProvider _additonalSmartsSettingsProvider;
+
+        public TitleFromYoutube() 
+        {
+            _additonalSmartsSettingsProvider = CompositionManager.Get<IAdditonalSmartsSettingsProvider>(); //get & cache    
+        }
 
         #region IAdditonalTextSmarts Members
 
         public string Name
         {
-            get { return "TitleFromYoutube"; }
+            get { return "youtube"; }
         }
 
         public int Priority
@@ -30,23 +32,21 @@ namespace MahTweets.TweetProcessors.AdditionalSmarts
 
         public bool CanPageTitle(string url)
         {
-            if (url == null) return false;
-            bool result = _pageTitleSources.AsParallel().Any(url.Contains);
-            return result;
+            return url != null && _additonalSmartsSettingsProvider.AdditionalSmartsMapping.AsParallel().Any(u => (u.Url.ToLower().Contains(url.ToLower()) && u.ProcessType == Name) );
         }
 
         public async Task<string> Process(String url)
         {
-            var _fetcher = new AsyncWebFetcher();
-            string page = await _fetcher.FetchAsync(url);
+            var fetcher = new AsyncWebFetcher();
+            var page = await fetcher.FetchAsync(url);
             if (page == null) return null;
 
             var titleRegex = new Regex(@"<meta name=\x22title\x22 content=\x22(?<title>.*)\x22>",
                                        RegexOptions.IgnoreCase);
-            Match match = titleRegex.Match(page);
+            var match = titleRegex.Match(page);
 
             if (!match.Success) return null;
-            string title = WebUtility.HtmlDecode(match.Groups["title"].Value);
+            var title = WebUtility.HtmlDecode(match.Groups["title"].Value);
 
             return title;
         }

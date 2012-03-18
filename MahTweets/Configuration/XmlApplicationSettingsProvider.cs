@@ -42,7 +42,6 @@ namespace MahTweets.Configuration
 
         private readonly string _docPath;
         private readonly IStorage _storage;
-        private ObservableCollection<string> _GlobalExclude;
         private IUrlShortener _defaultShortener;
         private XDocument _doc;
         private IList<IMediaProvider> _mediaProviders;
@@ -161,34 +160,6 @@ namespace MahTweets.Configuration
             }
         }
 
-        public ObservableCollection<string> GlobalExclude
-        {
-            get
-            {
-                if (_GlobalExclude != null)
-                    return _GlobalExclude;
-
-                _GlobalExclude = new ObservableCollection<string>();
-                XElement node = _doc.GetElement(KeyGlobalIgnore);
-
-                if (node == null)
-                {
-                    var xE = new XElement(KeyGlobalIgnore);
-                    XElement xElement = _doc.Element("Settings");
-                    if (xElement != null) xElement.Add(xE);
-                }
-                else
-                {
-                    foreach (XElement child in node.DescendantNodes().OfType<XElement>())
-                    {
-                        _GlobalExclude.Add(child.Value);
-                    }
-                }
-
-                return _GlobalExclude;
-            }
-        }
-
         public ObservableCollection<SavedSearch> SavedSearches
         {
             get
@@ -301,7 +272,6 @@ namespace MahTweets.Configuration
 
         public void Save()
         {
-            SaveGlobalExclude();
             SaveSearches();
             SaveSelectedAccounts();
             _doc.Save(_docPath);
@@ -395,19 +365,6 @@ namespace MahTweets.Configuration
                                               new XElement(KeyDefaultShortener, ""),
                                               new XElement(KeyStyleFontSizeKey, 12)
                                      ));
-        }
-
-        private void SaveGlobalExclude()
-        {
-            var elementsToSave = GlobalExclude.Distinct();
-
-            var node = _doc.GetElement(KeyGlobalIgnore);
-            node.RemoveAll();
-
-            foreach (var child in elementsToSave)
-            {
-                node.Add(new XElement("Ignore", child));
-            }
         }
 
         private void SaveSearches()

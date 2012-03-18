@@ -1,25 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Media;
 using MahTweets.Core.Composition;
 using MahTweets.Core.Interfaces.Plugins;
+using MahTweets.Core.Interfaces.Settings;
 using MahTweets.Core.Media;
 
 namespace MahTweets.TweetProcessors.WordTextProcessors
 {
     public class Highlighterer : IWordTransfomProvider
     {
-        private readonly Dictionary<string, string> _backgroundmap;
         private readonly ITextProcessorEngine _textProcessorEngine;
+        private readonly IHighlighterSettings _highlightWordSettingsProvider;
 
         public Highlighterer()
         {
             _textProcessorEngine = CompositionManager.Get<ITextProcessorEngine>(); //get & cache
-            _backgroundmap = new Dictionary<string, string>
-                                 {
-                                     {@"mahtweets", "HighlightBackgroundColour"},
-                                     {@"html5", "HighlightBackgroundColour"},
-                                 }; // mapping characters in the word to a single Font Family
+            _highlightWordSettingsProvider = CompositionManager.Get<IHighlighterSettings>(); //get & cache
         }
 
         #region IWordTransfomProvider Members
@@ -36,9 +34,8 @@ namespace MahTweets.TweetProcessors.WordTextProcessors
 
         public InlineLink Match(String word, Brush lBrush, IStatusUpdate oStatusUpdate)
         {
-            foreach (var k in _backgroundmap)
+            if (_highlightWordSettingsProvider.HighlightWords.Any(k => word.ToLower().Contains(k.ToLower())))
             {
-                if (!word.ToLower().Contains(k.Key.ToLower())) continue;
                 var il = new InlineLink
                              {
                                  FontFamily = _textProcessorEngine.FfDefault,
@@ -46,7 +43,7 @@ namespace MahTweets.TweetProcessors.WordTextProcessors
                                  Foreground = _textProcessorEngine.BrText,
                                  Text = word
                              };
-                il.Background = (Brush) il.FindResource(k.Value);
+                il.Background = (Brush)il.FindResource("HighlightBackgroundColour");
                 return il;
             }
             return null;
