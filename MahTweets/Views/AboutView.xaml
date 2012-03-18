@@ -79,6 +79,10 @@
         <Run Text="MahApps.Twitter" />
       </Hyperlink>
       <Run Text=" (MS-PL), " />
+        <Hyperlink Tag="https://github.com/MahApps/MahApps.Metro">
+        <Run Text="MahApps.Metro" />
+      </Hyperlink>
+      <Run Text=" (MS-PL), " />
       <Hyperlink Tag="http://www.castleproject.org/">
         <Run Text="Castle Core from Castle Project" />
       </Hyperlink>
