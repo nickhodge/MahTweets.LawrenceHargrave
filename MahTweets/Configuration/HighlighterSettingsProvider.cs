@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.IO;
@@ -22,7 +23,7 @@ namespace MahTweets.Configuration
         private readonly CsvFileDescription _csvFileDescription;
         private readonly CsvContext _csvContext;
         private readonly string _filename;
-        private ObservableCollection<string> _highlightwords;
+        private ObservableCollection<HighlightWordsItem> _highlightwords;
         private readonly Storage _storage;
         private readonly Object _writependinglock = new object();
         private Boolean _writequeued;
@@ -47,7 +48,7 @@ namespace MahTweets.Configuration
             _watcher.EnableRaisingEvents = true;
         }
 
-        public ObservableCollection<string> HighlightWords
+        public ObservableCollection<HighlightWordsItem> HighlightWords
         { 
             get
             {
@@ -70,14 +71,13 @@ namespace MahTweets.Configuration
 
         public void Add(string newAddition)
         {
-            HighlightWords.Add(newAddition);
+            HighlightWords.Add(new HighlightWordsItem(){Text = newAddition});
             SendUpdateEvent();
         }
 
         public void Remove(string deleteAddition)
         {
-            if (!HighlightWords.Contains(deleteAddition)) return;
-            HighlightWords.Remove(deleteAddition);
+            // TODO deal with remove
             SendUpdateEvent();
         }
 
@@ -88,15 +88,20 @@ namespace MahTweets.Configuration
                 lock (_writependinglock)
                 {
                     var gei = _csvContext.Read<HighlightWordsItem>(_filename, _csvFileDescription);
-                    HighlightWords = new ObservableCollection<string>(gei.Select(i => i.Text.ToLower()).ToList());
+                    HighlightWords = new ObservableCollection<HighlightWordsItem>(gei);
                 }
+            }
+            catch (FileNotFoundException ioex)
+            {
+                var x = new List<HighlightWordsItem>();
+                _csvContext.Write(x, _filename, _csvFileDescription);
             }
             catch (Exception ex)
             {
                 CompositionManager.Get<IExceptionReporter>().ReportHandledException(ex);
             }
             if (HighlightWords == null) // list didnt exist on disk
-                HighlightWords = new ObservableCollection<string>();
+                HighlightWords = new ObservableCollection<HighlightWordsItem>();
             SendUpdateEvent();
         }
 
@@ -112,7 +117,7 @@ namespace MahTweets.Configuration
         {
             try
             {
-                var gei = (from item in HighlightWords select (new HighlightWordsItem { Text = item })).ToList();
+                var gei = (from item in HighlightWords select (new HighlightWordsItem { Text = item.Text })).ToList();
                 lock (_writependinglock)
                 {
                     _csvContext.Write(gei, _filename, _csvFileDescription);

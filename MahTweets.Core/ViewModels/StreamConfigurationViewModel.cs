@@ -103,7 +103,7 @@ namespace MahTweets.Core.ViewModels
         {
             if (update == null) return false;
 
-            if (_globalExcludeSettings.GlobalExcludeItems.Any(ignore => !update.Filter(ignore)))
+            if (_globalExcludeSettings.GlobalExcludeItems.Any(ignore => !update.Filter(ignore.Text)))
             {
                 return false;
             }

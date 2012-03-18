@@ -27,7 +27,7 @@ namespace MahTweets.ViewModels.Setup
             RemoveCommand = new DelegateCommand<string>(Remove);
         }
 
-        public ObservableCollection<string> GlobalExcludes
+        public ObservableCollection<GlobalExcludeItem> GlobalExcludes
         {
             get { return _globalExcludeSettingsProvider.GlobalExcludeItems; }
         }
@@ -69,13 +69,13 @@ namespace MahTweets.ViewModels.Setup
 
         public void Remove(String Text)
         {
-            _globalExcludeSettingsProvider.GlobalExcludeItems.Remove(Text);
+            _globalExcludeSettingsProvider.Remove(Text);
             RaisePropertyChanged(() => GlobalExcludes);
         }
 
         public void Add()
         {
-            _globalExcludeSettingsProvider.GlobalExcludeItems.Add(CurrentText);
+            _globalExcludeSettingsProvider.Add(CurrentText);
             RaisePropertyChanged(() => GlobalExcludes);
             CurrentText = string.Empty;
 

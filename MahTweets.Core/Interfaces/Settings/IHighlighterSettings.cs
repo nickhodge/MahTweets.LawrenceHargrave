@@ -5,7 +5,7 @@ namespace MahTweets.Core.Interfaces.Settings
 {
     public interface IHighlighterSettings
     {
-        ObservableCollection<string> HighlightWords { get; set; }
+        ObservableCollection<HighlightWordsItem> HighlightWords { get; set; }
         void Add(string newAddition);
         void Remove(string deleteAddition);
         void Read();

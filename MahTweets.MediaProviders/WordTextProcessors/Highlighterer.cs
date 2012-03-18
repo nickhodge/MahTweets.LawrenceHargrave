@@ -34,7 +34,7 @@ namespace MahTweets.TweetProcessors.WordTextProcessors
 
         public InlineLink Match(String word, Brush lBrush, IStatusUpdate oStatusUpdate)
         {
-            if (_highlightWordSettingsProvider.HighlightWords.Any(k => word.ToLower().Contains(k.ToLower())))
+            if (_highlightWordSettingsProvider.HighlightWords.Any(k => word.ToLower().Contains(k.Text.ToLower())))
             {
                 var il = new InlineLink
                              {

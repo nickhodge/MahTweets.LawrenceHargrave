@@ -5,7 +5,7 @@ namespace MahTweets.Core.Interfaces.Settings
 {
     public interface IGlobalExcludeSettings
     {
-        ObservableCollection<string> GlobalExcludeItems { get; set; }
+        ObservableCollection<GlobalExcludeItem> GlobalExcludeItems { get; set; }
         void Add(string newAddition);
         void Remove(string deleteAddition);
         void Read();

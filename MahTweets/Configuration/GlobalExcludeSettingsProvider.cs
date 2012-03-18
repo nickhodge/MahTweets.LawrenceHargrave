@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.IO;
@@ -22,7 +23,7 @@ namespace MahTweets.Configuration
         private readonly CsvFileDescription _csvFileDescription;
         private readonly CsvContext _csvContext;
         private readonly string _filename;
-        private ObservableCollection<string> _globalitems;
+        private ObservableCollection<GlobalExcludeItem> _globalitems;
         private readonly Storage _storage;
         private readonly Object _writependinglock = new object();
         private Boolean _writequeued;
@@ -47,7 +48,7 @@ namespace MahTweets.Configuration
             _watcher.EnableRaisingEvents = true;
         }
 
-        public ObservableCollection<string> GlobalExcludeItems
+        public ObservableCollection<GlobalExcludeItem> GlobalExcludeItems
         { 
             get
             {
@@ -70,14 +71,13 @@ namespace MahTweets.Configuration
 
         public void Add(string newAddition)
         {
-            GlobalExcludeItems.Add(newAddition);
+            GlobalExcludeItems.Add(new GlobalExcludeItem() {Text = newAddition});
             SendUpdateEvent();
         }
 
         public void Remove(string deleteAddition)
         {
-            if (!GlobalExcludeItems.Contains(deleteAddition)) return;
-            GlobalExcludeItems.Remove(deleteAddition);
+            //TODO do the removal thing
             SendUpdateEvent();
         }
 
@@ -88,15 +88,20 @@ namespace MahTweets.Configuration
                 lock (_writependinglock)
                 {
                     var gei = _csvContext.Read<GlobalExcludeItem>(_filename, _csvFileDescription);
-                    GlobalExcludeItems = new ObservableCollection<string>(gei.Select(i => i.Text.ToLower()).ToList());
+                    GlobalExcludeItems = new ObservableCollection<GlobalExcludeItem>(gei);
                 }
+            }
+            catch (FileNotFoundException ioex)
+            {
+                var x = new List<GlobalExcludeItem>();
+                _csvContext.Write(x,_filename,_csvFileDescription);
             }
             catch (Exception ex)
             {
                 CompositionManager.Get<IExceptionReporter>().ReportHandledException(ex);
             }
             if (GlobalExcludeItems == null) // list didnt exist on disk
-                GlobalExcludeItems = new ObservableCollection<string>();
+                GlobalExcludeItems = new ObservableCollection<GlobalExcludeItem>();
             SendUpdateEvent();
         }
 
@@ -112,7 +117,7 @@ namespace MahTweets.Configuration
         {
             try
             {
-                var gei = (from item in GlobalExcludeItems select (new GlobalExcludeItem { Text = item })).ToList();
+                var gei = (from item in GlobalExcludeItems select (new GlobalExcludeItem { Text = item.Text })).ToList(); // take a copy
                 lock (_writependinglock)
                 {
                     _csvContext.Write(gei, _filename, _csvFileDescription);

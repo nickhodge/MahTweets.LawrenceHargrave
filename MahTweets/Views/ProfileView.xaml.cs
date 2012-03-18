@@ -61,8 +61,9 @@ namespace MahTweets.Views
         {
             var tb = sender as TextBlock;
             if (tb == null) return;
+            if (tb.Tag == null) return;
 
-            string url = tb.Tag.ToString();
+            var url = tb.Tag.ToString();
             if (string.IsNullOrWhiteSpace(url)) return;
 
             Task.Run(() => Process.Start(url));

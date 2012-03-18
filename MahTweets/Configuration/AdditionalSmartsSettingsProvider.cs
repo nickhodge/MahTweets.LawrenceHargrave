@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.IO;
@@ -89,6 +90,11 @@ namespace MahTweets.Configuration
                     var gei = _csvContext.Read<AdditonalSmartsMappingItem>(_filename, _csvFileDescription);
                     AdditionalSmartsMapping = new ObservableCollection<AdditonalSmartsMappingItem>(gei.ToList());
                 }
+            }
+            catch (FileNotFoundException ioex)
+            {
+                var x = new List<AdditonalSmartsMappingItem>();
+                _csvContext.Write(x, _filename, _csvFileDescription);
             }
             catch (Exception ex)
             {
