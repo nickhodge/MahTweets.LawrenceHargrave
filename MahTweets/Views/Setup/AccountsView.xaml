@@ -33,51 +33,14 @@
       <ColumnDefinition Width="*" />
     </Grid.ColumnDefinitions>
 
+
     <Grid Grid.Column="0">
       <Grid.RowDefinitions>
         <RowDefinition Height="30" />
         <RowDefinition Height="*" />
-      </Grid.RowDefinitions>
-      <TextBlock Text="Your Accounts" Grid.Row="0" />
-      <ListBox ItemsSource="{Binding Source={StaticResource cvsCurrentAccounts}}" Grid.Row="1"
-               BorderBrush="{x:Null}" Background="{x:Null}" Foreground="{DynamicResource TextColour}"
-               FontFamily="{DynamicResource DefaultFont}" FontSize="{DynamicResource DefaultFontSize}">
-        <ListBox.ItemTemplate>
-          <DataTemplate>
-            <Grid Height="Auto" Width="250">
-              <Button Visibility="{Binding HasSettings, Converter={StaticResource ShowWhenTrue}}"
-                      Style="{DynamicResource NavigationButtonStyle}"
-                      Command="{Binding DataContext.ShowSettingsCommand, RelativeSource={RelativeSource AncestorType={x:Type ListBox}, Mode=FindAncestor}}"
-                      CommandParameter="{Binding}" Margin="204.5,0,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="Auto">
-                <TextBlock FontFamily="{DynamicResource WebSymbols}"
-                           Foreground="{DynamicResource TextColour}" FontSize="{DynamicResource WebSymbolAsMenuFontSize}" Text="S" Opacity="0.9" />
-              </Button>
-              <Button Style="{DynamicResource NavigationButtonStyle}"
-                      Command="{Binding DataContext.RemoveCommand, RelativeSource={RelativeSource AncestorType={x:Type ListBox}, Mode=FindAncestor}}"
-                      CommandParameter="{Binding}" HorizontalAlignment="Right" VerticalAlignment="Top">
-                <TextBlock FontFamily="{DynamicResource WebSymbols}"
-                           Foreground="{DynamicResource TextColour}" FontSize="{DynamicResource WebSymbolAsMenuFontSize}" Text="'" Opacity="0.9" />
-              </Button>
-              <StackPanel Margin="0,0,0,7" Orientation="Vertical" d:LayoutOverrides="Height">
-                <StackPanel Orientation="Horizontal" VerticalAlignment="Stretch" d:LayoutOverrides="Width">
-                  <Image Source="{Binding Icon}" Width="20" Height="20" Stretch="Uniform" Margin="0,0,5,0" />
-                  <TextBlock Text="{Binding Name}" FontWeight="Bold" FontSize="16" />
-                </StackPanel>
-                <TextBlock Margin="25,0,5,0" Text="{Binding Credentials.AccountName}" TextWrapping="Wrap"
-                           d:LayoutOverrides="Width, HorizontalMargin" />
-              </StackPanel>
-            </Grid>
-          </DataTemplate>
-        </ListBox.ItemTemplate>
-      </ListBox>
-    </Grid>
-    <Grid Grid.Column="1">
-      <Grid.RowDefinitions>
-        <RowDefinition Height="30" />
-        <RowDefinition Height="*" />
         <RowDefinition Height="30" />
       </Grid.RowDefinitions>
-      <TextBlock Text="Add Account" Grid.Row="0" />
+      <TextBlock Text="Add Twitter Account" Grid.Row="0" />
       <ListBox ItemsSource="{Binding Source={StaticResource cvsAvailableAccounts}}" Grid.Row="1"
                Background="{x:Null}" Foreground="{DynamicResource TextColour}" FontFamily="{DynamicResource DefaultFont}"
                FontSize="{DynamicResource DefaultFontSize}" BorderBrush="{x:Null}" SelectedItem="{Binding NewPlugin}">
@@ -98,5 +61,44 @@
               Grid.Row="2" HorizontalAlignment="Left" Width="85" VerticalAlignment="Top" Margin="0"
               Style="{DynamicResource TextButtonStyle}" Foreground="{DynamicResource TextColour}" />
     </Grid>
-  </Grid>
+
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <TextBlock Text="Setup Twitter Accounts" Grid.Row="0" />
+            <ListBox ItemsSource="{Binding Source={StaticResource cvsCurrentAccounts}}" Grid.Row="1"
+               BorderBrush="{x:Null}" Background="{x:Null}" Foreground="{DynamicResource TextColour}"
+               FontFamily="{DynamicResource DefaultFont}" FontSize="{DynamicResource DefaultFontSize}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Height="Auto" Width="250">
+                            <Button Visibility="{Binding HasSettings, Converter={StaticResource ShowWhenTrue}}"
+                      Style="{DynamicResource NavigationButtonStyle}"
+                      Command="{Binding DataContext.ShowSettingsCommand, RelativeSource={RelativeSource AncestorType={x:Type ListBox}, Mode=FindAncestor}}"
+                      CommandParameter="{Binding}" Margin="204.5,0,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="Auto">
+                                <TextBlock FontFamily="{DynamicResource WebSymbols}"
+                           Foreground="{DynamicResource TextColour}" FontSize="{DynamicResource WebSymbolAsMenuFontSize}" Text="S" Opacity="0.9" />
+                            </Button>
+                            <Button Style="{DynamicResource NavigationButtonStyle}"
+                      Command="{Binding DataContext.RemoveCommand, RelativeSource={RelativeSource AncestorType={x:Type ListBox}, Mode=FindAncestor}}"
+                      CommandParameter="{Binding}" HorizontalAlignment="Right" VerticalAlignment="Top">
+                                <TextBlock FontFamily="{DynamicResource WebSymbols}"
+                           Foreground="{DynamicResource TextColour}" FontSize="{DynamicResource WebSymbolAsMenuFontSize}" Text="'" Opacity="0.9" />
+                            </Button>
+                            <StackPanel Margin="0,0,0,7" Orientation="Vertical" d:LayoutOverrides="Height">
+                                <StackPanel Orientation="Horizontal" VerticalAlignment="Stretch" d:LayoutOverrides="Width">
+                                    <Image Source="{Binding Icon}" Width="20" Height="20" Stretch="Uniform" Margin="0,0,5,0" />
+                                    <TextBlock Text="{Binding Name}" FontWeight="Bold" FontSize="16" />
+                                </StackPanel>
+                                <TextBlock Margin="25,0,5,0" Text="{Binding Credentials.AccountName}" TextWrapping="Wrap"
+                           d:LayoutOverrides="Width, HorizontalMargin" />
+                            </StackPanel>
+                        </Grid>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </Grid>
+    </Grid>
 </UserControl>
