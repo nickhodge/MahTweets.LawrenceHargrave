@@ -32,7 +32,7 @@ namespace MahTweets.TweetProcessors.AdditionalSmarts
 
         public bool CanPageTitle(string url)
         {
-            return url != null && _additonalSmartsSettingsProvider.AdditionalSmartsMapping.AsParallel().Any(u => (u.Url.ToLower().Contains(url.ToLower()) && u.ProcessType == Name) );
+            return url != null && _additonalSmartsSettingsProvider.AdditionalSmartsMapping.AsParallel().Any(u => (url.ToLower().Contains(u.Url.ToLower()) && u.ProcessType == Name));
         }
 
         public async Task<string> Process(String url)
