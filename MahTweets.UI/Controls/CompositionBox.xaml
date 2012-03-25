@@ -24,7 +24,7 @@
 
 
       <Controls:CompositionTextBox x:Name="txtUpdateBox" UndoLimit="10" SpellCheck.IsEnabled="True"
-                                   Margin="0,0,0,0" AcceptsReturn="True" Height="50" AllowDrop="True" BorderBrush="{x:Null}" BorderThickness="0"
+                                   Margin="0,0,0,0" AcceptsReturn="True" Height="40" AllowDrop="True" BorderBrush="{x:Null}" BorderThickness="0"
                                    FontSize="{DynamicResource DefaultFontSize}" AutoWordSelection="True"
                                    ContextMenuOpening="contextMenuSelectedTextOpening">
         <Controls:CompositionTextBox.ContextMenu>

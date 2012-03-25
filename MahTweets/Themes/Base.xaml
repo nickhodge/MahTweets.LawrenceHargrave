@@ -155,7 +155,7 @@
   </LinearGradientBrush>
 
   <!-- CompositionBox default height -->
-  <System:Double x:Key="DefaultCompositionBoxHeight">50</System:Double>
+  <System:Double x:Key="DefaultCompositionBoxHeight">40</System:Double>
 
   <!-- Opacity for accenting from base colours -->
   <System:Double x:Key="BaseColourOpacityAccent">1.0</System:Double>

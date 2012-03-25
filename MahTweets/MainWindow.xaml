@@ -126,8 +126,8 @@ Value="False">
           </Grid.ColumnDefinitions>
           <ListBox ItemsSource="{Binding SelectedMicroblogs, Mode=TwoWay}"
                    ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Disabled"
-                   SelectedItem="{x:Null}" Padding="0,-1,0,0" BorderThickness="0,0,0,0" HorizontalAlignment="Right"
-                   VerticalAlignment="Top" Margin="0,10,0,0" Background="{x:Null}" BorderBrush="{x:Null}" MouseDown="ListBoxMouseUp"
+                   SelectedItem="{x:Null}" Padding="0,-0,0,0" BorderThickness="0,0,0,0" HorizontalAlignment="Right"
+                   VerticalAlignment="Top" Margin="0,14,0,0" Background="{x:Null}" BorderBrush="{x:Null}" MouseDown="ListBoxMouseUp"
                    ToolTip="Select Accounts for Tweeting" Grid.Column="0" x:Name="AccountSelectorListBoxPopup">
             <ListBox.ItemsPanel>
               <ItemsPanelTemplate>
@@ -162,7 +162,7 @@ Value="False">
         </Grid>
                 
         <!-- Menu as icons -->
-        <StackPanel x:Name="menubuttons" Margin="10,6,0,10" HorizontalAlignment="Right" Grid.Column="2"
+        <StackPanel x:Name="menubuttons" Margin="10,10,0,10" HorizontalAlignment="Right" Grid.Column="2"
                     VerticalAlignment="Top" MouseLeftButtonDown="DragMoveWindow" Orientation="Horizontal">
 
           <Button x:Name="ClearAll" Style="{DynamicResource NavigationButtonStyle}" Padding="0"
@@ -171,23 +171,11 @@ Value="False">
                        FontSize="30" Text="b" Opacity="1" Margin="10,0,0,0" />
           </Button>
 
-                    <!--<Button Style="{DynamicResource NavigationButtonStyle}" Padding="0"
-                  Command="{Binding RefreshCommand}" ToolTip="Refresh all (F5)">
-            <TextBlock FontFamily="{DynamicResource WebSymbols}" Foreground="{DynamicResource WhiteColour}"
-                       FontSize="30" Text="*" Opacity="1" Margin="10,0,0,0" />
-          </Button>-->
-
           <Button Style="{DynamicResource NavigationButtonStyle}" Padding="0"
                   Command="{Binding SearchCommand}" ToolTip="New Search Column (Ctrl-f)">
             <TextBlock FontFamily="{DynamicResource WebSymbols}" Foreground="{DynamicResource WhiteColour}"
                        FontSize="30" Text="L" Opacity="1" Margin="10,0,0,0" />
           </Button>
-
-          <!--<Button x:Name="Setup" Style="{DynamicResource NavigationButtonStyle}" Padding="0"
-                  Command="{Binding SetupCommand}" ToolTip="Setup (Ctrl-s)">
-            <TextBlock FontFamily="{DynamicResource WebSymbols}" Foreground="{DynamicResource WhiteColour}"
-                       FontSize="30" Text="S" Opacity="1" Margin="10,0,0,0" />
-          </Button>-->
 
           <Button Style="{DynamicResource NavigationButtonStyle}" Padding="0"
                   Command="{Binding AddColumnCommand}" ToolTip="Add New Column (Ctrl-n)">
@@ -197,35 +185,6 @@ Value="False">
 
         </StackPanel>
                 
-        <!--minimise,maximise,close
-        <StackPanel x:Name="windowControls" Margin="0" Height="20" VerticalAlignment="Top"
-                    Orientation="Horizontal" Grid.Column="3" HorizontalAlignment="Right" RenderTransformOrigin="0.5,0.5">
-          <StackPanel.RenderTransform>
-            <TransformGroup>
-              <ScaleTransform />
-              <SkewTransform />
-              <RotateTransform />
-              <TranslateTransform X="0.5" Y="0.5" />
-            </TransformGroup>
-          </StackPanel.RenderTransform>
-          <Button x:Name="btnMin" Width="16" Height="20" Style="{DynamicResource NavigationButtonStyle}"
-                  Click="MinimizeClick" ToolTip="Minimise MahTweets to Taskbar" Opacity="{DynamicResource BaseColourOpacityAccent2}">
-            <TextBlock FontFamily="{DynamicResource UIFont}" Foreground="{DynamicResource WhiteColour}"
-                       FontSize="16" Text="&#x0030;" Margin="0,0,0,0" />
-          </Button>
-
-          <Button x:Name="btnMax" Width="16" Height="20" Style="{DynamicResource NavigationButtonStyle}"
-                  ToolTip="Maximise MahTweets Window" Click="MaximizeClick" Opacity="{DynamicResource BaseColourOpacityAccent2}">
-            <TextBlock FontFamily="{DynamicResource UIFont}" Foreground="{DynamicResource WhiteColour}"
-                       FontSize="16" Text="&#x0031;" Margin="0,0,0,0" />
-          </Button>
-
-          <Button x:Name="btnClose" Width="16" Height="20" Style="{DynamicResource NavigationButtonStyle}"
-                  Click="CloseClick" ToolTip="Close MahTweets" Opacity="{DynamicResource BaseColourOpacityAccent2}">
-            <TextBlock FontFamily="{DynamicResource UIFont}" Foreground="{DynamicResource WhiteColour}"
-                       FontSize="16" Text="&#x0072;" Margin="0,0,0,0" />
-          </Button>
-        </StackPanel>-->
       </Grid>
 
 
