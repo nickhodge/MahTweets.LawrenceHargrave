@@ -3,6 +3,7 @@
                         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                        xmlns:Controls1="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
                         xmlns:scm="clr-namespace:System.ComponentModel;assembly=WindowsBase" mc:Ignorable="d"
                         xmlns:Controls="clr-namespace:MahTweets.Views.Controls" d:DesignWidth="300" d:DesignHeight="600"
                         Width="{Binding Width, FallbackValue=300}">
@@ -126,7 +127,7 @@
                  KeyUp="txtSearchTerm_KeyUp" />
         <Label Content="Search for.." VerticalAlignment="Top" Margin="8,0" />
         <Button x:Name="btnSearch" Content="Search" HorizontalAlignment="Left" VerticalAlignment="Bottom"
-                Width="75" Margin="8,0,0,8" Style="{DynamicResource TextButtonStyle}" Click="BtnSearchClick" />
+                Width="75" Margin="8,0,0,8" Style="{DynamicResource SquareButtonStyle}" Click="BtnSearchClick" />
         <Label Content="via.." VerticalAlignment="Top" Margin="8,51.92,8,0" />
       </Grid>
     </Grid>

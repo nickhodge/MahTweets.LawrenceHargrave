@@ -1,6 +1,7 @@
 ﻿<UserControl x:Class="MahTweets.Views.Setup.AccountsView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:Controls1="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:Selected="clr-namespace:MahTweets.Commands"
              mc:Ignorable="d" d:DesignHeight="600" d:DesignWidth="600">
@@ -59,7 +60,7 @@
       </ListBox>
       <Button Content="Add" Command="{Binding AddCommand}" CommandParameter="{Binding NewPlugin}" Cursor="Hand"
               Grid.Row="2" HorizontalAlignment="Left" Width="85" VerticalAlignment="Top" Margin="0"
-              Style="{DynamicResource TextButtonStyle}" Foreground="{DynamicResource TextColour}" />
+              Style="{DynamicResource SquareButtonStyle}" Foreground="{DynamicResource TextColour}" />
     </Grid>
 
         <Grid Grid.Column="1">

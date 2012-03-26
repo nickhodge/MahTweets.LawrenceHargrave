@@ -128,6 +128,9 @@
     <Reference Include="Hammock.ClientProfile">
       <HintPath>..\packages\Hammock.1.2.9\lib\4.0\Hammock.ClientProfile.dll</HintPath>
     </Reference>
+    <Reference Include="MahApps.Metro">
+      <HintPath>..\packages\MahApps.Metro.0.7.2.0\lib\net40\MahApps.Metro.dll</HintPath>
+    </Reference>
     <Reference Include="MahApps.RESTBase, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\ThirdPartyLibraries\MahApps.Twitter\src\NET4\MahApps.RESTBase.dll</HintPath>
     </Reference>

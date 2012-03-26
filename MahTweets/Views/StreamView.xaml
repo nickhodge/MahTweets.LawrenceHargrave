@@ -125,7 +125,7 @@
 IsReadOnly="{Binding StreamConfiguration.ShowConfiguration, Converter={StaticResource EditWhenFalse}}"
 Background="{x:Null}" BorderBrush="{x:Null}" FontFamily="{DynamicResource HeadingFont}"
 FontSize="{DynamicResource MainHeadingFontSize}" Foreground="{DynamicResource HeadingColour}"
-Text="{Binding Title, Mode=TwoWay}" Padding="0" BorderThickness="0" Margin="5,-3,0,0" Grid.Row="0"
+Text="{Binding Title, Mode=TwoWay}" Padding="0" BorderThickness="0" Margin="2,-3,0,0" Grid.Row="0"
 IsHitTestVisible="{Binding StreamConfiguration.ShowConfiguration, Converter={StaticResource EditWhenTrue}}" />
 
 
@@ -309,7 +309,7 @@ IsHitTestVisible="{Binding StreamConfiguration.ShowConfiguration, Converter={Sta
 
           <Button Margin="2,2,2,2" Command="{Binding StreamConfiguration.SaveCommand}"
                   Visibility="{Binding StreamConfiguration.ShowConfiguration, Converter={StaticResource ShowWhenTrue}}" Height="20"
-                  ToolTip="Save Settings for this Column" Cursor="Hand" Padding="0" Width="100" Style="{DynamicResource TextButtonStyle}">
+                  ToolTip="Save Settings for this Column" Cursor="Hand" Padding="0" Width="100" Style="{DynamicResource SquareButtonStyle}">
             Save Settings
           </Button>
 

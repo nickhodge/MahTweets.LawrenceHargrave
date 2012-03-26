@@ -95,6 +95,9 @@
     <Reference Include="LINQtoCSV">
       <HintPath>..\packages\LINQtoCSV.1.2.0.0\lib\LINQtoCSV.dll</HintPath>
     </Reference>
+    <Reference Include="MahApps.Metro">
+      <HintPath>..\packages\MahApps.Metro.0.7.2.0\lib\net40\MahApps.Metro.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Dynamic">
       <HintPath>..\MahTweets\Microsoft.Dynamic.dll</HintPath>

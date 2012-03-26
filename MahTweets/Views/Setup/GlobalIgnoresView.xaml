@@ -2,6 +2,7 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:Controls1="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" mc:Ignorable="d" d:DesignHeight="600" d:DesignWidth="600">
   <Grid Margin="0" MinHeight="250" Visibility="Visible" d:IsHidden="True">
     <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Global Ignore" VerticalAlignment="Top"
@@ -25,10 +26,10 @@
       </ListBox.ItemTemplate>
     </ListBox>
     <Button x:Name="btnAddFilter" Command="{Binding AddCommand}" Content="Add" HorizontalAlignment="Left"
-            VerticalAlignment="Top" Width="75" Margin="102.446,156.094,0,0" Style="{DynamicResource TextButtonStyle}"
+            VerticalAlignment="Top" Width="75" Margin="102.446,156.094,0,0" Style="{DynamicResource SquareButtonStyle}"
             FontFamily="{DynamicResource DefaultFont}" FontSize="{DynamicResource DefaultFontSize}" />
     <Button x:Name="btnClear" Content="Clear" Command="{Binding ClearCommand}" Margin="0,156.094,149,0"
-            HorizontalAlignment="Right" VerticalAlignment="Top" Width="75" Style="{DynamicResource TextButtonStyle}"
+            HorizontalAlignment="Right" VerticalAlignment="Top" Width="75" Style="{DynamicResource SquareButtonStyle}"
             FontFamily="{DynamicResource DefaultFont}" FontSize="{DynamicResource DefaultFontSize}" />
     <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap"
                Text="Sick of hearing about an event you're not at, or a technology you simply don't care for?  Add a global ignore and it won't appear in any of your columns"
