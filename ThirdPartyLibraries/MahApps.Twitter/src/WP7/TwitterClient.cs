@@ -112,14 +112,14 @@ namespace MahApps.Twitter
 
             // TODO: cannot intercept BuildEndpoint without having to mock RestClient
             var restClient = (RestClient) Client;
-            Uri endpoint = request.BuildEndpoint(restClient);
+            string endpoint = request.BuildEndpoint(restClient);
 
             var webReq = (HttpWebRequest) WebRequest.Create(url);
             webReq.Headers = new WebHeaderCollection();
-            webReq.Headers["X-Auth-Service-Provider"] = endpoint.ToString();
+            webReq.Headers["X-Auth-Service-Provider"] = endpoint;
 
             var x = new OAuthWebQueryInfo();
-            WebQuery query = Credentials.GetQueryFor(endpoint.ToString(), request, x, WebMethod.Get, true);
+            WebQuery query = Credentials.GetQueryFor(endpoint, request, x, WebMethod.Get, true);
             var info = query.Info as OAuthWebQueryInfo;
             if (info != null)
             {
