@@ -50,7 +50,9 @@ namespace MahTweets.TwitterPlugin.Views
                                               : twitterAccounts.First();
 
             if (cbAccounts.SelectedItem == null)
-                cbAccounts.SelectedItem = twitterAccounts.First();
+            {
+                cbAccounts.SelectedItem = twitterAccounts.FirstOrDefault();
+            }
         }
 
 
