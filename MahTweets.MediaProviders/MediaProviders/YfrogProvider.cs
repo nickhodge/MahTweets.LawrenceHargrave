@@ -1,3 +1,4 @@
+using System;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Xml;
@@ -22,26 +23,31 @@ namespace MahTweets.TweetProcessors.MediaProviders
 
         public async Task<string> Transform(string url)
         {
-            Match match = Regex.Match(url, "yfrog.com/([A-Za-z0-9]*)");
+            var match = Regex.Match(url, "yfrog.com/([A-Za-z0-9]*)");
             if (match.Success)
             {
-                string yfrogId = match.Groups[1].Value;
+                var yfrogId = match.Groups[1].Value;
 
-                var _fetcher = new AsyncWebFetcher();
-                string text = await _fetcher.FetchAsync("http://yfrog.com/api/xmlInfo?path=" + yfrogId);
+                var fetcher = new AsyncWebFetcher();
+                var text = await fetcher.FetchAsync("http://yfrog.com/api/xmlInfo?path=" + yfrogId);
                 var xdoc = new XmlDocument();
-                xdoc.LoadXml(text);
-
-                var xnm = new XmlNamespaceManager(xdoc.NameTable);
-                xnm.AddNamespace("is", "http://ns.imageshack.us/imginfo/7/");
-
-                XmlNode selectSingleNode = xdoc.SelectSingleNode("/is:imginfo/is:links/is:image_link", xnm);
-                if (selectSingleNode != null)
+                try
                 {
-                    string r = selectSingleNode.InnerText;
-                    return r;
+                    xdoc.LoadXml(text);
+
+                    var xnm = new XmlNamespaceManager(xdoc.NameTable);
+                    xnm.AddNamespace("is", "http://ns.imageshack.us/imginfo/7/");
+
+                    var selectSingleNode = xdoc.SelectSingleNode("/is:imginfo/is:links/is:image_link", xnm);
+                    if (selectSingleNode != null)
+                    {
+                        var r = selectSingleNode.InnerText;
+                        return r;
+                    }
+                } catch(Exception ex)
+                {
+                    
                 }
-                return null;
             }
             return null;
         }

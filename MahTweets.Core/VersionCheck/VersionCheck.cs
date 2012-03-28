@@ -31,42 +31,51 @@ namespace MahTweets.Core.VersionCheck
         public async void HandleCheckMahTweetsVersion (CheckMahTweetsVersionMessage currentVersion)
         {
             var webFetcher = new AsyncWebFetcher();
-            var versionraw = await webFetcher.FetchAsync(_versioncheckurl);
-            var j = JObject.Parse(versionraw);
-
-            var currentmajor = j["major"].ToObject<Int32>();
-            var currentminor = j["minor"].ToObject<Int32>();
-            var currentpatch = j["patch"].ToObject<Int32>();
-            var currentbuild = j["build"].ToObject<String>();
-
-            var runningmajor = currentVersion.RunningVersion.Item1;
-            var runningminor = currentVersion.RunningVersion.Item2;
-            var runningpatch = currentVersion.RunningVersion.Item3;
-            var runningbuild = currentVersion.RunningVersion.Item4;
-
-            var flagupdate = currentmajor > runningmajor;
-
-            if (currentminor > runningminor)
+            try
             {
-                flagupdate = true;
-            }
-            if (currentpatch > runningpatch)
+                var versionraw = await webFetcher.FetchAsync(_versioncheckurl);
+                var j = JObject.Parse(versionraw);
+
+                var currentmajor = j["major"].ToObject<Int32>();
+                var currentminor = j["minor"].ToObject<Int32>();
+                var currentpatch = j["patch"].ToObject<Int32>();
+                var currentbuild = j["build"].ToObject<String>();
+
+                var runningmajor = currentVersion.RunningVersion.Item1;
+                var runningminor = currentVersion.RunningVersion.Item2;
+                var runningpatch = currentVersion.RunningVersion.Item3;
+                var runningbuild = currentVersion.RunningVersion.Item4;
+
+                var flagupdate = currentmajor > runningmajor;
+
+                if (currentminor > runningminor)
+                {
+                    flagupdate = true;
+                }
+                if (currentpatch > runningpatch)
+                {
+                    flagupdate = true;
+                }
+                if (currentbuild.ToLower() != runningbuild.ToLower())
+                {
+                    flagupdate = true;
+                }
+
+                if (!flagupdate) return;
+
+                var infourl = j["infourl"].ToObject<String>();
+                var downloadurl = j["downloadurl"].ToObject<String>();
+                var messagetext = j["messagetext"].ToObject<String>();
+                var versiontext = string.Format("{0}.{1}.{2}.{3}", currentmajor, currentminor, currentpatch,
+                                                currentbuild);
+
+                _eventAggregator.GetEvent<ShowNotification>().Publish(
+                    new ShowNotificationPayload(new UpdateNotification(messagetext, versiontext, downloadurl, infourl),
+                                                TimeSpan.FromMinutes(1), NotificactionLevel.Information));
+            } catch (Exception ex)
             {
-                flagupdate = true;
+                
             }
-            if (currentbuild.ToLower() != runningbuild.ToLower())
-            {
-                flagupdate = true;
-            }
-
-            if (!flagupdate) return;
-
-            var infourl = j["infourl"].ToObject<String>();
-            var downloadurl = j["downloadurl"].ToObject<String>();
-            var messagetext = j["messagetext"].ToObject<String>();
-            var versiontext = string.Format("{0}.{1}.{2}.{3}", currentmajor, currentminor, currentpatch, currentbuild);
-
-            _eventAggregator.GetEvent<ShowNotification>().Publish(new ShowNotificationPayload(new UpdateNotification(messagetext,versiontext,downloadurl,infourl), TimeSpan.FromMinutes(1), NotificactionLevel.Information));
         }
     }
 }
