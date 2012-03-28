@@ -22,7 +22,7 @@ namespace MahTweets.TweetProcessors.MediaProviders
         {
             return Task.Run(delegate
                                   {
-                                      Match match = Regex.Match(url, "http://plixi.com/p/([A-Za-z0-9]*)");
+                                      var match = Regex.Match(url, "http://plixi.com/p/([A-Za-z0-9]*)");
                                       if (!match.Success)
                                           return null;
                                       return "http://api.plixi.com/api/tpapi.svc/imagefromurl?size=medium&url=" + url;

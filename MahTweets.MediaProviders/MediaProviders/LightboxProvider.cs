@@ -8,7 +8,7 @@ namespace MahTweets.TweetProcessors.MediaProviders
 {
     public class LightboxProvider : IMediaProvider
     {
-        private const string _matcher = @"<div.*id=\x22photo_0\x22.*img src=\x22http://(?<imgrc>(.*\.jpg))";
+        private const string Matcher = @"<div.*id=\x22photo_0\x22.*img src=\x22http://(?<imgrc>(.*\.jpg))";
 
         #region IMediaProvider Members
 
@@ -24,11 +24,11 @@ namespace MahTweets.TweetProcessors.MediaProviders
 
         public async Task<string> Transform(string url)
         {
-            var _fetcher = new AsyncWebFetcher();
-            string lb = await _fetcher.FetchAsync(url);
+            var fetcher = new AsyncWebFetcher();
+            var lb = await fetcher.FetchAsync(url);
             if (lb == null) return null;
 
-            Match matchPicture = Regex.Match(lb, _matcher);
+            var matchPicture = Regex.Match(lb, Matcher);
 
             return matchPicture.Success ? "http://" + matchPicture.Groups[1].Value : null;
         }

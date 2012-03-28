@@ -24,10 +24,10 @@ namespace MahTweets.TweetProcessors.MediaProviders
 
         public async Task<string> Transform(string url)
         {
-            var _fetcher = new AsyncWebFetcher();
-            string imgly = await _fetcher.FetchAsync(url);
+            var fetcher = new AsyncWebFetcher();
+            var imgly = await fetcher.FetchAsync(url);
             if (imgly == null) return null;
-            Match match = Regex.Match(imgly, _matcher);
+            var match = Regex.Match(imgly, _matcher);
             return match.Success ? match.Groups[1].Value : null;
         }
 

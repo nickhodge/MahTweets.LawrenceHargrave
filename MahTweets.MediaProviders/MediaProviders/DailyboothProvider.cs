@@ -22,8 +22,8 @@ namespace MahTweets.TweetProcessors.MediaProviders
 
         public async Task<string> Transform(string url)
         {
-            var _fetcher = new AsyncWebFetcher();
-            var dbooth = await _fetcher.FetchAsync(url);
+            var fetcher = new AsyncWebFetcher();
+            var dbooth = await fetcher.FetchAsync(url);
 
             var matchPicture = Regex.Match(dbooth, @"<img src=\x22(http:\/\/[a-zA-Z0-9\._\'\/\-\?\=\#\&\%]*)\x22");
 

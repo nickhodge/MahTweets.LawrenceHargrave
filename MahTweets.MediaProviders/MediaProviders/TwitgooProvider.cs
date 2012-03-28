@@ -1,3 +1,4 @@
+using System;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Xml;
@@ -22,22 +23,28 @@ namespace MahTweets.TweetProcessors.MediaProviders
 
         public async Task<string> Transform(string url)
         {
-            Match match = Regex.Match(url, "twitgoo.com/([A-Za-z0-9]*)");
+            var match = Regex.Match(url, "twitgoo.com/([A-Za-z0-9]*)");
 
             if (!match.Success)
                 return null;
-            string twitgooID = match.Groups[1].Value;
+            var twitgooID = match.Groups[1].Value;
 
-            var _fetcher = new AsyncWebFetcher();
-            string text = await _fetcher.FetchAsync("http://twitgoo.com/api/message/info/" + twitgooID);
+            var fetcher = new AsyncWebFetcher();
+            var text = await fetcher.FetchAsync("http://twitgoo.com/api/message/info/" + twitgooID);
             var xdoc = new XmlDocument();
             xdoc.LoadXml(text);
 
-            XmlNode selectSingleNode = xdoc.SelectSingleNode("/rsp/imageurl");
-            if (selectSingleNode != null)
+            try
             {
-                string r = selectSingleNode.InnerText;
-                return r;
+                var selectSingleNode = xdoc.SelectSingleNode("/rsp/imageurl");
+                if (selectSingleNode != null)
+                {
+                    var r = selectSingleNode.InnerText;
+                    return r;
+                }
+            } catch (Exception ex)
+            {
+                
             }
             return null;
         }

@@ -22,7 +22,7 @@ namespace MahTweets.TweetProcessors.MediaProviders
         {
             return Task.Run(delegate
                                   {
-                                      Match match = Regex.Match(url, "moby.to/([A-Za-z0-9]*)");
+                                      var match = Regex.Match(url, "moby.to/([A-Za-z0-9]*)");
                                       return !match.Success ? null : url + ":medium";
                                   });
         }

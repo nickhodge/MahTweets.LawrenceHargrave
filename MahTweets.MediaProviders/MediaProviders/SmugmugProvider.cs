@@ -24,11 +24,11 @@ namespace MahTweets.TweetProcessors.MediaProviders
 
         public async Task<string> Transform(string url)
         {
-            var _fetcher = new AsyncWebFetcher();
-            string smugmug = await _fetcher.FetchAsync(url);
+            var fetcher = new AsyncWebFetcher();
+            var smugmug = await fetcher.FetchAsync(url);
             if (smugmug == null) return null;
             //Find the image uri via regex
-            Match match = Regex.Match(smugmug, _matcher);
+            var match = Regex.Match(smugmug, _matcher);
             return match.Success ? match.Groups[1].Value : null;
         }
 

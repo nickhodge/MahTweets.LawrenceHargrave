@@ -29,11 +29,9 @@ namespace MahTweets.TweetProcessors.MediaProviders
             //Fetch the Twitpic page
             // TODO currently just gets the preview image rather than getting the full size image URL from the site via API. 
             // TODO I know this Warns in build due to the async qualifier on the method; but we'll add more code in here eventually
-            string[] t = url.Split('/');
-            string imgid = t[3];
-            if (imgid == null) return null;
-
-            return string.Format(_twitpicapireq, imgid);
+            var t = url.Split('/');
+            var imgid = t[3];
+            return imgid == null ? null : string.Format(_twitpicapireq, imgid);
         }
 
         #endregion
