@@ -109,7 +109,7 @@ namespace MahTweets
 
             if (!DesignerProperties.GetIsInDesignMode(this))
             {
-                WindowSettings.SetSave(this, true);
+                MahTweets.Configuration.WindowSettings.SetSave(this, true);
             }
         }
 
