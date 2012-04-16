@@ -6,332 +6,329 @@
                         xmlns:mamt="clr-namespace:MahTweets.UI.Converters;assembly=MahApps.Metro"
                         xmlns:Controls="clr-namespace:MahTweets.Views.Controls" x:Class="MahTweets.Views.StreamView" Width="{Binding Width}"
                         x:Name="Stream">
-  <Controls:ContainerView.Resources>
+    <Controls:ContainerView.Resources>
 
-    <!-- Converters -->
-    <Converters1:BoolToVisibilityConverter x:Key="ShowWhenTrue" />
-    <Converters1:BoolToInverseVisibilityConverters x:Key="ShowWhenFalse" />
-    <Converters1:BoolToEditabilityConverter x:Key="EditWhenTrue" />
-    <Converters1:BoolToInverseEditabilityConverter x:Key="EditWhenFalse" />
-    <Converters1:ContactCheckConverter x:Key="ContactConverter" />
-    <Converters1:ContactColorConverter x:Key="ContactColorConverter" />
-    <Converters1:ScriptFilterConverter x:Key="ScriptFilterConverter" />
+        <!-- Converters -->
+        <Converters1:BoolToVisibilityConverter x:Key="ShowWhenTrue" />
+        <Converters1:BoolToInverseVisibilityConverters x:Key="ShowWhenFalse" />
+        <Converters1:BoolToEditabilityConverter x:Key="EditWhenTrue" />
+        <Converters1:BoolToInverseEditabilityConverter x:Key="EditWhenFalse" />
+        <Converters1:ContactCheckConverter x:Key="ContactConverter" />
+        <Converters1:ContactColorConverter x:Key="ContactColorConverter" />
+        <Converters1:ScriptFilterConverter x:Key="ScriptFilterConverter" />
 
-    <DataTemplate x:Key="template">
-      <WrapPanel x:Name="wp">
-        <WrapPanel.Background>
-          <LinearGradientBrush>
-            <GradientStop Color="{DynamicResource White}" Offset="0" />
-            <GradientStop Color="{DynamicResource LightGrey}" Offset="1" />
-          </LinearGradientBrush>
-        </WrapPanel.Background>
-        <CheckBox IsThreeState="True" x:Name="Data" Style="{DynamicResource GeneralCheckBox}"
+        <DataTemplate x:Key="template">
+            <WrapPanel x:Name="wp">
+                <WrapPanel.Background>
+                    <LinearGradientBrush>
+                        <GradientStop Color="{DynamicResource White}" Offset="0" />
+                        <GradientStop Color="{DynamicResource LightGrey}" Offset="1" />
+                    </LinearGradientBrush>
+                </WrapPanel.Background>
+                <CheckBox IsThreeState="True" x:Name="Data" Style="{DynamicResource GeneralCheckBox}"
                   Tag="{Binding DataContext, ElementName=tbAccount}" Checked="ChkStreamChecked" Indeterminate="ChkStreamIndeterminate"
                   Unchecked="ChkStreamUnchecked" Foreground="{DynamicResource TextColour}" Cursor="Hand">
-          <CheckBox.Resources>
-            <Converters1:StreamCheckConverter x:Key="StreamConverter" />
-          </CheckBox.Resources>
-          <CheckBox.IsChecked>
-            <MultiBinding Converter="{StaticResource StreamConverter}" Mode="OneWay">
-              <Binding ElementName="Stream" Path="DataContext.StreamConfiguration.Filters" />
-              <Binding ElementName="tbAccount" Path="DataContext" />
-              <Binding ElementName="Data" Path="DataContext" />
-            </MultiBinding>
-          </CheckBox.IsChecked>
-        </CheckBox>
+                    <CheckBox.Resources>
+                        <Converters1:StreamCheckConverter x:Key="StreamConverter" />
+                    </CheckBox.Resources>
+                    <CheckBox.IsChecked>
+                        <MultiBinding Converter="{StaticResource StreamConverter}" Mode="OneWay">
+                            <Binding ElementName="Stream" Path="DataContext.StreamConfiguration.Filters" />
+                            <Binding ElementName="tbAccount" Path="DataContext" />
+                            <Binding ElementName="Data" Path="DataContext" />
+                        </MultiBinding>
+                    </CheckBox.IsChecked>
+                </CheckBox>
 
-        <Button Style="{DynamicResource ButtonClearedStyle}" x:Name="btnColour" Margin="10,0,0,0"
+                <Button Style="{DynamicResource ButtonClearedStyle}" x:Name="btnColour" Margin="10,0,0,0"
                 Padding="0,0,0,0" Width="16" Height="16" ToolTip="Change the highlight colour for this filter" Click="BtnColourClick1">
-          <Image Source="{DynamicResource imgEyedropper}" Width="16" Height="16" />
-        </Button>
+                    <Image Source="{DynamicResource imgEyedropper}" Width="16" Height="16" />
+                </Button>
 
-        <TextBlock Text="{Binding Type}" Margin="5,0,0,0" Foreground="{DynamicResource TextColour}" />
+                <TextBlock Text="{Binding Type}" Margin="5,0,0,0" Foreground="{DynamicResource TextColour}" />
 
-      </WrapPanel>
-    </DataTemplate>
+            </WrapPanel>
+        </DataTemplate>
 
-    <!-- Collection's -->
-    <CollectionViewSource x:Key="UpdatesCollectionView" Source="{Binding DataContext.Updates, ElementName=Stream}"
+        <!-- Collection's -->
+        <CollectionViewSource x:Key="UpdatesCollectionView" Source="{Binding DataContext.Updates, ElementName=Stream}"
                           Filter="CollectionViewSourceFilter">
-      <CollectionViewSource.SortDescriptions>
-        <scm:SortDescription PropertyName="Time" Direction="Descending"></scm:SortDescription>
-        <scm:SortDescription PropertyName="ID" Direction="Descending"></scm:SortDescription>
-      </CollectionViewSource.SortDescriptions>
-    </CollectionViewSource>
+            <CollectionViewSource.SortDescriptions>
+                <scm:SortDescription PropertyName="Time" Direction="Descending"></scm:SortDescription>
+                <scm:SortDescription PropertyName="ID" Direction="Descending"></scm:SortDescription>
+            </CollectionViewSource.SortDescriptions>
+        </CollectionViewSource>
 
-    <Style TargetType="{x:Type TreeViewItem}">
-      <Setter Property="IsExpanded" Value="True" />
-    </Style>
+        <Style TargetType="{x:Type TreeViewItem}">
+            <Setter Property="IsExpanded" Value="True" />
+        </Style>
 
-    <!-- Storyboard/Animations -->
-    <Storyboard x:Key="ShowConfig">
-      <Int32AnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.ZIndex)">
-        <EasingInt32KeyFrame KeyTime="0:0:0.8" Value="4">
-          <EasingInt32KeyFrame.EasingFunction>
-            <CircleEase EasingMode="EaseOut" />
-          </EasingInt32KeyFrame.EasingFunction>
-        </EasingInt32KeyFrame>
-      </Int32AnimationUsingKeyFrames>
-      <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)">
-        <EasingDoubleKeyFrame KeyTime="0:0:0.8" Value="1">
-          <EasingDoubleKeyFrame.EasingFunction>
-            <CircleEase EasingMode="EaseOut" />
-          </EasingDoubleKeyFrame.EasingFunction>
-        </EasingDoubleKeyFrame>
-      </DoubleAnimationUsingKeyFrames>
-    </Storyboard>
-    <Storyboard x:Key="HideConfig">
-      <Int32AnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.ZIndex)">
-        <EasingInt32KeyFrame KeyTime="0:0:0.8" Value="0">
-          <EasingInt32KeyFrame.EasingFunction>
-            <CircleEase EasingMode="EaseOut" />
-          </EasingInt32KeyFrame.EasingFunction>
-        </EasingInt32KeyFrame>
-      </Int32AnimationUsingKeyFrames>
-      <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)">
-        <EasingDoubleKeyFrame KeyTime="0:0:0.8" Value="0">
-          <EasingDoubleKeyFrame.EasingFunction>
-            <CircleEase EasingMode="EaseOut" />
-          </EasingDoubleKeyFrame.EasingFunction>
-        </EasingDoubleKeyFrame>
-      </DoubleAnimationUsingKeyFrames>
-    </Storyboard>
-  </Controls:ContainerView.Resources>
+        <!-- Storyboard/Animations -->
+        <Storyboard x:Key="ShowConfig">
+            <Int32AnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.ZIndex)">
+                <EasingInt32KeyFrame KeyTime="0:0:0.8" Value="4">
+                    <EasingInt32KeyFrame.EasingFunction>
+                        <CircleEase EasingMode="EaseOut" />
+                    </EasingInt32KeyFrame.EasingFunction>
+                </EasingInt32KeyFrame>
+            </Int32AnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)">
+                <EasingDoubleKeyFrame KeyTime="0:0:0.8" Value="1">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <CircleEase EasingMode="EaseOut" />
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="HideConfig">
+            <Int32AnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.ZIndex)">
+                <EasingInt32KeyFrame KeyTime="0:0:0.8" Value="0">
+                    <EasingInt32KeyFrame.EasingFunction>
+                        <CircleEase EasingMode="EaseOut" />
+                    </EasingInt32KeyFrame.EasingFunction>
+                </EasingInt32KeyFrame>
+            </Int32AnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)">
+                <EasingDoubleKeyFrame KeyTime="0:0:0.8" Value="0">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <CircleEase EasingMode="EaseOut" />
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+    </Controls:ContainerView.Resources>
 
-  <Grid x:Name="grdNormalTweetViewStream" AllowDrop="True" Drop="ColumnDrag_Drop" DragEnter="ColumnDrag_DragEnter"
+    <Grid x:Name="grdNormalTweetViewStream" AllowDrop="True" Drop="ColumnDrag_Drop" DragEnter="ColumnDrag_DragEnter"
         DragLeave="ColumnDrag_DragLeave">
-    <Grid.ColumnDefinitions>
-      <ColumnDefinition Width="*" />
-      <ColumnDefinition Width="3" />
-    </Grid.ColumnDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="3" />
+        </Grid.ColumnDefinitions>
 
-    <Thumb x:Name="columnHandle" Grid.Column="1" Tag="{Binding}"
+        <Thumb x:Name="columnHandle" Grid.Column="1" Tag="{Binding}"
            Foreground="{DynamicResource HeadingBackgroundColour}" Background="{DynamicResource HeadingBackgroundColour}"
            Opacity="{DynamicResource BaseColourOpacityThinColumns}" DragCompleted="Thumb_DragCompleted"
            DragStarted="Thumb_DragStarted" DragDelta="Thumb_DragDelta" Cursor="ScrollWE" />
 
-    <Grid x:Name="grdNormalTweetView" Grid.Column="0">
-      <Grid.RowDefinitions>
-        <RowDefinition Height="35" />
-        <RowDefinition Height="*" />
-        <RowDefinition Height="20" />
-      </Grid.RowDefinitions>
+        <Grid x:Name="grdNormalTweetView" Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="35" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="20" />
+            </Grid.RowDefinitions>
 
-      <!-- Title row -->
-      <Rectangle Fill="{DynamicResource HeadingBackgroundColour}"
-                 Opacity="{DynamicResource BaseColourOpacityAccent}" Grid.Row="0" MouseMove="ColumnDrag_MouseMove" />
+            <!-- Title row -->
+            <Rectangle Fill="{DynamicResource HeadingBackgroundColour}" Opacity="{DynamicResource BaseColourOpacityAccent}" Grid.Row="0" MouseMove="ColumnDrag_MouseMove" />
 
-      <TextBox x:Name="txtColumnName"
-IsReadOnly="{Binding StreamConfiguration.ShowConfiguration, Converter={StaticResource EditWhenFalse}}"
-Background="{x:Null}" BorderBrush="{x:Null}" FontFamily="{DynamicResource HeadingFont}"
-FontSize="{DynamicResource MainHeadingFontSize}" Foreground="{DynamicResource HeadingColour}"
-Text="{Binding Title, Mode=TwoWay}" Padding="0" BorderThickness="0" Margin="2,-3,0,0" Grid.Row="0"
-IsHitTestVisible="{Binding StreamConfiguration.ShowConfiguration, Converter={StaticResource EditWhenTrue}}" />
-
-
-      <!-- Footer row -->
-      <Rectangle Fill="{DynamicResource HeadingBackgroundColour}"
+            <!-- Footer row -->
+            <Rectangle Fill="{DynamicResource HeadingBackgroundColour}"
                  Opacity="{DynamicResource BaseColourOpacityAccent}" Grid.Row="2" />
-      <DockPanel LastChildFill="True" Grid.Row="2">
-        <TextBlock Background="{x:Null}" FontFamily="{DynamicResource HeadingFont}" TextAlignment="Left"
+            <DockPanel LastChildFill="True" Grid.Row="2">
+                <TextBlock Background="{x:Null}" FontFamily="{DynamicResource HeadingFont}" TextAlignment="Left"
                    FontSize="{DynamicResource StatusFontSize}" Foreground="{DynamicResource HeadingColour}" Text="{Binding ColumnStatus}"
                    TextWrapping="NoWrap" Padding="0" Margin="0,0,0,0" />
-        <TextBlock Background="{x:Null}" FontFamily="{DynamicResource HeadingFont}" TextAlignment="Right"
+                <TextBlock Background="{x:Null}" FontFamily="{DynamicResource HeadingFont}" TextAlignment="Right"
                    FontSize="{DynamicResource StatusFontSize}" Foreground="{DynamicResource HeadingColour}"
                    Text="{Binding Items.Count, ElementName=svUpdates, UpdateSourceTrigger=PropertyChanged}" TextWrapping="NoWrap"
                    Padding="0" Margin="0,0,10,0"></TextBlock>
-      </DockPanel>
+            </DockPanel>
 
-      <!-- Normal Updates -->
-      <ListBox Panel.ZIndex="1" x:Name="svUpdates" Grid.Row="1"
+            <!-- Normal Updates -->
+            <ListBox Panel.ZIndex="1" x:Name="svUpdates" Grid.Row="1"
                ScrollViewer.VerticalScrollBarVisibility="Visible" ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                SelectionChanged="UpdatesSelectionChanged" ItemsSource="{Binding Source={StaticResource UpdatesCollectionView}}"
                Background="{x:Null}" BorderBrush="{x:Null}" PreviewKeyDown="UpdatesKeyDown" MouseEnter="svUpdates_MouseEnter"
                MouseLeave="svUpdates_MouseLeave" Margin="0,0,0,0" BorderThickness="0"
                ItemContainerStyle="{DynamicResource StatusUpdateListBoxItemContainerStyle}" />
 
-      <!-- "Edit mode" controls -->
-      <Grid Background="{DynamicResource BackgroundBrush}" x:Name="grdContacts" Grid.Row="1" Panel.ZIndex="0"
+            <!-- "Edit mode" controls -->
+            <Grid Background="{DynamicResource BackgroundBrush}" x:Name="grdContacts" Grid.Row="1" Panel.ZIndex="0"
             Margin="1,0,0,0">
-        <Grid.Style>
-          <Style>
-            <Style.Triggers>
-              <DataTrigger Binding="{Binding StreamConfiguration.ShowConfiguration}" Value="True">
-                <DataTrigger.EnterActions>
-                  <BeginStoryboard Storyboard="{StaticResource ShowConfig}" />
-                </DataTrigger.EnterActions>
-                <DataTrigger.ExitActions>
-                  <BeginStoryboard Storyboard="{StaticResource HideConfig}" />
-                </DataTrigger.ExitActions>
-              </DataTrigger>
-              <!-- bugfix - BF - issue with initial state of existing stream -->
-              <DataTrigger Binding="{Binding StreamConfiguration.ShowConfiguration}" Value="False">
-                <DataTrigger.EnterActions>
-                  <BeginStoryboard Storyboard="{StaticResource HideConfig}" />
-                </DataTrigger.EnterActions>
-                <DataTrigger.ExitActions>
-                  <BeginStoryboard Storyboard="{StaticResource ShowConfig}" />
-                </DataTrigger.ExitActions>
-              </DataTrigger>
-            </Style.Triggers>
-          </Style>
-        </Grid.Style>
-        <Grid.RowDefinitions>
-          <RowDefinition Height="25" />
-          <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
+                <Grid.Style>
+                    <Style>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding StreamConfiguration.ShowConfiguration}" Value="True">
+                                <DataTrigger.EnterActions>
+                                    <BeginStoryboard Storyboard="{StaticResource ShowConfig}" />
+                                </DataTrigger.EnterActions>
+                                <DataTrigger.ExitActions>
+                                    <BeginStoryboard Storyboard="{StaticResource HideConfig}" />
+                                </DataTrigger.ExitActions>
+                            </DataTrigger>
+                            <!-- bugfix - BF - issue with initial state of existing stream -->
+                            <DataTrigger Binding="{Binding StreamConfiguration.ShowConfiguration}" Value="False">
+                                <DataTrigger.EnterActions>
+                                    <BeginStoryboard Storyboard="{StaticResource HideConfig}" />
+                                </DataTrigger.EnterActions>
+                                <DataTrigger.ExitActions>
+                                    <BeginStoryboard Storyboard="{StaticResource ShowConfig}" />
+                                </DataTrigger.ExitActions>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Grid.Style>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="25" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
 
-        <Rectangle Fill="{DynamicResource HeadingBackgroundColour}" Grid.Row="0" />
+                <Rectangle Fill="{DynamicResource HeadingBackgroundColour}" Grid.Row="0" />
 
-        <TextBlock Grid.Row="0">
+                <TextBlock Grid.Row="0">
           Find or Filter Tweets for this column
-        </TextBlock>
-        <TreeView x:Name="tvFilterSelection" Background="{x:Null}" BorderBrush="{x:Null}"
+                </TextBlock>
+                <TreeView x:Name="tvFilterSelection" Background="{x:Null}" BorderBrush="{x:Null}"
                   Foreground="{DynamicResource TextColour}" Grid.Row="1">
-          <CheckBox x:Name="chkAll" IsChecked="{Binding StreamConfiguration.Filters.SelectAll, Mode=TwoWay}"
+                    <CheckBox x:Name="chkAll" IsChecked="{Binding StreamConfiguration.Filters.SelectAll, Mode=TwoWay}"
                     Foreground="{DynamicResource TextColour}" Content="Everything" Style="{StaticResource GeneralCheckBox}" Cursor="Hand" />
-          <TreeViewItem Header="Accounts &amp; Lists" Background="{x:Null}" ItemsSource="{Binding Accounts}"
+                    <TreeViewItem Header="Accounts &amp; Lists" Background="{x:Null}" ItemsSource="{Binding Accounts}"
                         Foreground="{DynamicResource TextColour}">
-            <TreeViewItem.ItemTemplate>
-              <DataTemplate>
-                <StackPanel>
-                  <WrapPanel>
-                    <Image Margin="0,0,0,0" Width="16" Height="16" Source="{Binding Icon}"
+                        <TreeViewItem.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel>
+                                    <WrapPanel>
+                                        <Image Margin="0,0,0,0" Width="16" Height="16" Source="{Binding Icon}"
                            Stretch="Uniform" />
-                    <TextBlock Text="{Binding Credentials.AccountName}"
+                                        <TextBlock Text="{Binding Credentials.AccountName}"
                                Tag="{Binding Credentials.Protocol}" x:Name="tbAccount" Foreground="{DynamicResource TextColour}" />
-                  </WrapPanel>
-                  <ListBox Margin="5,0,0,0" ItemsSource="{Binding SupportedTypes}"
+                                    </WrapPanel>
+                                    <ListBox Margin="5,0,0,0" ItemsSource="{Binding SupportedTypes}"
                            BorderBrush="{x:Null}" Background="{x:Null}" ItemTemplate="{StaticResource template}" />
-                </StackPanel>
-              </DataTemplate>
-            </TreeViewItem.ItemTemplate>
-          </TreeViewItem>
+                                </StackPanel>
+                            </DataTemplate>
+                        </TreeViewItem.ItemTemplate>
+                    </TreeViewItem>
 
-          <!-- #region MahTweets Scripting -->
-          <TreeViewItem ItemsSource="{Binding StreamConfiguration.ScriptFilters}"
+                    <!-- #region MahTweets Scripting -->
+                    <TreeViewItem ItemsSource="{Binding StreamConfiguration.ScriptFilters}"
                         Background="{DynamicResource ItemSelectedBrush}">
-            <TreeViewItem.Header>
-              <StackPanel>
-                <TextBlock Text="Script Filters" Foreground="{DynamicResource TextColour}" />
-              </StackPanel>
-            </TreeViewItem.Header>
-            <TreeViewItem.ItemTemplate>
-              <DataTemplate>
-                <WrapPanel Margin="3,3,3,3" x:Name="wp">
-                  <CheckBox Tag="{Binding}" x:Name="Data" Unchecked="ScriptFilterUnchecked"
+                        <TreeViewItem.Header>
+                            <StackPanel>
+                                <TextBlock Text="Script Filters" Foreground="{DynamicResource TextColour}" />
+                            </StackPanel>
+                        </TreeViewItem.Header>
+                        <TreeViewItem.ItemTemplate>
+                            <DataTemplate>
+                                <WrapPanel Margin="3,3,3,3" x:Name="wp">
+                                    <CheckBox Tag="{Binding}" x:Name="Data" Unchecked="ScriptFilterUnchecked"
                             Checked="ScriptFilterChecked" Style="{StaticResource GeneralCheckBox}" Cursor="Hand">
-                    <CheckBox.IsChecked>
-                      <MultiBinding Converter="{StaticResource ScriptFilterConverter}"
+                                        <CheckBox.IsChecked>
+                                            <MultiBinding Converter="{StaticResource ScriptFilterConverter}"
                                     Mode="OneWay">
-                        <Binding ElementName="Data" Path="Tag" />
-                        <Binding ElementName="Stream"
+                                                <Binding ElementName="Data" Path="Tag" />
+                                                <Binding ElementName="Stream"
                                  Path="ViewModel.StreamConfiguration.Filters" />
-                      </MultiBinding>
-                    </CheckBox.IsChecked>
-                  </CheckBox>
-                  <Button Tag="{Binding}" Style="{StaticResource ButtonClearedStyle}"
+                                            </MultiBinding>
+                                        </CheckBox.IsChecked>
+                                    </CheckBox>
+                                    <Button Tag="{Binding}" Style="{StaticResource ButtonClearedStyle}"
                           x:Name="btnColour" Margin="10,0,0,0" Padding="0,0,0,0" Width="16" Height="16" Click="BtnFilterColourClick"
                           ToolTip="Change the highlight colour for this script filter">
-                    <Image Source="{StaticResource imgEyedropper}" Width="16" Height="16" />
-                  </Button>
-                  <TextBlock Tag="{Binding}" Text="{Binding ScriptDescription}" FontStyle="Italic"
+                                        <Image Source="{StaticResource imgEyedropper}" Width="16" Height="16" />
+                                    </Button>
+                                    <TextBlock Tag="{Binding}" Text="{Binding ScriptDescription}" FontStyle="Italic"
                              Margin="5,0,0,0" Foreground="{DynamicResource TextColour}" MouseUp="ScriptFilterMouseUp" />
-                </WrapPanel>
-              </DataTemplate>
-            </TreeViewItem.ItemTemplate>
-          </TreeViewItem>
-          <!-- #endregion MahTweets Scripting -->
+                                </WrapPanel>
+                            </DataTemplate>
+                        </TreeViewItem.ItemTemplate>
+                    </TreeViewItem>
+                    <!-- #endregion MahTweets Scripting -->
 
-          <TreeViewItem ItemsSource="{Binding StreamConfiguration.Contacts}" Background="{x:Null}"
+                    <TreeViewItem ItemsSource="{Binding StreamConfiguration.Contacts}" Background="{x:Null}"
                         Visibility="{Binding ContactsVisibility, Mode=Default}">
-            <TreeViewItem.Header>
-              <StackPanel>
-                <TextBlock Text="Twitter Contacts" Foreground="{DynamicResource TextColour}" />
-              </StackPanel>
-            </TreeViewItem.Header>
-            <TreeViewItem.ItemTemplate>
-              <DataTemplate>
-                <WrapPanel Margin="3,3,3,3" x:Name="wp">
-                  <WrapPanel.Background>
-                    <LinearGradientBrush>
-                      <GradientStop Color="{DynamicResource White}" Offset="0" />
-                      <GradientStop Offset="1">
-                        <GradientStop.Color>
-                          <MultiBinding Converter="{StaticResource ContactColorConverter}"
+                        <TreeViewItem.Header>
+                            <StackPanel>
+                                <TextBlock Text="Twitter Contacts" Foreground="{DynamicResource TextColour}" />
+                            </StackPanel>
+                        </TreeViewItem.Header>
+                        <TreeViewItem.ItemTemplate>
+                            <DataTemplate>
+                                <WrapPanel Margin="3,3,3,3" x:Name="wp">
+                                    <WrapPanel.Background>
+                                        <LinearGradientBrush>
+                                            <GradientStop Color="{DynamicResource White}" Offset="0" />
+                                            <GradientStop Offset="1">
+                                                <GradientStop.Color>
+                                                    <MultiBinding Converter="{StaticResource ContactColorConverter}"
                                         Mode="OneWay">
-                            <Binding ElementName="Data" Path="Tag" />
-                            <Binding ElementName="Stream"
+                                                        <Binding ElementName="Data" Path="Tag" />
+                                                        <Binding ElementName="Stream"
                                      Path="ViewModel.StreamConfiguration.Filters" />
-                          </MultiBinding>
-                        </GradientStop.Color>
-                      </GradientStop>
-                    </LinearGradientBrush>
-                  </WrapPanel.Background>
-                  <CheckBox Tag="{Binding}" x:Name="Data" IsThreeState="True"
+                                                    </MultiBinding>
+                                                </GradientStop.Color>
+                                            </GradientStop>
+                                        </LinearGradientBrush>
+                                    </WrapPanel.Background>
+                                    <CheckBox Tag="{Binding}" x:Name="Data" IsThreeState="True"
                             Indeterminate="CheckBoxIndeterminate" Unchecked="CheckBoxUnchecked" Checked="CheckBoxChecked"
                             Style="{DynamicResource GeneralCheckBox}" Cursor="Hand">
-                    <CheckBox.IsChecked>
-                      <MultiBinding Converter="{StaticResource ContactConverter}" Mode="OneWay">
-                        <Binding ElementName="Data" Path="Tag" />
-                        <Binding ElementName="Stream"
+                                        <CheckBox.IsChecked>
+                                            <MultiBinding Converter="{StaticResource ContactConverter}" Mode="OneWay">
+                                                <Binding ElementName="Data" Path="Tag" />
+                                                <Binding ElementName="Stream"
                                  Path="ViewModel.StreamConfiguration.Filters" />
-                      </MultiBinding>
-                    </CheckBox.IsChecked>
-                  </CheckBox>
-                  <Button Style="{StaticResource ButtonClearedStyle}" x:Name="btnColour"
+                                            </MultiBinding>
+                                        </CheckBox.IsChecked>
+                                    </CheckBox>
+                                    <Button Style="{StaticResource ButtonClearedStyle}" x:Name="btnColour"
                           Margin="10,0,0,0" Padding="0,0,0,0" Width="16" Height="16" Click="BtnColourClick"
                           ToolTip="Change the highlight colour for this filter">
-                    <Image Source="{StaticResource imgEyedropper}" Width="16" Height="16" />
-                  </Button>
-                  <Image Margin="5,0,0,0" Width="16" Height="16" Source="{Binding Source.Icon}"
+                                        <Image Source="{StaticResource imgEyedropper}" Width="16" Height="16" />
+                                    </Button>
+                                    <Image Margin="5,0,0,0" Width="16" Height="16" Source="{Binding Source.Icon}"
                          Stretch="Uniform" />
-                  <TextBlock Text="{Binding Name}" Margin="5,0,0,0"
+                                    <TextBlock Text="{Binding Name}" Margin="5,0,0,0"
                              Foreground="{DynamicResource TextColour}" />
-                </WrapPanel>
-              </DataTemplate>
-            </TreeViewItem.ItemTemplate>
-          </TreeViewItem>
-        </TreeView>
-      </Grid>
+                                </WrapPanel>
+                            </DataTemplate>
+                        </TreeViewItem.ItemTemplate>
+                    </TreeViewItem>
+                </TreeView>
+            </Grid>
 
-      <!-- Control Buttons -->
-      <Grid x:Name="grdActions" Opacity="0.7" Margin="0,0,10,7" d:LayoutOverrides="GridBox">
-        <StackPanel HorizontalAlignment="Right" Orientation="Horizontal" Margin="0" VerticalAlignment="Bottom">
+            <!-- Control Buttons -->
+            <Grid x:Name="grdActions" Opacity="0.7" Margin="0,0,10,7" d:LayoutOverrides="GridBox" Grid.Row="0">
+                          
+               <TextBox x:Name="txtColumnName" IsReadOnly="{Binding StreamConfiguration.ShowConfiguration, Converter={StaticResource EditWhenFalse}}"
+                Background="{x:Null}" BorderBrush="{x:Null}" FontFamily="{DynamicResource HeadingFont}" ClipToBounds="True"
+                FontSize="{DynamicResource MainHeadingFontSize}" Foreground="{DynamicResource HeadingColour}" Text="{Binding Title, Mode=TwoWay}"
+                Padding="0" BorderThickness="0" Margin="2,-3,0,0" TextAlignment="Left"
+                IsHitTestVisible="{Binding StreamConfiguration.ShowConfiguration, Converter={StaticResource EditWhenTrue}}" />
 
-          <Button x:Name="btnChangeOrder"
-                  Visibility="{Binding StreamConfiguration.ShowConfiguration, Converter={StaticResource ShowWhenFalse}}"
-                  Click="btnChangeOrder_Click" Width="22" Height="22" Style="{DynamicResource NavigationButtonStyle}"
-                  ToolTip="Change Order of Tweets in this Column">
-            <TextBlock FontFamily="{DynamicResource WebSymbols}"
-                       Foreground="{DynamicResource HeadingColour}" FontSize="{DynamicResource WebSymbolAsMenuFontSize}" Text="~" />
-          </Button>
+                <StackPanel HorizontalAlignment="Right" Orientation="Horizontal" Margin="0" VerticalAlignment="Bottom">
 
-          <Button Margin="2,2,2,2" Command="{Binding StreamConfiguration.SaveCommand}"
-                  Visibility="{Binding StreamConfiguration.ShowConfiguration, Converter={StaticResource ShowWhenTrue}}" Height="20"
-                  ToolTip="Save Settings for this Column" Cursor="Hand" Padding="0" Width="100" Style="{DynamicResource SquareButtonStyle}">
-            Save Settings
-          </Button>
+                       <Button x:Name="btnChangeOrder"
+                      Visibility="{Binding StreamConfiguration.ShowConfiguration, Converter={StaticResource ShowWhenFalse}}"
+                      Click="btnChangeOrder_Click" Width="22" Height="22" Style="{DynamicResource NavigationButtonStyle}"
+                      ToolTip="Change Order of Tweets in this Column">
+                            <TextBlock FontFamily="{DynamicResource WebSymbols}"
+                           Foreground="{DynamicResource HeadingColour}" FontSize="{DynamicResource WebSymbolAsMenuFontSize}" Text="~" />
+                        </Button>
 
-          <Button Margin="2,0,0,0" Command="{Binding StreamConfiguration.EditCommand}"
-                  Visibility="{Binding StreamConfiguration.ShowConfiguration, Converter={StaticResource ShowWhenFalse}}"
-                  ToolTip="Edit Column" Width="22" Height="22" Cursor="Hand" Padding="0" HorizontalAlignment="Right"
-                  d:LayoutOverrides="GridBox" Style="{DynamicResource NavigationButtonStyle}">
-            <TextBlock FontFamily="{DynamicResource WebSymbols}"
-                       Foreground="{DynamicResource HeadingColour}" FontSize="{DynamicResource WebSymbolAsMenuFontSize}" Text="S" />
-          </Button>
+                        <Button Margin="2,0,0,0" Command="{Binding StreamConfiguration.EditCommand}"
+                      Visibility="{Binding StreamConfiguration.ShowConfiguration, Converter={StaticResource ShowWhenFalse}}"
+                      ToolTip="Edit Column" Width="22" Height="22" Cursor="Hand" Padding="0" HorizontalAlignment="Right"
+                      d:LayoutOverrides="GridBox" Style="{DynamicResource NavigationButtonStyle}">
+                            <TextBlock FontFamily="{DynamicResource WebSymbols}"
+                           Foreground="{DynamicResource HeadingColour}" FontSize="{DynamicResource WebSymbolAsMenuFontSize}" Text="S" />
+                        </Button>
 
-          <Button Margin="2,0,0,0" Click="ConfirmCloseStream" ToolTip="Close and Delete this Column"
-                  Width="22" Height="22" Cursor="Hand" Padding="0" d:LayoutOverrides="GridBox"
-                  Style="{DynamicResource NavigationButtonStyle}"
-                  Visibility="{Binding StreamConfiguration.ShowConfiguration, Converter={StaticResource ShowWhenFalse}}">
-            <TextBlock FontFamily="{DynamicResource WebSymbols}"
-                       Foreground="{DynamicResource HeadingColour}" FontSize="{DynamicResource DefaultFontSize}" Text="'" />
-          </Button>
+                        <Button Margin="2,0,0,0" Click="ConfirmCloseStream" ToolTip="Close and Delete this Column"
+                      Width="22" Height="22" Cursor="Hand" Padding="0" d:LayoutOverrides="GridBox"
+                      Style="{DynamicResource NavigationButtonStyle}"
+                      Visibility="{Binding StreamConfiguration.ShowConfiguration, Converter={StaticResource ShowWhenFalse}}">
+                            <TextBlock FontFamily="{DynamicResource WebSymbols}"
+                           Foreground="{DynamicResource HeadingColour}" FontSize="{DynamicResource DefaultFontSize}" Text="'" />
+                        </Button>
 
-        </StackPanel>
-      </Grid>
+                        <Button Margin="2,2,2,2" Command="{Binding StreamConfiguration.SaveCommand}"
+                      Visibility="{Binding StreamConfiguration.ShowConfiguration, Converter={StaticResource ShowWhenTrue}}" Height="18"
+                      ToolTip="Save Settings for this Column" Cursor="Hand" Padding="0" Width="100" Style="{DynamicResource SquareButtonStyle}">
+                            Save Settings
+                        </Button>
+                    </StackPanel>
+            </Grid>
 
+        </Grid>
     </Grid>
-  </Grid>
 </Controls:ContainerView>

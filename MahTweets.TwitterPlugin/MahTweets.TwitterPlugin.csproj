@@ -135,7 +135,7 @@
       <HintPath>..\ThirdPartyLibraries\MahApps.Twitter\src\NET4\MahApps.RESTBase.dll</HintPath>
     </Reference>
     <Reference Include="MahApps.Twitter">
-      <HintPath>..\..\mahtweets\ThirdPartyLibraries\MahApps.Twitter\src\NET4\bin\Release\MahApps.Twitter.dll</HintPath>
+      <HintPath>..\ThirdPartyLibraries\MahTweets\Plugins\MahApps.Twitter.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.4.5.1\lib\net40\Newtonsoft.Json.dll</HintPath>
