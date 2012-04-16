@@ -6,6 +6,17 @@ MahTweets: Lawrence Hargrave takes the nearly dead skeleton of [MahTweets 3.5.0.
 
 MahTweets is built and maintained in the style of a *"shed project"* - something we love, and tinker on in our spare time. What other projects take as their reason for existence: process and UX; these are not a focus for MahTweets: Lawrence Hargrave
 
+## So who exactly is Lawrence Hargrave?
+
+And who is this [Lawrence Hargrave](http://en.wikipedia.org/wiki/Lawrence_Hargrave)? Why use him for as a codename?
+
+1. He is an Australian. MahTweets was largely developed by Aussies.
+2. He was one of the pioneers of flight in the late 19th Century, and specifically invented the box kite
+3. Twitter / birds / flight. Do the maths.
+4. He did not patent any of his ideas
+5. Like the MahApps leader, Paul Jenkins, he has a cracking beard
+
+
 ## A brief history of MahTweets
 
 Paul Jenkins started a great Twitter client back in the day - it was a thing of wonderment in the early days of Twitter clients (particularly for Windows users).
@@ -19,14 +30,6 @@ But, like all good things, the band couldn't last forever. MahTweets was [offici
 I picked up the last build of [MahTweets 3.5.0.1569](http://mahtweets.codeplex.com/SourceControl/list/changesets) over on codeplex.com and started hacking on it over the Christmas 2011/12 break. Forked it, if you will. In stealth mode.
 
 Now we have the re-starting, lazarus-like, of a project that sits in the shed. Tinker away. Try it out. Don't worry if you dent the fenders as we'll knock them out next weekend over a beer.
-
-And who is this [Lawrence Hargrave](http://en.wikipedia.org/wiki/Lawrence_Hargrave)? Why use him for as a codename?
-
-1. He is an Australian. MahTweets was largely developed by Aussies.
-2. He was one of the pioneers of flight in the late 19th Century, and specifically invented the box kite
-3. Twitter / birds / flight. Do the maths.
-4. He did not patent any of his ideas
-5. Like the MahApps leader, Paul Jenkins, he has a cracking beard
 
 ## License, Copyright
 
@@ -42,5 +45,5 @@ With loving care, many changes have been made.
 
 As at 11th March 2012 there are many things that need doing:
 
-* [Short Term Fixes](https://github.com/nickhodge/MahTweets.LawrenceHargrave/shorttermfixes) required
-* [Long Term Fixes](https://github.com/nickhodge/MahTweets.LawrenceHargrave/wiki/longtermfixes) required
+* [Short Term Fixes](http://github.com/nickhodge/MahTweets.LawrenceHargrave/wiki/shorttermfixes) required
+* [Long Term Fixes](http://github.com/nickhodge/MahTweets.LawrenceHargrave/wiki/longtermfixes) required
