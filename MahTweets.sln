@@ -19,8 +19,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MahTweets.UrlShorteners", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MahTweets.Notification", "MahTweets.Notification\MahTweets.Notification.csproj", "{BA8A3850-096A-4E87-BA9D-E8E6B1B9AB62}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MahApps.Twitter", "ThirdPartyLibraries\MahApps.Twitter\src\NET4\MahApps.Twitter.csproj", "{24A55C77-8F34-47E6-9283-1F42D4F5CB50}"
-EndProject
 Project("{930C7802-8A8C-48F9-8165-68863BCCD9DD}") = "MahTweets.Installer", "MahTweets.Installer\MahTweets.Installer.wixproj", "{D2E14400-69A9-4146-B4CA-B8CB37C4EA9F}"
 	ProjectSection(ProjectDependencies) = postProject
 		{1C0C231A-3675-4506-866F-47F76FF38FE9} = {1C0C231A-3675-4506-866F-47F76FF38FE9}
@@ -31,6 +29,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{01949D
 		.nuget\NuGet.exe = .nuget\NuGet.exe
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MahApps.Twitter", "ThirdPartyLibraries\MahApps.Twitter\MahApps.Twitter\MahApps.Twitter.csproj", "{6C08A110-6F54-49F1-A3E6-291F9A1E6718}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -63,21 +63,21 @@ Global
 		{1C0C231A-3675-4506-866F-47F76FF38FE9}.Release|Mixed Platforms.Build.0 = Release|x86
 		{1C0C231A-3675-4506-866F-47F76FF38FE9}.Release|x86.ActiveCfg = Release|Any CPU
 		{1C0C231A-3675-4506-866F-47F76FF38FE9}.Release|x86.Build.0 = Release|Any CPU
-		{24A55C77-8F34-47E6-9283-1F42D4F5CB50}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{24A55C77-8F34-47E6-9283-1F42D4F5CB50}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{24A55C77-8F34-47E6-9283-1F42D4F5CB50}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{24A55C77-8F34-47E6-9283-1F42D4F5CB50}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{24A55C77-8F34-47E6-9283-1F42D4F5CB50}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{24A55C77-8F34-47E6-9283-1F42D4F5CB50}.Publish|Any CPU.ActiveCfg = Publish|Any CPU
-		{24A55C77-8F34-47E6-9283-1F42D4F5CB50}.Publish|Any CPU.Build.0 = Publish|Any CPU
-		{24A55C77-8F34-47E6-9283-1F42D4F5CB50}.Publish|Mixed Platforms.ActiveCfg = Publish|Any CPU
-		{24A55C77-8F34-47E6-9283-1F42D4F5CB50}.Publish|Mixed Platforms.Build.0 = Publish|Any CPU
-		{24A55C77-8F34-47E6-9283-1F42D4F5CB50}.Publish|x86.ActiveCfg = Publish|Any CPU
-		{24A55C77-8F34-47E6-9283-1F42D4F5CB50}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{24A55C77-8F34-47E6-9283-1F42D4F5CB50}.Release|Any CPU.Build.0 = Release|Any CPU
-		{24A55C77-8F34-47E6-9283-1F42D4F5CB50}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{24A55C77-8F34-47E6-9283-1F42D4F5CB50}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{24A55C77-8F34-47E6-9283-1F42D4F5CB50}.Release|x86.ActiveCfg = Release|Any CPU
+		{6C08A110-6F54-49F1-A3E6-291F9A1E6718}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6C08A110-6F54-49F1-A3E6-291F9A1E6718}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6C08A110-6F54-49F1-A3E6-291F9A1E6718}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{6C08A110-6F54-49F1-A3E6-291F9A1E6718}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{6C08A110-6F54-49F1-A3E6-291F9A1E6718}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{6C08A110-6F54-49F1-A3E6-291F9A1E6718}.Publish|Any CPU.ActiveCfg = Release|Any CPU
+		{6C08A110-6F54-49F1-A3E6-291F9A1E6718}.Publish|Any CPU.Build.0 = Release|Any CPU
+		{6C08A110-6F54-49F1-A3E6-291F9A1E6718}.Publish|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{6C08A110-6F54-49F1-A3E6-291F9A1E6718}.Publish|Mixed Platforms.Build.0 = Release|Any CPU
+		{6C08A110-6F54-49F1-A3E6-291F9A1E6718}.Publish|x86.ActiveCfg = Release|Any CPU
+		{6C08A110-6F54-49F1-A3E6-291F9A1E6718}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6C08A110-6F54-49F1-A3E6-291F9A1E6718}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6C08A110-6F54-49F1-A3E6-291F9A1E6718}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{6C08A110-6F54-49F1-A3E6-291F9A1E6718}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{6C08A110-6F54-49F1-A3E6-291F9A1E6718}.Release|x86.ActiveCfg = Release|Any CPU
 		{88A09DBA-A26C-493F-AD66-1C6E0BF3A54D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{88A09DBA-A26C-493F-AD66-1C6E0BF3A54D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{88A09DBA-A26C-493F-AD66-1C6E0BF3A54D}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU

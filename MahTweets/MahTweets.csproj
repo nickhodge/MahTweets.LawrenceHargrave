@@ -146,13 +146,13 @@
       <HintPath>..\packages\Castle.Core.3.0.0.4001\lib\net40-client\Castle.Core.dll</HintPath>
     </Reference>
     <Reference Include="Hammock.ClientProfile">
-      <HintPath>..\packages\Hammock.1.2.9\lib\4.0\Hammock.ClientProfile.dll</HintPath>
+      <HintPath>..\packages\Hammock.1.3.0\lib\net40-client\Hammock.ClientProfile.dll</HintPath>
     </Reference>
     <Reference Include="LINQtoCSV">
       <HintPath>..\packages\LINQtoCSV.1.2.0.0\lib\LINQtoCSV.dll</HintPath>
     </Reference>
     <Reference Include="MahApps.Metro">
-      <HintPath>..\packages\MahApps.Metro.0.7.2.0\lib\net40\MahApps.Metro.dll</HintPath>
+      <HintPath>..\packages\MahApps.Metro.0.7.9.58-ALPHA\lib\net40\MahApps.Metro.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Dynamic">
       <HintPath>..\ThirdPartyLibraries\DLR\Microsoft.Dynamic.dll</HintPath>
@@ -166,7 +166,7 @@
       <HintPath>..\packages\Windows7APICodePack-Shell.1.1.0.0\lib\Microsoft.WindowsAPICodePack.Shell.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\Newtonsoft.Json.4.5.1\lib\net40\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\packages\Newtonsoft.Json.4.5.3\lib\net40\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="PresentationFramework.Aero" />
     <Reference Include="System" />
@@ -180,6 +180,9 @@
       <RequiredTargetFramework>3.0</RequiredTargetFramework>
     </Reference>
     <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Interactivity">
+      <HintPath>..\packages\MahApps.Metro.0.7.9.58-ALPHA\lib\net40\System.Windows.Interactivity.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
@@ -552,10 +555,6 @@
     <ProjectReference Include="..\MahTweets.UrlShorteners\MahTweets.UrlShorteners.csproj">
       <Project>{DCE614C2-6750-4440-BBFF-C3123861946F}</Project>
       <Name>MahTweets.UrlShorteners</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\ThirdPartyLibraries\MahApps.Twitter\src\NET4\MahApps.Twitter.csproj">
-      <Project>{24A55C77-8F34-47E6-9283-1F42D4F5CB50}</Project>
-      <Name>MahApps.Twitter</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

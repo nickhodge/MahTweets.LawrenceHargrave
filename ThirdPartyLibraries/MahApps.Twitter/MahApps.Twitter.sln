@@ -1,15 +1,7 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MahApps.Twitter.WP7", "src\WP7\MahApps.Twitter.WP7.csproj", "{5ECD7305-595D-4BA3-8D9E-D028610F41E1}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MahApps.Twitter", "src\NET4\MahApps.Twitter.csproj", "{24A55C77-8F34-47E6-9283-1F42D4F5CB50}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{376D03A1-286E-42A9-AE93-D569619F70CA}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MahApps.Twitter.Tests", "src\Tests\NET40\MahApps.Twitter.Tests.csproj", "{BC6429F9-AE66-4336-9F16-FBD4D1B0DEF0}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MahApps.Identica", "src\Identica\MahApps.Identica.csproj", "{215A4573-7B76-4EEB-9EDB-AE8174E1CB2C}"
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 11
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MahApps.Twitter", "MahApps.Twitter\MahApps.Twitter.csproj", "{6C08A110-6F54-49F1-A3E6-291F9A1E6718}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,27 +9,12 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{5ECD7305-595D-4BA3-8D9E-D028610F41E1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5ECD7305-595D-4BA3-8D9E-D028610F41E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5ECD7305-595D-4BA3-8D9E-D028610F41E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5ECD7305-595D-4BA3-8D9E-D028610F41E1}.Release|Any CPU.Build.0 = Release|Any CPU
-		{24A55C77-8F34-47E6-9283-1F42D4F5CB50}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{24A55C77-8F34-47E6-9283-1F42D4F5CB50}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{24A55C77-8F34-47E6-9283-1F42D4F5CB50}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{24A55C77-8F34-47E6-9283-1F42D4F5CB50}.Release|Any CPU.Build.0 = Release|Any CPU
-		{BC6429F9-AE66-4336-9F16-FBD4D1B0DEF0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BC6429F9-AE66-4336-9F16-FBD4D1B0DEF0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BC6429F9-AE66-4336-9F16-FBD4D1B0DEF0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BC6429F9-AE66-4336-9F16-FBD4D1B0DEF0}.Release|Any CPU.Build.0 = Release|Any CPU
-		{215A4573-7B76-4EEB-9EDB-AE8174E1CB2C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{215A4573-7B76-4EEB-9EDB-AE8174E1CB2C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{215A4573-7B76-4EEB-9EDB-AE8174E1CB2C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{215A4573-7B76-4EEB-9EDB-AE8174E1CB2C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6C08A110-6F54-49F1-A3E6-291F9A1E6718}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6C08A110-6F54-49F1-A3E6-291F9A1E6718}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6C08A110-6F54-49F1-A3E6-291F9A1E6718}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6C08A110-6F54-49F1-A3E6-291F9A1E6718}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{BC6429F9-AE66-4336-9F16-FBD4D1B0DEF0} = {376D03A1-286E-42A9-AE93-D569619F70CA}
 	EndGlobalSection
 EndGlobal

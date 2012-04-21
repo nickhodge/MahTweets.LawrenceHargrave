@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{6C08A110-6F54-49F1-A3E6-291F9A1E6718}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MahApps.Twitter</RootNamespace>
+    <AssemblyName>MahApps.Twitter</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Hammock.ClientProfile">
+      <HintPath>..\packages\Hammock.1.3.0\lib\net40-client\Hammock.ClientProfile.dll</HintPath>
+    </Reference>
+    <Reference Include="MahApps.RESTBase, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>.\MahApps.RESTBase.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.4.5.3\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Delegates.cs" />
+    <Compile Include="Extensions\JsonExtensions.cs" />
+    <Compile Include="Extensions\StringExtensions.cs" />
+    <Compile Include="Format.cs" />
+    <Compile Include="IBaseTwitterClient.cs" />
+    <Compile Include="ITwitterClient.cs" />
+    <Compile Include="Methods\Account.cs" />
+    <Compile Include="Methods\Block.cs" />
+    <Compile Include="Methods\DirectMessages.cs" />
+    <Compile Include="Methods\Favourites.cs" />
+    <Compile Include="Methods\FriendsAndFollowers.cs" />
+    <Compile Include="Methods\Friendship.cs" />
+    <Compile Include="Methods\Lists.cs" />
+    <Compile Include="Methods\Search.cs" />
+    <Compile Include="Methods\Statuses.cs" />
+    <Compile Include="Methods\User.cs" />
+    <Compile Include="Models\DirectMessage.cs" />
+    <Compile Include="Models\ExceptionResponse.cs" />
+    <Compile Include="Models\Geo.cs" />
+    <Compile Include="Models\IdLookup.cs" />
+    <Compile Include="Models\ITwitterResponse.cs" />
+    <Compile Include="Models\List.cs" />
+    <Compile Include="Models\Relationship.cs" />
+    <Compile Include="Models\RelationShipEntity.cs" />
+    <Compile Include="Models\ResultsWrapper.cs" />
+    <Compile Include="Models\SavedSearch.cs" />
+    <Compile Include="Models\SearchTweets.cs" />
+    <Compile Include="Models\Target.cs" />
+    <Compile Include="Models\Tweet.cs" />
+    <Compile Include="Models\User.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StatusProcessor.cs" />
+    <Compile Include="TwitterClient.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="MahApps.RESTBase.dll" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
