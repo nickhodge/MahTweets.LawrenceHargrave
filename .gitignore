@@ -33,6 +33,7 @@ Ankh.NoLoad
 
 #Tooling
 _ReSharper*/
+_Upgrade*/
 *.resharper
 [Tt]est[Rr]esult*
 
