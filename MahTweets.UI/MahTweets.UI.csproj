@@ -83,11 +83,11 @@
     </Reference>
     <Reference Include="MahApps.Metro, Version=0.7.1.0, Culture=neutral, PublicKeyToken=f4fb5a3c4d1e5b4f, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\MahApps.Metro.0.8.9.20-ALPHA\lib\net40\MahApps.Metro.dll</HintPath>
+      <HintPath>..\packages\MahApps.Metro.0.8.9.25-ALPHA\lib\net40\MahApps.Metro.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Newtonsoft.Json.4.5.6\lib\net40\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\packages\Newtonsoft.Json.4.5.7\lib\net40\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
@@ -97,7 +97,7 @@
     <Reference Include="System.Runtime.DurableInstancing" />
     <Reference Include="System.Windows.Interactivity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\MahApps.Metro.0.8.9.20-ALPHA\lib\net40\System.Windows.Interactivity.dll</HintPath>
+      <HintPath>..\packages\MahApps.Metro.0.8.9.25-ALPHA\lib\net40\System.Windows.Interactivity.dll</HintPath>
     </Reference>
     <Reference Include="System.Xaml" />
     <Reference Include="WindowsBase">

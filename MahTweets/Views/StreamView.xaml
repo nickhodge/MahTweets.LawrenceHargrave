@@ -134,7 +134,9 @@
             </DockPanel>
 
             <!-- Normal Updates -->
-            <ListBox Panel.ZIndex="1" x:Name="svUpdates" Grid.Row="1"
+            <ListBox Panel.ZIndex="1" x:Name="svUpdates" Grid.Row="1" 
+                VirtualizingStackPanel.IsVirtualizing="True" 
+                 VirtualizingStackPanel.ScrollUnit="Pixel"
                ScrollViewer.VerticalScrollBarVisibility="Visible" ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                SelectionChanged="UpdatesSelectionChanged" ItemsSource="{Binding Source={StaticResource UpdatesCollectionView}}"
                Background="{x:Null}" BorderBrush="{x:Null}" PreviewKeyDown="UpdatesKeyDown" MouseEnter="svUpdates_MouseEnter"
