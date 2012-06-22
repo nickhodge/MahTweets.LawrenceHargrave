@@ -102,6 +102,10 @@
 
       <!-- Contents -->
       <ListBox Panel.ZIndex="1" x:Name="svUpdates" Grid.Row="1"
+               VirtualizingStackPanel.IsVirtualizing="True" 
+               VirtualizingStackPanel.ScrollUnit="Pixel"
+               VirtualizingStackPanel.CacheLengthUnit="Page"
+               VirtualizingStackPanel.CacheLength="2,2"
                ScrollViewer.VerticalScrollBarVisibility="Visible" ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                ItemsSource="{Binding Source={StaticResource UpdatesCollectionView}}" Background="{x:Null}" BorderBrush="{x:Null}"
                Margin="0,0,0,0" BorderThickness="1,0,0,0" Visibility="Collapsed"
