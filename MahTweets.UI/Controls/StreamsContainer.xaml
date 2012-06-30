@@ -15,9 +15,6 @@
             <ItemsPanelTemplate>
               <StackPanel x:Name="robertStack" Orientation="Horizontal" Margin="0,0,0,0" 
                 VirtualizingStackPanel.IsVirtualizing="True" 
-               VirtualizingStackPanel.ScrollUnit="Pixel"
-               VirtualizingStackPanel.CacheLengthUnit="Page"
-               VirtualizingStackPanel.CacheLength="2,2"
 />
             </ItemsPanelTemplate>
           </ItemsControl.ItemsPanel>

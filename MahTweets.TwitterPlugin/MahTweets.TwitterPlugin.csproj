@@ -129,7 +129,7 @@
       <HintPath>..\packages\Hammock.1.3.0\lib\net40-client\Hammock.ClientProfile.dll</HintPath>
     </Reference>
     <Reference Include="MahApps.Metro">
-      <HintPath>..\packages\MahApps.Metro.0.8.9.25-ALPHA\lib\net40\MahApps.Metro.dll</HintPath>
+      <HintPath>..\packages\MahApps.Metro.0.8.9.28-ALPHA\lib\net40\MahApps.Metro.dll</HintPath>
     </Reference>
     <Reference Include="MahApps.RESTBase">
       <HintPath>..\ThirdPartyLibraries\MahApps.Twitter\MahApps.Twitter\MahApps.RESTBase.dll</HintPath>

@@ -46,7 +46,7 @@ namespace MahTweets.ViewModels
         }
 
         public BindableList<IStatusUpdate> Updates { get; set; }
-
+ 
         public new string Title
         {
             get { return StreamConfiguration.Filters.GroupName; }
