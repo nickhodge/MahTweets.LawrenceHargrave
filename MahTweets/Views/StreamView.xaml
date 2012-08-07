@@ -291,7 +291,7 @@
             </Grid>
 
             <!-- Control Buttons -->
-            <Grid x:Name="grdActions" Opacity="0.7" Margin="0,0,10,7" d:LayoutOverrides="GridBox" Grid.Row="0">
+            <Grid x:Name="grdActions" Opacity="0.7" Margin="0,0,10,0" d:LayoutOverrides="GridBox" Grid.Row="0">
                           
                <TextBox x:Name="txtColumnName" IsReadOnly="{Binding StreamConfiguration.ShowConfiguration, Converter={StaticResource EditWhenFalse}}"
                 Background="{x:Null}" BorderBrush="{x:Null}" FontFamily="{DynamicResource HeadingFont}"
@@ -299,7 +299,7 @@
                 Padding="0" BorderThickness="0" Margin="2,-3,0,0" TextAlignment="Left"
                 IsHitTestVisible="{Binding StreamConfiguration.ShowConfiguration, Converter={StaticResource EditWhenTrue}}" />
 
-                <StackPanel HorizontalAlignment="Right" Orientation="Horizontal" Margin="0" VerticalAlignment="Bottom">
+                <StackPanel HorizontalAlignment="Right" Orientation="Horizontal" Margin="0" VerticalAlignment="Center">
 
                        <Button x:Name="btnChangeOrder"
                       Visibility="{Binding StreamConfiguration.ShowConfiguration, Converter={StaticResource ShowWhenFalse}}"
@@ -326,7 +326,7 @@
                         </Button>
 
                         <Button Margin="2,2,2,2" Command="{Binding StreamConfiguration.SaveCommand}"
-                      Visibility="{Binding StreamConfiguration.ShowConfiguration, Converter={StaticResource ShowWhenTrue}}" Height="18"
+                      Visibility="{Binding StreamConfiguration.ShowConfiguration, Converter={StaticResource ShowWhenTrue}}" Height="16"
                       ToolTip="Save Settings for this Column" Cursor="Hand" Padding="0" Width="100" Style="{DynamicResource SquareButtonStyle}">
                             Save Settings
                         </Button>
