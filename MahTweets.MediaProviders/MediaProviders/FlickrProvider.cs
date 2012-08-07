@@ -3,6 +3,8 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Xml;
 using MahTweets.Core;
+using MahTweets.Core.Composition;
+using MahTweets.Core.Interfaces.Application;
 using MahTweets.Core.Media;
 
 namespace MahTweets.TweetProcessors.MediaProviders
@@ -12,7 +14,7 @@ namespace MahTweets.TweetProcessors.MediaProviders
         // from: http://www.flickr.com/services/api/misc.urls.html
         // http://www.flickr.com/services/api/explore/flickr.photos.getInfo
 
-        private const string _apikey = "cf532957fa7af334863226af5b0219e8";
+        private const string Apikey = "cf532957fa7af334863226af5b0219e8";
 
         private const string Flickrgetphotoid =
             @"http://api.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key={0}&photo_id={1}&format=rest";
@@ -39,14 +41,13 @@ namespace MahTweets.TweetProcessors.MediaProviders
                     url2 = match2.Groups["realurl"].Value;
                 }
                 var iid = FindImageID(url2);
-                var getImageInfoUrl = String.Format(Flickrgetphotoid, _apikey, iid);
+                var getImageInfoUrl = String.Format(Flickrgetphotoid, Apikey, iid);
 
                 var fetcher = new AsyncWebFetcher();
                 var flickrdata = await fetcher.FetchAsync(getImageInfoUrl);
                 if (flickrdata == null) return null;
 
                 var xdoc = new XmlDocument();
-                if (xdoc == null) return null;
                 xdoc.LoadXml(flickrdata);
                 var photo = xdoc.SelectSingleNode("/rsp/photo");
                 if (photo == null) return null;
@@ -57,14 +58,14 @@ namespace MahTweets.TweetProcessors.MediaProviders
                                            photo.Attributes["secret"].InnerText);
             } catch (Exception ex)
             {
-                
+                CompositionManager.Get<IExceptionReporter>().ReportHandledException(ex);
             }
             return null;
         }
 
         private string FindImageID(string url)
         {
-            string[] f = url.Split('/');
+            var f = url.Split('/');
             return f[5];
         }
     }

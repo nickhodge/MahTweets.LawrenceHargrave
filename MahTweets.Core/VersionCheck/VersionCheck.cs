@@ -1,7 +1,8 @@
 ﻿using System;
-using System.Threading.Tasks;
+using MahTweets.Core.Composition;
 using MahTweets.Core.Events;
 using MahTweets.Core.Events.EventTypes;
+using MahTweets.Core.Interfaces.Application;
 using MahTweets.Core.Interfaces.Settings;
 using Newtonsoft.Json.Linq;
 
@@ -16,7 +17,7 @@ namespace MahTweets.Core.VersionCheck
         private readonly IApplicationSettingsProvider _applicationSettingsProvider;
         private readonly IEventAggregator _eventAggregator;
 
-        private const string _versioncheckurl = "http://service.lawrencehargrave.com/1/versioncheck/release";
+        private const string Versioncheckurl = "http://service.lawrencehargrave.com/1/versioncheck/release";
  
         public CurrentVersion(            
             IApplicationSettingsProvider applicationSettingsProvider,
@@ -33,7 +34,7 @@ namespace MahTweets.Core.VersionCheck
             var webFetcher = new AsyncWebFetcher();
             try
             {
-                var versionraw = await webFetcher.FetchAsync(_versioncheckurl);
+                var versionraw = await webFetcher.FetchAsync(Versioncheckurl);
                 var j = JObject.Parse(versionraw);
 
                 var currentmajor = j["major"].ToObject<Int32>();
@@ -46,20 +47,7 @@ namespace MahTweets.Core.VersionCheck
                 var runningpatch = currentVersion.RunningVersion.Item3;
                 var runningbuild = currentVersion.RunningVersion.Item4;
 
-                var flagupdate = currentmajor > runningmajor;
-
-                if (currentminor > runningminor)
-                {
-                    flagupdate = true;
-                }
-                if (currentpatch > runningpatch)
-                {
-                    flagupdate = true;
-                }
-                if (currentbuild.ToLower() != runningbuild.ToLower())
-                {
-                    flagupdate = true;
-                }
+                var flagupdate = currentmajor > runningmajor || currentminor > runningminor || currentpatch > runningpatch || currentbuild.ToLower() != runningbuild.ToLower();
 
                 if (!flagupdate) return;
 
@@ -74,7 +62,7 @@ namespace MahTweets.Core.VersionCheck
                                                 TimeSpan.FromMinutes(1), NotificactionLevel.Information));
             } catch (Exception ex)
             {
-                
+                CompositionManager.Get<IExceptionReporter>().ReportHandledException(ex);
             }
         }
     }

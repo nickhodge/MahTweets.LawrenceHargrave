@@ -3,6 +3,8 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Xml;
 using MahTweets.Core;
+using MahTweets.Core.Composition;
+using MahTweets.Core.Interfaces.Application;
 using MahTweets.Core.Media;
 
 namespace MahTweets.TweetProcessors.MediaProviders
@@ -44,7 +46,7 @@ namespace MahTweets.TweetProcessors.MediaProviders
                 }
             } catch (Exception ex)
             {
-                
+                CompositionManager.Get<IExceptionReporter>().ReportHandledException(ex);
             }
             return null;
         }

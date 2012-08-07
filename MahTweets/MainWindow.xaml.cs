@@ -8,7 +8,6 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Input;
 using MahApps.Metro.Controls;
-using MahTweets.Configuration;
 using MahTweets.Core.Composition;
 using MahTweets.Core.Events;
 using MahTweets.Core.Events.EventTypes;
