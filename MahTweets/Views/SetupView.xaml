@@ -22,9 +22,9 @@
                      Style="{DynamicResource SetupTabControlStyle}">
                 <Setup:ThemesView DataContext="{Binding ThemesViewModel}" />
             </TabItem> -->
-      <TabItem Header="Ignores" BorderBrush="{x:Null}" Style="{DynamicResource SetupTabControlStyle}">
+     <!-- <TabItem Header="Ignores" BorderBrush="{x:Null}" Style="{DynamicResource SetupTabControlStyle}">
         <Setup:GlobalIgnoresView DataContext="{Binding GlobalIgnoresViewModel}" />
-      </TabItem>
+      </TabItem> -->
     </TabControl>
     <Grid x:Name="grdSetupOverlay" Background="{x:Null}" Visibility="Visible" Panel.ZIndex="0" Opacity="0"
           Margin="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">

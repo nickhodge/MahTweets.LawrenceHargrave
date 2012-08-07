@@ -42,9 +42,9 @@
         <RowDefinition Height="30" />
       </Grid.RowDefinitions>
       <TextBlock Text="Add Twitter Account" Grid.Row="0" />
-      <ListBox ItemsSource="{Binding Source={StaticResource cvsAvailableAccounts}}" Grid.Row="1"
+                <ListBox ItemsSource="{Binding Source={StaticResource cvsAvailableAccounts}}" Grid.Row="1"
                Background="{x:Null}" Foreground="{DynamicResource TextColour}" FontFamily="{DynamicResource DefaultFont}"
-               FontSize="{DynamicResource DefaultFontSize}" BorderBrush="{x:Null}" SelectedItem="{Binding NewPlugin}">
+               FontSize="{DynamicResource DefaultFontSize}" BorderBrush="{x:Null}" SelectedItem="{Binding NewPlugin}" Height="100" VerticalAlignment="Top">
         <ListBox.ItemTemplate>
           <DataTemplate>
             <StackPanel>
@@ -58,10 +58,10 @@
           </DataTemplate>
         </ListBox.ItemTemplate>
       </ListBox>
-      <Button Content="Add" Command="{Binding AddCommand}" CommandParameter="{Binding NewPlugin}" Cursor="Hand"
-              Grid.Row="2" HorizontalAlignment="Left" Width="85" VerticalAlignment="Top" Margin="0"
+      <Button Content="Add New Twitter Account" FontSize="14" Command="{Binding AddCommand}" CommandParameter="{Binding NewPlugin}" Cursor="Hand"
+              Grid.Row="2" HorizontalAlignment="Left" Width="175" VerticalAlignment="Top" Margin="0"
               Style="{DynamicResource SquareButtonStyle}" Foreground="{DynamicResource TextColour}" />
-    </Grid>
+        </Grid>
 
         <Grid Grid.Column="1">
             <Grid.RowDefinitions>
