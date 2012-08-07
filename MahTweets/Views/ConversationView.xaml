@@ -60,7 +60,7 @@
 
       <!-- avatars of people in conversation -->
       <ListBox x:Name="lbAvatars" Grid.Row="1" ItemsSource="{Binding Source={StaticResource ContactsCollection}}"
-               Background="{x:Null}" BorderBrush="{x:Null}" Grid.ColumnSpan="2" Margin="0,0,0,5">
+               Background="{x:Null}" BorderBrush="{x:Null}" Grid.ColumnSpan="2" Margin="0,0,0,0">
         <ListBox.ItemTemplate>
           <DataTemplate>
             <DataTemplate.Resources>
