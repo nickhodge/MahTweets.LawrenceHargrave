@@ -108,7 +108,7 @@ namespace MahTweets
 
             if (!DesignerProperties.GetIsInDesignMode(this))
             {
-                MahTweets.Configuration.WindowSettings.SetSave(this, true);
+                Configuration.WindowSettings.SetSave(this, true);
             }
         }
 
@@ -289,21 +289,19 @@ namespace MahTweets
 
         private void WindowDrop(object sender, DragEventArgs e)
         {
-            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            if (!e.Data.GetDataPresent(DataFormats.FileDrop)) return;
+            var droppedFilePaths = e.Data.GetData(DataFormats.FileDrop, true) as string[];
+            if (droppedFilePaths == null)
+                return;
+
+            var file = droppedFilePaths[0];
+
+            if (file.ToLower().EndsWith(".jpg") ||
+                file.ToLower().EndsWith(".jpeg") ||
+                file.ToLower().EndsWith(".gif") ||
+                file.ToLower().EndsWith(".png"))
             {
-                var droppedFilePaths = e.Data.GetData(DataFormats.FileDrop, true) as string[];
-                if (droppedFilePaths == null)
-                    return;
-
-                string file = droppedFilePaths[0];
-
-                if (file.ToLower().EndsWith(".jpg") ||
-                    file.ToLower().EndsWith(".jpeg") ||
-                    file.ToLower().EndsWith(".gif") ||
-                    file.ToLower().EndsWith(".png"))
-                {
-                    //Upload(file);
-                }
+                //Upload(file);
             }
         }
 
@@ -432,14 +430,5 @@ namespace MahTweets
             scriptingUiHelper.ScriptConsoleView.Show();
         }
 
-        #region Nested type: WindowMode
-
-        private enum WindowMode
-        {
-            Maximise,
-            Normal
-        }
-
-        #endregion
     }
 }

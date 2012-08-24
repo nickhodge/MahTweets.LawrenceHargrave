@@ -182,9 +182,9 @@ namespace MahTweets
             //Setup the tray icon
             _notifyIcon = new NotifyIcon
                               {
-                                  BalloonTipText = @"MahTweets has been minimised. Click the tray icon to show.",
-                                  BalloonTipTitle = @"MahTweets",
-                                  Text = @"MahTweets",
+                                  BalloonTipText = "MahTweets has been minimised. Click the tray icon to show.",
+                                  BalloonTipTitle = "MahTweets",
+                                  Text = "MahTweets",
                                   Icon = new Icon("mahtweetsicon.ico"),
                                   Visible = true
                               };
