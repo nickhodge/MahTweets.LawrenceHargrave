@@ -543,10 +543,6 @@
       <Project>{BA8A3850-096A-4E87-BA9D-E8E6B1B9AB62}</Project>
       <Name>MahTweets.Notification</Name>
     </ProjectReference>
-    <ProjectReference Include="..\MahTweets.TwitterPlugin\MahTweets.TwitterPlugin.csproj">
-      <Project>{95DAE60F-62DA-4D7E-BBEC-23143F6B7C88}</Project>
-      <Name>MahTweets.TwitterPlugin</Name>
-    </ProjectReference>
     <ProjectReference Include="..\MahTweets.UI\MahTweets.UI.csproj">
       <Project>{D867BBAE-C872-4C5E-B339-BA9D095FAD9F}</Project>
       <Name>MahTweets.UI</Name>

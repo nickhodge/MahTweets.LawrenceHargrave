@@ -1,5 +1,5 @@
 ﻿using System;
-using MahApps.Twitter.Models;
+using BoxKite.Twitter.Models;
 
 namespace MahTweets.TwitterPlugin.Logic
 {

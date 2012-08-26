@@ -55,6 +55,9 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="BoxKite.Notifications.Desktop">
+      <HintPath>..\packages\BoxKite.Notifications.0.0.5-pre\lib\net45\BoxKite.Notifications.Desktop.dll</HintPath>
+    </Reference>
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />

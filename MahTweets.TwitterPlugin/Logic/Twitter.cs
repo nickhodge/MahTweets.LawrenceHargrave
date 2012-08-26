@@ -9,10 +9,6 @@ using System.Threading.Tasks;
 using System.Timers;
 using System.Windows;
 using System.Windows.Media.Imaging;
-using Hammock;
-using MahApps.RESTBase;
-using MahApps.Twitter;
-using MahApps.Twitter.Models;
 using MahTweets.Core;
 using MahTweets.Core.Composition;
 using MahTweets.Core.Events;
@@ -28,8 +24,7 @@ using MahTweets.Core.Settings;
 using MahTweets.Core.Utilities;
 using MahTweets.TwitterPlugin.UI;
 using MahTweets.TwitterPlugin.Views;
-using MAT = MahApps.Twitter;
-using Tweet = MahApps.Twitter.Models.Tweet;
+using Tweet = BoxKite.Twitter.Models.Tweet;
 
 namespace MahTweets.TwitterPlugin.Logic
 {
@@ -38,14 +33,9 @@ namespace MahTweets.TwitterPlugin.Logic
     [PartCreationPolicy(CreationPolicy.NonShared)]
     public class Twitter : Notify, IMicroblog, IHaveSettings, IObservable<IStatusUpdate>
     {
-        //Private properties
-        // Original MahTweets 3.5 oauth codes
-        //private const string ConsumerKey = "26ClesNK3zAiTi8zfBlz8w";
-        //private const string ConsumerSecret = "JcG1iTyXBfJamFHyOtzPKs4XVd3FNLqnFIolmKMWwU";
-
         // new LawrenceHargrave oauth launch codes
-        private const string ConsumerKey = "b8qsK6pFUPNZzdu5FxfxVg";
-        private const string ConsumerSecret = "mYO5CysNHvFQ0pPO7y7Fwj7LY1KsLlxha794FXp7qM";
+        private const string ConsumerKey = "WvXyvlx3xAyqbprkdEmg";
+        private const string ConsumerSecret = "LxTwqPvH1KQxsfBgvaVdEviUYF5nGnhKnICx6RwGHtI";
 
 
         //Arbitary values so that it works (0 didn't work, 900million is too large for DMs)
